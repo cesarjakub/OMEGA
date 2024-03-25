@@ -7,10 +7,10 @@ class Borrowing:
             raise ValueError("Id must be a non-negative integer.")
 
         if book_id < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Book id must be a non-negative integer.")
 
         if users_id < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Users id must be a non-negative integer.")
 
         self.id = id
         self.book_id = book_id

@@ -7,10 +7,10 @@ class Book:
             raise ValueError("Id must be a non-negative integer.")
 
         if genre_id < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Genre id must be a non-negative integer.")
 
         if author_id < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Author id must be a non-negative integer.")
 
         self.id = id
         self.genre_id = genre_id

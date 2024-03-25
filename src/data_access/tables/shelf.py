@@ -7,13 +7,13 @@ class Shelf:
             raise ValueError("Id must be a non-negative integer.")
 
         if book_id < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Book id must be a non-negative integer.")
 
         if shelf_no < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Shelf number must be a non-negative integer.")
 
         if floor < 0:
-            raise ValueError("Id must be a non-negative integer.")
+            raise ValueError("Floor number must be a non-negative integer.")
 
         self.id = id
         self.book_id = book_id
