@@ -22,8 +22,6 @@ class DatabaseConnection:
             raise ValueError(e)
         except Exception:
             raise ConnectionError("Failed to connect to the database")
-        finally:
-            self.disconnect()
 
     def disconnect(self):
         self.connection.close()
