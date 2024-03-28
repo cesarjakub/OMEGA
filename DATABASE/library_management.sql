@@ -51,7 +51,8 @@ Address VARCHAR(255) NOT NULL
 CREATE TABLE admin(
 ID INT PRIMARY KEY IDENTITY(1,1),
 Users_ID INT FOREIGN KEY REFERENCES users(ID),
-Role VARCHAR(50)
+Role VARCHAR(50),
+Password VARCHAR(255)
 );
 
 CREATE TABLE borrowing(
@@ -65,7 +66,6 @@ Due_date DATE NOT NULL
 -- insers
 
 -- views
--- nejsou vytvorene
 GO
 CREATE VIEW Borrowed_books_by_users AS
 SELECT users.ID, users.First_name, users.Last_name, users.Phone, book.Title, borrowing.Borrowed_date, borrowing.Due_date 
@@ -85,7 +85,6 @@ FROM book_copy INNER JOIN book ON book_copy.Book_ID = book.ID INNER JOIN publish
 GO
 
 -- procedures
--- nejsou vytvorene
 GO
 CREATE PROCEDURE Add_user @First_name VARCHAR(20), @Last_name VARCHAR(20), @Date_of_birth DATE, @Email VARCHAR(50), @Phone VARCHAR(13), @Address VARCHAR(255)
 AS
