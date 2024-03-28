@@ -43,7 +43,7 @@ ID INT PRIMARY KEY IDENTITY(1,1),
 First_name VARCHAR(20) NOT NULL,
 Last_name VARCHAR(20) NOT NULL,
 Date_of_birth DATE NOT NULL,
-Email VARCHAR(50) NOT NULL CHECK(Email LIKE '%@%'),
+Email VARCHAR(50) UNIQUE NOT NULL CHECK(Email LIKE '%@%'),
 Phone VARCHAR(13) NOT NULL,
 Address VARCHAR(255) NOT NULL
 );
@@ -64,6 +64,9 @@ Due_date DATE NOT NULL
 );
 
 -- insers
+
+-- ulozene selecty
+SELECT Email, Password FROM users INNER JOIN admin ON users.ID = admin.Users_ID WHERE users.Email = '' AND admin.Password = '';
 
 -- views
 GO
