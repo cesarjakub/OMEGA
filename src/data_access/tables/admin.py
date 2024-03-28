@@ -1,7 +1,7 @@
 
 class Admin:
 
-    def __init__(self, id: int, users_id: int, role: str):
+    def __init__(self, id: int, users_id: int, role: str, password: str):
 
         if id < 0:
             raise ValueError("Id must be a non-negative integer.")
@@ -12,3 +12,4 @@ class Admin:
         self.id = id
         self.users_id = users_id
         self.role = role
+        self.password = password
