@@ -1,7 +1,7 @@
-from src.presentations.login_scene import Login
+from src.application.logic import Logic
 
 def main():
-    lg = Login(logic=None)
+    logic = Logic()
 
 
 if __name__ == '__main__':

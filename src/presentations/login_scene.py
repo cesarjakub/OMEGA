@@ -1,14 +1,13 @@
-import customtkinter
 import customtkinter as ctk
 
-class Login:
+class LoginScene:
 
     def __init__(self, logic):
         self.logic = logic
 
         self.root = ctk.CTk()
-        customtkinter.set_default_color_theme("dark-blue")
-        customtkinter.set_appearance_mode("Dark")
+        ctk.set_default_color_theme("dark-blue")
+        ctk.set_appearance_mode("Dark")
         self.root.title("Login")
         self.root.geometry("300x340")
         self.root.resizable(False, False)
