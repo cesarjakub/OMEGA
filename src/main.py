@@ -1,6 +1,7 @@
+from src.presentations.login_scene import Login
 
 def main():
-    pass
+    lg = Login(logic=None)
 
 
 if __name__ == '__main__':
