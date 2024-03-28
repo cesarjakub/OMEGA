@@ -9,6 +9,7 @@ class DatabaseConnection:
     def connect(self):
         try:
             server_name, server_database, server_uid, server_pwd = ConfigSettings.get_database_data()
+            print(server_name)
 
             self.connection = pyodbc.connect(
                 f"DRIVER={{ODBC Driver 17 for SQL Server}};"
