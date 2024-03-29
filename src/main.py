@@ -1,7 +1,9 @@
 from src.application.logic import Logic
+from src.data_access.database_connection import DatabaseConnection
 
 def main():
-    logic = Logic(database=None)
+    database = DatabaseConnection()
+    logic = Logic(database)
 
 
 if __name__ == '__main__':

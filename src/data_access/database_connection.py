@@ -25,3 +25,20 @@ class DatabaseConnection:
 
     def disconnect(self):
         self.connection.close()
+
+    def select_with_params(self, query, params):
+        try:
+            if not params:
+                raise Exception("Please fill in field")
+            self.connect()
+            cursor = self.connection.cursor()
+            cursor.execute(query, params)
+            records = cursor.fetchall()
+            cursor.close()
+            if not records:
+                raise Exception("Email or password is wrong! Please try again.")
+        except Exception as e:
+            raise Exception(e)
+        finally:
+            self.disconnect()
+
