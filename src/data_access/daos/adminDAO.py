@@ -19,13 +19,13 @@ class AdminDAO(IDao):
     def delete(self, record: Admin):
         pass
 
-    def read_with_params(self, email, password):
+    def read_with_params(self, email, password, msg):
         try:
             query = """
                     SELECT Email, Password FROM users INNER JOIN admin ON users.ID = admin.Users_ID 
                     WHERE users.Email = ? AND admin.Password = ?
                     """
             params = (email, password, )
-            self.database.select_with_params(query, params)
+            self.database.select_with_params(query, params, msg)
         except Exception as e:
             raise Exception(e)
