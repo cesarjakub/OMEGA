@@ -26,6 +26,7 @@ class DatabaseConnection:
     def disconnect(self):
         self.connection.close()
 
+    # selects
     def select_with_params(self, query, params, msg):
         try:
             if not params:
@@ -42,3 +43,30 @@ class DatabaseConnection:
         finally:
             self.disconnect()
 
+    def select(self, query, msg):
+        try:
+            self.connect()
+            cursor = self.connection.cursor()
+            cursor.execute(query)
+            records = cursor.fetchall()
+            cursor.close()
+            if not records:
+                raise Exception(msg)
+            return records
+        except Exception as e:
+            raise Exception(e)
+        finally:
+            self.disconnect()
+
+    # executables
+    def exec(self, query, params, msg):
+        try:
+            self.connect()
+            cursor = self.connection.cursor()
+            cursor.execute(query, params)
+            cursor.commit()
+            cursor.close()
+        except Exception:
+            raise Exception(msg)
+        finally:
+            self.disconnect()

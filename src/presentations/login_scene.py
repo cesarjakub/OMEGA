@@ -39,7 +39,7 @@ class LoginScene:
 
     def login_btn(self):
         try:
-            self.logic.login(self.email_entry.get(), self.password_entry.get(), "Email or password is wrong! Please try again.")
+            self.logic.login(self.email_entry.get(), self.password_entry.get())
         except Exception as e:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel",)
 

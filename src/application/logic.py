@@ -11,9 +11,9 @@ class Logic:
     def start(self):
         login = LoginScene(logic=self)
 
-    def login(self, email, password, msg):
+    def login(self, email, password):
         try:
             login_logic = LoginLogic(self.database)
-            login_logic.login(email, password, msg)
+            login_logic.login(email, password)
         except Exception as e:
             raise Exception(e)

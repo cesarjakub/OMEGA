@@ -5,9 +5,9 @@ class LoginLogic:
     def __init__(self, database):
         self.database = database
 
-    def login(self, email, password, msg):
+    def login(self, email, password):
         try:
             admin = AdminDAO(self.database)
-            admin.read_with_params(email, password, msg)
+            admin.read_with_params(email, password)
         except Exception as e:
             raise Exception(e)
