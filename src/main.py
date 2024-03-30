@@ -1,5 +1,6 @@
 from src.application.logic import Logic
-from src.data_access.database_connection import DatabaseConnection
+from src.data_access.database_connection import (DatabaseConnection)
+from src.presentations.main_scene import MainScene
 
 def main():
     database = DatabaseConnection()

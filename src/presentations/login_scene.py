@@ -15,6 +15,7 @@ class LoginScene:
         self.entry()
         self.root.mainloop()
 
+
     def entry(self):
         self.name_label = ctk.CTkLabel(self.root, text="Library Management", font=('Open Sans', 25, 'bold'))
         self.name_label.pack(pady=10)
@@ -40,6 +41,8 @@ class LoginScene:
     def login_btn(self):
         try:
             self.logic.login(self.email_entry.get(), self.password_entry.get())
+            self.root.withdraw()
+            self.logic.main_scene()
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel",)
+            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 

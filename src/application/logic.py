@@ -1,5 +1,6 @@
 from src.presentations.login_scene import LoginScene
 from src.application.login_logic import LoginLogic
+from src.presentations.main_scene import MainScene
 
 class Logic:
 
@@ -17,3 +18,7 @@ class Logic:
             login_logic.login(email, password)
         except Exception as e:
             raise Exception(e)
+
+    #main logic
+    def main_scene(self):
+        main_sc = MainScene(logic=self)
