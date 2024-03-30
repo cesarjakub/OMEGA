@@ -13,7 +13,6 @@ class LoginScene:
         self.root.geometry("400x340")
         self.root.resizable(False, False)
         self.entry()
-        self.root.mainloop()
 
 
     def entry(self):
@@ -42,7 +41,10 @@ class LoginScene:
         try:
             self.logic.login(self.email_entry.get(), self.password_entry.get())
             self.root.withdraw()
-            self.logic.main_scene()
+            self.logic.main_scene()# dodelat vypnuti more
         except Exception as e:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+
+    def mainloop(self):
+        self.root.mainloop()
 

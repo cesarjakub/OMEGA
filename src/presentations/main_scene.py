@@ -16,7 +16,6 @@ class MainScene:
         self.root.grid_columnconfigure((2, 3), weight=0)
         self.root.grid_rowconfigure(0, weight=1)
         self.components()
-        self.root.mainloop()
 
     def components(self):
         #sidebar
@@ -26,3 +25,6 @@ class MainScene:
         #main scene
         self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, corner_radius=15)
         self.scene_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+
+    def mainloop(self):
+        self.root.mainloop()

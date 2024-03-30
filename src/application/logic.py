@@ -11,6 +11,7 @@ class Logic:
     # login logic
     def start(self):
         login = LoginScene(logic=self)
+        login.mainloop()
 
     def login(self, email, password):
         try:
@@ -21,4 +22,5 @@ class Logic:
 
     #main logic
     def main_scene(self):
-        main_sc = MainScene(logic=self)
+        main_sc = MainScene(self)
+        main_sc.mainloop()
