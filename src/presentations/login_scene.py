@@ -40,7 +40,7 @@ class LoginScene:
     def login_btn(self):
         try:
             self.logic.login(self.email_entry.get(), self.password_entry.get())
-            self.root.withdraw()
+            self.root.withdraw()  #dodelat logiku s logoutem aby to nedelalo errory
             self.logic.main_scene()
         except Exception as e:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel")

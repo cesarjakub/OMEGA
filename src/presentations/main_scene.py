@@ -1,3 +1,5 @@
+import sys
+
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 
@@ -33,10 +35,10 @@ class MainScene:
         self.add_user = ctk.CTkButton(self.buttons_frame, text="Add User", command=None)
         self.add_user.grid(row=3, column=0, padx=20, pady=(10, 10), sticky="ew")
 
-        self.add_book = ctk.CTkButton(self.buttons_frame, text="Add book", command=None)
+        self.add_book = ctk.CTkButton(self.buttons_frame, text="Add book", command=self.logic.add_book)
         self.add_book.grid(row=4, column=0, padx=20, pady=(10, 10), sticky="ew")
 
-        self.log_out = ctk.CTkButton(self.buttons_frame, text="Log Out", command=None)
+        self.log_out = ctk.CTkButton(self.buttons_frame, text="Log Out", command=self.logic.log_out)
         self.log_out.grid(row=7, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         #main scene
@@ -45,3 +47,6 @@ class MainScene:
 
     def mainloop(self):
         self.root.mainloop()
+
+    def destroy(self):
+        self.root.destroy()
