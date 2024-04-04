@@ -53,11 +53,12 @@ class AddBookScene:
 
             # add book logic
 
-            CTkMessagebox(title="Success", message=f"Book {self.title_input.get()} added successfully!", icon="info")
+            CTkMessagebox(title="Success", message=f"Book {self.title_input.get()} added successfully!", icon="check")
             self.genre_input.delete(0, "end")
             self.first_input.delete(0, "end")
             self.last_input.delete(0, "end")
             self.title_input.delete(0, "end")
+
         except Exception as e:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 

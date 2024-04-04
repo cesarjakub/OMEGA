@@ -2,6 +2,7 @@ from src.presentations.login_scene import LoginScene
 from src.application.login_logic import LoginLogic
 from src.presentations.main_scene import MainScene
 from src.presentations.add_book_scene import AddBookScene
+from src.presentations.add_user_scene import AddUserScene
 
 class Logic:
 
@@ -30,6 +31,10 @@ class Logic:
     def add_book(self):
         add_book_sc = AddBookScene(self)
         add_book_sc.mainloop()
+
+    def add_user(self):
+        add_user_sc = AddUserScene(self)
+        add_user_sc.mainloop()
 
     def log_out(self):
         self.main_sc.destroy()
