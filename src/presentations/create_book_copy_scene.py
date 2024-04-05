@@ -9,7 +9,7 @@ class CreateBookCopyScene:
 
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
-        self.root.title("Add book copy")
+        self.root.title("Create book copy")
         self.root.geometry("400x250")
         self.root.resizable(False, False)
         self.components()
@@ -41,9 +41,9 @@ class CreateBookCopyScene:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
 
-            # add book logic
+            # create book copy logic
 
-            CTkMessagebox(title="Success", message=f"Book copy {self.title_input.get()} published by {self.publisher_input.get()} added successfully!", icon="check")
+            CTkMessagebox(title="Success", message=f"Book copy {self.title_input.get()} published by {self.publisher_input.get()} created successfully!", icon="check")
             self.publisher_input.delete(0, "end")
             self.title_input.delete(0, "end")
 

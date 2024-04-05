@@ -7,6 +7,7 @@ from src.presentations.add_publisher_scene import AddPublisherScene
 from src.presentations.add_genre_scene import AddGenreScene
 from src.presentations.add_author_scene import AddAuthorScene
 from src.presentations.create_book_copy_scene import CreateBookCopyScene
+from src.presentations.create_borrowing_scene import CreateBorrowingScene
 
 class Logic:
 
@@ -31,6 +32,10 @@ class Logic:
     def main_scene(self):
         self.main_sc = MainScene(self)
         self.main_sc.mainloop()
+
+    def create_borrowing(self):
+        create_borrowing_sc = CreateBorrowingScene(self)
+        create_borrowing_sc.mainloop()
 
     def add_book(self):
         add_book_sc = AddBookScene(self)

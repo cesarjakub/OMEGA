@@ -29,7 +29,7 @@ class MainScene:
         self.borrowings = ctk.CTkButton(self.buttons_frame, text="Borrowings", command=None)
         self.borrowings.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
 
-        self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=None)
+        self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=self.logic.create_borrowing)
         self.create_borrowings.grid(row=2, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.add_user = ctk.CTkButton(self.buttons_frame, text="Add User", command=self.logic.add_user)
