@@ -3,6 +3,10 @@ from src.application.login_logic import LoginLogic
 from src.presentations.main_scene import MainScene
 from src.presentations.add_book_scene import AddBookScene
 from src.presentations.add_user_scene import AddUserScene
+from src.presentations.add_publisher_scene import AddPublisherScene
+from src.presentations.add_genre_scene import AddGenreScene
+from src.presentations.add_author_scene import AddAuthorScene
+from src.presentations.create_book_copy_scene import CreateBookCopyScene
 
 class Logic:
 
@@ -35,6 +39,22 @@ class Logic:
     def add_user(self):
         add_user_sc = AddUserScene(self)
         add_user_sc.mainloop()
+
+    def create_book_copy(self):
+        create_book_copy_sc = CreateBookCopyScene(self)
+        create_book_copy_sc.mainloop()
+
+    def add_author(self):
+        add_author_sc = AddAuthorScene(self)
+        add_author_sc.mainloop()
+
+    def add_genre(self):
+        add_genre_sc = AddGenreScene(self)
+        add_genre_sc.mainloop()
+
+    def add_publisher(self):
+        add_publisher_sc = AddPublisherScene(self)
+        add_publisher_sc.mainloop()
 
     def log_out(self):
         self.main_sc.destroy()

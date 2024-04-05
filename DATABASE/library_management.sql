@@ -155,3 +155,27 @@ BEGIN
     END CATCH;
 END
 GO
+
+GO
+CREATE PROCEDURE Create_book_copy @Book_title VARCHAR(255), @Publisher_name VARCHAR(50)
+AS
+BEGIN
+	BEGIN TRANSACTION;
+	BEGIN TRY
+		DECLARE @Book_ID INT;
+		DECLARE @Publisher_ID INT;
+
+		SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+		SET @Publisher_ID = (SELECT ID FROM publisher WHERE Name = @Publisher_name);
+
+		INSERT INTO book_copy(Book_ID, Publisher_ID, Date_of_publication)
+		VALUES (@Book_ID, @Publisher_ID, GETDATE());
+
+		COMMIT;
+	END TRY
+    BEGIN CATCH
+        ROLLBACK;
+        THROW;
+    END CATCH;
+END
+GO
