@@ -7,12 +7,11 @@
 - [ ] Database connection
   - [ ] Database access object
   - [ ] Models
-- [ ] Application design 
-- [ ] Resources for application
-- [ ] Tkinter (Custom Tkinter)
+- [x] Application design 
+- [x] Resources for application
+- [x] Tkinter (Custom Tkinter)
 
 ## Database
 - [ ] Views
 - [ ] Procedures
 - [ ] Test data
-- [ ] Triggers
