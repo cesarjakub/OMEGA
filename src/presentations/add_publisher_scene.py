@@ -1,10 +1,13 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.daos.publisherDAO import PublisherDAO
+from src.data_access.tables.publisher import Publisher
 
 class AddPublisherScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -36,7 +39,12 @@ class AddPublisherScene:
             if not self.check_for_input():
                 raise Exception("Please fill in the field")
 
-            # add publisher logic
+            # publisher logic
+            name = self.publisher_input.get()
+
+            publisher = Publisher(id=0, name=name)
+            publisherdao = PublisherDAO(self.database)
+            publisherdao.create(publisher)
 
             CTkMessagebox(title="Success", message=f"Publisher {self.publisher_input.get()} added successfully!", icon="check")
             self.publisher_input.delete(0, "end")

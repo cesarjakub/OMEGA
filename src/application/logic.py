@@ -58,7 +58,7 @@ class Logic:
         add_genre_sc.mainloop()
 
     def add_publisher(self):
-        add_publisher_sc = AddPublisherScene(self)
+        add_publisher_sc = AddPublisherScene(self, self.database)
         add_publisher_sc.mainloop()
 
     def log_out(self):
