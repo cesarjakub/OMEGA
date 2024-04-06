@@ -3,7 +3,7 @@ USE Library_management;
 
 CREATE TABLE genre(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Name VARCHAR(20) NOT NULL
+Name VARCHAR(20) NOT NULL UNIQUE
 );
 
 CREATE TABLE author(
@@ -28,7 +28,7 @@ Floor INT NOT NULL
 
 CREATE TABLE publisher(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Name VARCHAR(50) NOT NULL
+Name VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE book_copy(
@@ -63,13 +63,15 @@ Borrowed_date DATE NOT NULL,
 Due_date DATE NOT NULL
 );
 
+
+
 -- insers
 INSERT INTO users(First_name, Last_name, Date_of_birth, Email, Phone, Address) VALUES('Tonda', 'Hrouda', '1998-04-10','tonda.hrouda@gmail.com' ,'+420690535420' ,'U Pùjèovny 18'); 
 INSERT INTO admin(Users_ID, Role, Password) VALUES(1, 'Admin', '1234');
 
-
 -- ulozene selecty
 SELECT Email, Password FROM users INNER JOIN admin ON users.ID = admin.Users_ID WHERE users.Email = 'tonda.hrouda@gmail.com' AND admin.Password = '1234';
+
 
 -- views
 GO

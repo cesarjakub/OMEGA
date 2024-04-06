@@ -1,10 +1,13 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.daos.genreDAO import GenreDAO
+from src.data_access.tables.genre import Genre
 
 class AddGenreScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -36,7 +39,12 @@ class AddGenreScene:
             if not self.check_for_input():
                 raise Exception("Please fill in the field")
 
-            # add genre logic
+            # genre logic
+            name = self.genre_input.get().lower()
+
+            genre = Genre(id=0, name=name)
+            genredao = GenreDAO(self.database)
+            genredao.create(genre)
 
             CTkMessagebox(title="Success", message=f"Genre {self.genre_input.get()} added successfully!",
                           icon="check")

@@ -40,7 +40,7 @@ class AddPublisherScene:
                 raise Exception("Please fill in the field")
 
             # publisher logic
-            name = self.publisher_input.get()
+            name = self.publisher_input.get().lower()
 
             publisher = Publisher(id=0, name=name)
             publisherdao = PublisherDAO(self.database)

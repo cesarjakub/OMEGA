@@ -7,14 +7,38 @@ class GenreDAO(IDao):
     def __init__(self, database: DatabaseConnection):
         super().__init__(database)
 
-    def create(self, record):
-        pass
+    def create(self, record: Genre):
+        try:
+            msg = "Error with creating genre."
+            query = """
+                    INSERT INTO genre(Name) VALUES(?)
+                    """
+            params = (record.name, )
+            self.database.exec(query, params, msg)
+        except Exception as e:
+            raise Exception(e)
 
     def read(self):
         pass
 
-    def update(self, record):
-        pass
+    def update(self, record: Genre):
+        try:
+            msg = "Error with updating genre."
+            query = """
+                    UPDATE genre SET Name = ? WHERE ID = ?
+                    """
+            params = (record.name, record.id, )
+            self.database.exec(query, params, msg)
+        except Exception as e:
+            raise Exception(e)
 
-    def delete(self, record):
-        pass
+    def delete(self, record: Genre):
+        try:
+            msg = "Error with deleting genre."
+            query = """
+                    DELETE FROM genre WHERE Name = ?
+                    """
+            params = (record.name,)
+            self.database.exec(query, params, msg)
+        except Exception as e:
+            raise Exception(e)

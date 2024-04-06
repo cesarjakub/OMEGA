@@ -32,9 +32,9 @@ class PublisherDAO(IDao):
         try:
             msg = "Error with updating publisher."
             query = """
-                    UPDATE publisher SET Name = ?
+                    UPDATE publisher SET Name = ? WHERE ID = ?
                     """
-            params = (record.name, )
+            params = (record.name, record.id, )
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
