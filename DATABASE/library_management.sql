@@ -14,14 +14,14 @@ Last_name VARCHAR(20) NOT NULL
 
 CREATE TABLE book(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Genre_ID INT FOREIGN KEY REFERENCES genre(ID),
-Author_ID INT FOREIGN KEY REFERENCES author(ID),
+Genre_ID INT FOREIGN KEY REFERENCES genre(ID) not null,
+Author_ID INT FOREIGN KEY REFERENCES author(ID) not null,
 Title VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE shelf(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Book_ID INT FOREIGN KEY REFERENCES book(ID),
+Book_ID INT FOREIGN KEY REFERENCES book(ID) not null,
 Shelf_no INT NOT NULL,
 Floor INT NOT NULL
 );
@@ -33,8 +33,8 @@ Name VARCHAR(50) NOT NULL UNIQUE
 
 CREATE TABLE book_copy(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Book_ID INT FOREIGN KEY REFERENCES book(ID),
-Publisher_ID INT FOREIGN KEY REFERENCES publisher(ID),
+Book_ID INT FOREIGN KEY REFERENCES book(ID) not null,
+Publisher_ID INT FOREIGN KEY REFERENCES publisher(ID) not null,
 Date_of_publication DATE NOT NULL
 );
 
@@ -50,15 +50,15 @@ Address VARCHAR(255) NOT NULL
 
 CREATE TABLE admin(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Users_ID INT FOREIGN KEY REFERENCES users(ID),
+Users_ID INT FOREIGN KEY REFERENCES users(ID) not null,
 Role VARCHAR(50),
 Password VARCHAR(255)
 );
 
 CREATE TABLE borrowing(
 ID INT PRIMARY KEY IDENTITY(1,1),
-Book_ID INT FOREIGN KEY REFERENCES book(ID),
-Users_ID INT FOREIGN KEY REFERENCES users(ID),
+Book_ID INT FOREIGN KEY REFERENCES book(ID) not null,
+Users_ID INT FOREIGN KEY REFERENCES users(ID) not null,
 Borrowed_date DATE NOT NULL,
 Due_date DATE NOT NULL
 );
@@ -69,6 +69,8 @@ Due_date DATE NOT NULL
 INSERT INTO users(First_name, Last_name, Date_of_birth, Email, Phone, Address) VALUES('Tonda', 'Hrouda', '1998-04-10','tonda.hrouda@gmail.com' ,'+420690535420' ,'U Pùjèovny 18'); 
 INSERT INTO admin(Users_ID, Role, Password) VALUES(1, 'Admin', '1234');
 
+
+
 -- ulozene selecty
 SELECT Email, Password FROM users INNER JOIN admin ON users.ID = admin.Users_ID WHERE users.Email = 'tonda.hrouda@gmail.com' AND admin.Password = '1234';
 
@@ -76,6 +78,9 @@ SELECT * FROM publisher;
 SELECT * FROM genre;
 SELECT * FROM author;
 SELECT * FROM users;
+SELECT * FROM book;
+
+
 
 
 
@@ -116,27 +121,27 @@ BEGIN
 END
 GO
 
+EXEC Add_book 'horor','Simon','Simonovsky','U dvou';
+
 GO
 CREATE PROCEDURE Add_book @Genre_name VARCHAR(20), @Author_first_name VARCHAR(20), @Author_last_name VARCHAR(20), @Title VARCHAR(255)
 AS
 BEGIN
-	BEGIN TRANSACTION;
-	BEGIN TRY
-		DECLARE @Genre_ID INT;
-		DECLARE @Author_ID INT;
+	DECLARE @Genre_ID INT;
+	DECLARE @Author_ID INT;
 
-		SET @Genre_ID = (SELECT ID FROM genre WHERE Name = @Genre_name);
+	SET @Genre_ID = (SELECT ID FROM genre WHERE Name = @Genre_name);
 
-		SET @Author_ID = (SELECT ID FROM author WHERE First_name = @Author_first_name AND Last_name = @Author_last_name);
+	SET @Author_ID = (SELECT ID FROM author WHERE First_name = @Author_first_name AND Last_name = @Author_last_name);
 
-		INSERT INTO book (Genre_ID, Author_ID, Title)
-		VALUES (@Genre_ID, @Author_ID, @Title);
-		COMMIT;
-	END TRY
-    BEGIN CATCH
-        ROLLBACK;
-        THROW;
-    END CATCH;
+	IF @Genre_ID IS NULL OR @Author_ID IS NULL
+    BEGIN
+        THROW 50000, 'Genre or Author not found.', 1;
+    END
+
+	INSERT INTO book (Genre_ID, Author_ID, Title)
+	VALUES (@Genre_ID, @Author_ID, @Title);
+	COMMIT;
 END
 GO
 

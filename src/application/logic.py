@@ -42,7 +42,7 @@ class Logic:
         add_user_sc.mainloop()
 
     def add_book(self):
-        add_book_sc = AddBookScene(self)
+        add_book_sc = AddBookScene(self, self.database)
         add_book_sc.mainloop()
 
     def create_book_copy(self):

@@ -1,10 +1,15 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.daos.bookDAO import BookDAO
+from src.data_access.tables.book import Book
+from src.data_access.tables.author import Author
+from src.data_access.tables.genre import Genre
 
 class AddBookScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -52,6 +57,29 @@ class AddBookScene:
                 raise Exception("Please fill in the fields")
 
             # add book logic
+            name = self.genre_input.get().lower()
+            first_name = self.first_input.get()
+            last_name = self.last_input.get()
+            title = self.title_input.get()
+
+            genre = Genre(
+                id=0,
+                name=name
+            )
+            author = Author(
+                id=0,
+                first_name=first_name,
+                last_name=last_name
+            )
+            book = Book(
+                id=0,
+                genre_id=genre.id,
+                author_id=author.id,
+                title=title
+            )
+
+            bookdao = BookDAO(self.database)
+            bookdao.insert_record(book, genre, author)
 
             CTkMessagebox(title="Success", message=f"Book {self.title_input.get()} added successfully!", icon="check")
             self.genre_input.delete(0, "end")

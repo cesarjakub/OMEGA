@@ -11,7 +11,7 @@ class UsersDAO(IDao):
         try:
             msg = "Error with creating user."
             query = """
-                    INSERT INTO users(First_name, Last_name, Date_of_birth, Email, Phone, Address) VALUES(?,?,?,?,?,?);
+                    EXEC Add_user ?,?,?,?,?,?
                     """
             params = (record.first_name, record.last_name, record.date_of_birth, record.email, record.phone, record.address, )
             self.database.exec(query, params, msg)
@@ -19,7 +19,14 @@ class UsersDAO(IDao):
             raise Exception(e)
 
     def read(self):
-        pass
+        try:
+            msg = "No records."
+            query = """
+                    SELECT * FROM users
+                    """
+            self.database.select(query, msg)
+        except Exception as e:
+            raise Exception(e)
 
     def update(self, record: Users):
         try:
