@@ -42,7 +42,10 @@ class AddPublisherScene:
             # publisher logic
             name = self.publisher_input.get().lower()
 
-            publisher = Publisher(id=0, name=name)
+            publisher = Publisher(
+                id=0,
+                name=name
+            )
             publisherdao = PublisherDAO(self.database)
             publisherdao.create(publisher)
 

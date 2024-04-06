@@ -78,7 +78,15 @@ class AddUserScene:
             phone = self.phone_input.get()
             address = self.address_input.get()
 
-            users = Users(id=0, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth, email=email, phone=phone, address=address)
+            users = Users(
+                id=0,
+                first_name=first_name,
+                last_name=last_name,
+                date_of_birth=date_of_birth,
+                email=email,
+                phone=phone,
+                address=address
+            )
             usersdao = UsersDAO(self.database)
             usersdao.create(users)
 

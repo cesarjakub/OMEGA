@@ -42,7 +42,10 @@ class AddGenreScene:
             # genre logic
             name = self.genre_input.get().lower()
 
-            genre = Genre(id=0, name=name)
+            genre = Genre(
+                id=0,
+                name=name
+            )
             genredao = GenreDAO(self.database)
             genredao.create(genre)
 

@@ -49,7 +49,11 @@ class AddAuthorScene:
             first_name = self.first_input.get()
             last_name = self.last_input.get()
 
-            author = Author(id=0, first_name=first_name, last_name=last_name)
+            author = Author(
+                id=0,
+                first_name=first_name,
+                last_name=last_name
+            )
             authordao = AuthorDAO(self.database)
             authordao.create(author)
 
