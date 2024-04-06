@@ -50,7 +50,7 @@ class Logic:
         create_book_copy_sc.mainloop()
 
     def add_author(self):
-        add_author_sc = AddAuthorScene(self)
+        add_author_sc = AddAuthorScene(self, self.database)
         add_author_sc.mainloop()
 
     def add_genre(self):

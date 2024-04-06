@@ -19,7 +19,14 @@ class GenreDAO(IDao):
             raise Exception(e)
 
     def read(self):
-        pass
+        try:
+            msg = "No records."
+            query = """
+                    SELECT * FROM genre
+                    """
+            self.database.select(query, msg)
+        except Exception as e:
+            raise Exception(e)
 
     def update(self, record: Genre):
         try:

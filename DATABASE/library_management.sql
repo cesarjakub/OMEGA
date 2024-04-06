@@ -72,6 +72,11 @@ INSERT INTO admin(Users_ID, Role, Password) VALUES(1, 'Admin', '1234');
 -- ulozene selecty
 SELECT Email, Password FROM users INNER JOIN admin ON users.ID = admin.Users_ID WHERE users.Email = 'tonda.hrouda@gmail.com' AND admin.Password = '1234';
 
+SELECT * FROM publisher;
+SELECT * FROM genre;
+SELECT * FROM author;
+
+
 
 -- views
 GO

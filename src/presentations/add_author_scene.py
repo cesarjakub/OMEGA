@@ -1,10 +1,14 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.daos.authorDAO import AuthorDAO
+from src.data_access.tables.author import Author
+
 
 class AddAuthorScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -42,6 +46,12 @@ class AddAuthorScene:
                 raise Exception("Please fill in the fields")
 
             # add author logic
+            first_name = self.first_input.get()
+            last_name = self.last_input.get()
+
+            author = Author(id=0, first_name=first_name, last_name=last_name)
+            authordao = AuthorDAO(self.database)
+            authordao.create(author)
 
             CTkMessagebox(title="Success", message=f"Author {self.first_input.get()} {self.last_input.get()} added successfully!", icon="check")
             self.first_input.delete(0, "end")
