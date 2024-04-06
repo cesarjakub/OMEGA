@@ -37,13 +37,13 @@ class Logic:
         create_borrowing_sc = CreateBorrowingScene(self)
         create_borrowing_sc.mainloop()
 
+    def add_user(self):
+        add_user_sc = AddUserScene(self, self.database)
+        add_user_sc.mainloop()
+
     def add_book(self):
         add_book_sc = AddBookScene(self)
         add_book_sc.mainloop()
-
-    def add_user(self):
-        add_user_sc = AddUserScene(self)
-        add_user_sc.mainloop()
 
     def create_book_copy(self):
         create_book_copy_sc = CreateBookCopyScene(self)

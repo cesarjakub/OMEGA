@@ -1,11 +1,14 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from datetime import datetime
+from src.data_access.daos.usersDAO import UsersDAO
+from src.data_access.tables.users import Users
 
 class AddUserScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -31,7 +34,7 @@ class AddUserScene:
 
         self.birth_label = ctk.CTkLabel(self.root, text="Date of birth")
         self.birth_label.grid(row=3, column=0, padx=(10, 5), pady=(5, 5))
-        self.birth_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Date of birth...")
+        self.birth_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Date of birth (YYYY-MM-DD)...")
         self.birth_input.grid(row=3, column=1, padx=(5, 10), pady=(5, 5))
 
         self.email_label = ctk.CTkLabel(self.root, text="Enter email")
@@ -57,17 +60,27 @@ class AddUserScene:
                 or self.email_input.get() == "" or self.phone_input.get() == "" or self.address_input.get() == ""):
             return False
 
-
         return True
 
     def add_book(self):
         try:
             if not self.check_for_input():
-                raise Exception("Please fill in the fields or check the syntax")
+                raise Exception("Please fill in the fields")
 
             # add user logic
-            print(datetime.now().date())
-            # date syntax
+            first_name = self.first_input.get()
+            last_name = self.last_input.get()
+            try:
+                date_of_birth = datetime.strptime(self.birth_input.get(), '%Y-%m-%d').date()
+            except ValueError:
+                raise ValueError("Incorrect date format, please enter date in YYYY-MM-DD format.")
+            email = self.email_input.get()
+            phone = self.phone_input.get()
+            address = self.address_input.get()
+
+            users = Users(id=0, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth, email=email, phone=phone, address=address)
+            usersdao = UsersDAO(self.database)
+            usersdao.create(users)
 
             CTkMessagebox(title="Success", message=f"User {self.first_input.get()} {self.last_input.get()} added successfully!", icon="check")
             self.first_input.delete(0, "end")

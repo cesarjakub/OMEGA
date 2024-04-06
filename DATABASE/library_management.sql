@@ -75,6 +75,7 @@ SELECT Email, Password FROM users INNER JOIN admin ON users.ID = admin.Users_ID 
 SELECT * FROM publisher;
 SELECT * FROM genre;
 SELECT * FROM author;
+SELECT * FROM users;
 
 
 
