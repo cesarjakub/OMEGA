@@ -19,10 +19,33 @@ class PublisherDAO(IDao):
             raise Exception(e)
 
     def read(self):
-        pass
+        try:
+            msg = "No records."
+            query = """
+                    SELECT * FROM publisher
+                    """
+            self.database.select(query, msg)
+        except Exception as e:
+            raise Exception(e)
 
     def update(self, record: Publisher):
-        pass
+        try:
+            msg = "Error with updating publisher."
+            query = """
+                    UPDATE publisher SET Name = ?
+                    """
+            params = (record.name, )
+            self.database.exec(query, params, msg)
+        except Exception as e:
+            raise Exception(e)
 
     def delete(self, record: Publisher):
-        pass
+        try:
+            msg = "Error with deleting publisher."
+            query = """
+                    DELETE FROM publisher WHERE Name = ?
+                    """
+            params = (record.name, )
+            self.database.exec(query, params, msg)
+        except Exception as e:
+            raise Exception(e)

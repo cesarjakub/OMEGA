@@ -44,7 +44,7 @@ class AdminDAO(IDao):
         try:
             msg = "Error with deleting admin."
             query = """
-                    DELETE FROM admin WHERE = Password = ?
+                    DELETE FROM admin WHERE Password = ?
                     """
             params = (record.password,)
             self.database.exec(query, params, msg)
