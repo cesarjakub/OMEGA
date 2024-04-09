@@ -1,10 +1,17 @@
+import datetime
+
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.daos.book_copyDAO import BookCopyDAO
+from src.data_access.tables.book_copy import BookCopy
+from src.data_access.tables.publisher import Publisher
+from src.data_access.tables.book import Book
 
 class CreateBookCopyScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -42,6 +49,30 @@ class CreateBookCopyScene:
                 raise Exception("Please fill in the fields")
 
             # create book copy logic
+            publisher_name = self.publisher_input.get().lower()
+            book_title = self.title_input.get()
+
+            book_copy = BookCopy(
+                id=0,
+                publisher_id=0,
+                book_id=0,
+                date_of_publication=datetime.datetime.now().date()
+            )
+
+            publisher = Publisher(
+                id=0,
+                name=publisher_name
+            )
+
+            book = Book(
+                id=0,
+                genre_id=0,
+                author_id=0,
+                title=book_title
+            )
+
+            book_copydao = BookCopyDAO(self.database)
+            book_copydao.insert_record(book, publisher)
 
             CTkMessagebox(title="Success", message=f"Book copy {self.title_input.get()} published by {self.publisher_input.get()} created successfully!", icon="check")
             self.publisher_input.delete(0, "end")

@@ -173,22 +173,19 @@ GO
 CREATE PROCEDURE Create_book_copy @Book_title VARCHAR(255), @Publisher_name VARCHAR(50)
 AS
 BEGIN
-	BEGIN TRANSACTION;
-	BEGIN TRY
-		DECLARE @Book_ID INT;
-		DECLARE @Publisher_ID INT;
+	DECLARE @Book_ID INT;
+	DECLARE @Publisher_ID INT;
 
-		SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
-		SET @Publisher_ID = (SELECT ID FROM publisher WHERE Name = @Publisher_name);
+	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+	SET @Publisher_ID = (SELECT ID FROM publisher WHERE Name = @Publisher_name);
 
-		INSERT INTO book_copy(Book_ID, Publisher_ID, Date_of_publication)
-		VALUES (@Book_ID, @Publisher_ID, GETDATE());
+	INSERT INTO book_copy(Book_ID, Publisher_ID, Date_of_publication)
+	VALUES (@Book_ID, @Publisher_ID, GETDATE());
+		IF @Book_ID IS NULL OR @Publisher_ID IS NULL
+    BEGIN
+        THROW 50000, 'Genre or Author not found.', 1;
+    END
 
-		COMMIT;
-	END TRY
-    BEGIN CATCH
-        ROLLBACK;
-        THROW;
-    END CATCH;
+	COMMIT;
 END
 GO
