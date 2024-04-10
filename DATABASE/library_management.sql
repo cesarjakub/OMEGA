@@ -79,7 +79,7 @@ SELECT * FROM genre;
 SELECT * FROM author;
 SELECT * FROM users;
 SELECT * FROM book;
-
+SELECT * FROM book_copy;
 
 
 

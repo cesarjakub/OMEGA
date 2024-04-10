@@ -26,8 +26,8 @@ class MainScene:
         self.buttons_frame.grid(row=0, column=0, sticky="nsew")
         self.buttons_frame.grid_rowconfigure(9, weight=1)
 
-        self.history = ctk.CTkButton(self.buttons_frame, text="History", command=None)
-        self.history.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
+        self.find_book = ctk.CTkButton(self.buttons_frame, text="Find book", command=None)
+        self.find_book.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
 
         self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=self.logic.create_borrowing)
         self.create_borrowings.grid(row=2, column=0, padx=20, pady=(10, 10), sticky="ew")
@@ -54,7 +54,7 @@ class MainScene:
         self.log_out.grid(row=10, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         #main scene
-        self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, corner_radius=15)
+        self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="History", corner_radius=15)
         self.scene_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
     def mainloop(self):
