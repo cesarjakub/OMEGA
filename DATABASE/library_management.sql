@@ -80,7 +80,8 @@ SELECT * FROM author;
 SELECT * FROM users;
 SELECT * FROM book;
 SELECT * FROM book_copy;
-
+SELECT * FROM borrowing;
+SELECT * FROM shelf;
 
 
 
@@ -183,6 +184,27 @@ BEGIN
     BEGIN
         THROW 50000, 'Genre or Author not found.', 1;
     END
+
+	COMMIT;
+END
+GO
+
+GO
+CREATE PROCEDURE Add_book_to_shelf @Book_title VARCHAR(255), @Shelf_no INT, @Floor_no INT
+AS
+BEGIN
+	DECLARE @Book_ID INT;
+
+	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+
+	IF @Book_ID IS NULL
+    BEGIN
+        THROW 50000, 'Genre or Author not found.', 1;
+    END
+
+	INSERT INTO shelf(Book_ID, Shelf_no, Floor)
+	VALUES (@Book_ID, @Shelf_no, @Floor_no);
+
 
 	COMMIT;
 END
