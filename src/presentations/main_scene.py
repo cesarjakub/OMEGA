@@ -26,7 +26,7 @@ class MainScene:
         self.buttons_frame.grid(row=0, column=0, sticky="nsew")
         self.buttons_frame.grid_rowconfigure(10, weight=1)
 
-        self.find_book = ctk.CTkButton(self.buttons_frame, text="Find book", command=None)
+        self.find_book = ctk.CTkButton(self.buttons_frame, text="Find book", command=self.logic.find_book)
         self.find_book.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
 
         self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=self.logic.create_borrowing)

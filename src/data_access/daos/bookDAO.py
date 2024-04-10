@@ -62,3 +62,15 @@ class BookDAO(IDao):
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
+
+    def read_record(self, book: Book):
+        try:
+            msg = "Error with reading book."
+            query = """
+                    EXEC Find_book ?;
+                    """
+            params = (book.title, )
+            books_info = self.database.select_with_params(query, params, msg)
+            return books_info
+        except Exception as e:
+            raise Exception(e)

@@ -38,6 +38,7 @@ class DatabaseConnection:
             cursor.close()
             if not records:
                 raise Exception(msg)
+            return records
         except Exception as e:
             raise Exception(e)
         finally:

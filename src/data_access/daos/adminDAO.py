@@ -59,6 +59,6 @@ class AdminDAO(IDao):
                     WHERE users.Email = ? AND admin.Password = ?
                     """
             params = (email, password,)
-            self.database.select_with_params(query, params, msg)
+            _ = self.database.select_with_params(query, params, msg)
         except Exception as e:
             raise Exception(e)
