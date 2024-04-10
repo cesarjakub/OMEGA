@@ -1,5 +1,4 @@
-import datetime
-
+from datetime import datetime
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from src.data_access.daos.borrowingDAO import BorrowingDAO
@@ -43,12 +42,12 @@ class CreateBorrowingScene:
 
         self.borrowed_label = ctk.CTkLabel(self.root, text="Date of borrowing")
         self.borrowed_label.grid(row=4, column=0, padx=(10, 5), pady=(5, 5))
-        self.borrowed_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Date...")
+        self.borrowed_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Date (YYYY-MM-DD)...")
         self.borrowed_input.grid(row=4, column=1, padx=(5, 10), pady=(5, 5))
 
         self.due_label = ctk.CTkLabel(self.root, text="Due date")
         self.due_label.grid(row=5, column=0, padx=(10, 5), pady=(5, 10))
-        self.due_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Date...")
+        self.due_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Date (YYYY-MM-DD)...")
         self.due_input.grid(row=5, column=1, padx=(5, 10), pady=(5, 10))
 
         self.add_borr = ctk.CTkButton(self.root, text="Create borrowing", command=self.create_borrowing)
@@ -69,8 +68,14 @@ class CreateBorrowingScene:
             title = self.title_input.get()
             first_name = self.first_input.get()
             last_name = self.last_input.get()
-            borrowed = self.borrowed_input.get()
-            due = self.due_input.get()
+            try:
+                borrowed = datetime.strptime(self.borrowed_input.get(), '%Y-%m-%d').date()
+            except ValueError:
+                raise ValueError("Incorrect date format, please enter date in YYYY-MM-DD format.")
+            try:
+                due = datetime.strptime(self.due_input.get(), '%Y-%m-%d').date()
+            except ValueError:
+                raise ValueError("Incorrect date format, please enter date in YYYY-MM-DD format.")
 
             book = Book(
                 id=0,
@@ -83,7 +88,7 @@ class CreateBorrowingScene:
                 id=0,
                 first_name=first_name,
                 last_name=last_name,
-                date_of_birth=datetime.datetime.now().date(),
+                date_of_birth=datetime.now().date(),
                 email="",
                 phone="",
                 address=""
