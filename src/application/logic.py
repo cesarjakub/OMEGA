@@ -34,7 +34,7 @@ class Logic:
         self.main_sc.mainloop()
 
     def create_borrowing(self):
-        create_borrowing_sc = CreateBorrowingScene(self)
+        create_borrowing_sc = CreateBorrowingScene(self, self.database)
         create_borrowing_sc.mainloop()
 
     def add_user(self):

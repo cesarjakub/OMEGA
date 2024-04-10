@@ -1,11 +1,18 @@
+import datetime
+
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.daos.borrowingDAO import BorrowingDAO
+from src.data_access.tables.borrowing import Borrowing
+from src.data_access.tables.book import Book
+from src.data_access.tables.users import Users
 
 
 class CreateBorrowingScene:
 
-    def __init__(self, logic):
+    def __init__(self, logic, database):
         self.logic = logic
+        self.database = database
         self.root = ctk.CTk()
 
         ctk.set_default_color_theme("dark-blue")
@@ -59,6 +66,38 @@ class CreateBorrowingScene:
                 raise Exception("Please fill in the fields")
 
             # create borrowing logic
+            title = self.title_input.get()
+            first_name = self.first_input.get()
+            last_name = self.last_input.get()
+            borrowed = self.borrowed_input.get()
+            due = self.due_input.get()
+
+            book = Book(
+                id=0,
+                genre_id=0,
+                author_id=0,
+                title=title
+            )
+
+            users = Users(
+                id=0,
+                first_name=first_name,
+                last_name=last_name,
+                date_of_birth=datetime.datetime.now().date(),
+                email="",
+                phone="",
+                address=""
+            )
+
+            borrowing = Borrowing(
+                id=0,
+                book_id=0,
+                users_id=0,
+                date_borrowed=borrowed,
+                due_date=due
+            )
+            borroweddao = BorrowingDAO(self.database)
+            borroweddao.insert_record(borrowing, book, users)
 
             CTkMessagebox(title="Success", message=f"Borrowing {self.title_input.get()} for {self.first_input.get()} {self.last_input.get()} created successfully!",
                           icon="check")

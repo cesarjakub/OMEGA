@@ -149,23 +149,21 @@ GO
 CREATE PROCEDURE Create_borrowing_books @Book_title VARCHAR(20), @User_first_name VARCHAR(20), @User_last_name VARCHAR(20), @Borrowed_date DATE, @Due_date DATE
 AS
 BEGIN
-	BEGIN TRANSACTION;
-	BEGIN TRY
-		DECLARE @Users_ID INT;
-		DECLARE @Book_ID INT;
+	DECLARE @Users_ID INT;
+	DECLARE @Book_ID INT;
 
-		SET @Users_ID = (SELECT ID FROM users WHERE First_name = @User_first_name AND Last_name = @User_last_name);
-		SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+	SET @Users_ID = (SELECT ID FROM users WHERE First_name = @User_first_name AND Last_name = @User_last_name);
+	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
 
-		INSERT INTO borrowing (Book_ID, Users_ID, Borrowed_date, Due_date)
-		VALUES (@Book_ID, @Users_ID, @Borrowed_date, @Due_date);
+	IF @Users_ID IS NULL OR @Book_ID IS NULL
+	BEGIN
+		THROW 50000, 'Genre or Author not found.', 1;
+	END
 
-		COMMIT;
-	END TRY
-    BEGIN CATCH
-        ROLLBACK;
-        THROW;
-    END CATCH;
+	INSERT INTO borrowing (Book_ID, Users_ID, Borrowed_date, Due_date)
+	VALUES (@Book_ID, @Users_ID, @Borrowed_date, @Due_date);
+
+	COMMIT;
 END
 GO
 
