@@ -80,6 +80,7 @@ class MainScene:
 
             rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.configure(anchor="w")
 
     def load_second_tab(self):
         second_tab = self.tabview.tab("Books with author")
@@ -99,6 +100,7 @@ class MainScene:
 
             rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.configure(anchor="w")
 
     def load_fourth_tab(self):
         fourth_tab = self.tabview.tab("Books on shelves")
@@ -108,6 +110,7 @@ class MainScene:
 
             rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.configure(anchor="w")
 
     def mainloop(self):
         self.root.mainloop()
