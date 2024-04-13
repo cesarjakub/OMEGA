@@ -89,6 +89,7 @@ class MainScene:
 
             rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.configure(anchor="w")
 
     def load_third_tab(self):
         third_tab = self.tabview.tab("Books with publisher")
