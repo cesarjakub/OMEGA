@@ -32,20 +32,20 @@ class MainScene:
         self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=self.logic.create_borrowing)
         self.create_borrowings.grid(row=2, column=0, padx=20, pady=(10, 10), sticky="ew")
 
-        self.add_user = ctk.CTkButton(self.buttons_frame, text="Add User", command=self.logic.add_user)
-        self.add_user.grid(row=3, column=0, padx=20, pady=(10, 10), sticky="ew")
-
         self.add_book = ctk.CTkButton(self.buttons_frame, text="Add book", command=self.logic.add_book)
-        self.add_book.grid(row=4, column=0, padx=20, pady=(10, 10), sticky="ew")
+        self.add_book.grid(row=3, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.add_book_shelf = ctk.CTkButton(self.buttons_frame, text="Add book to shelf", command=self.logic.add_book_shelf)
-        self.add_book_shelf.grid(row=5, column=0, padx=20, pady=(10, 10), sticky="ew")
+        self.add_book_shelf.grid(row=4, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.create_book_copy = ctk.CTkButton(self.buttons_frame, text="Create book copy", command=self.logic.create_book_copy)
-        self.create_book_copy.grid(row=6, column=0, padx=20, pady=(10, 10), sticky="ew")
+        self.create_book_copy.grid(row=5, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.add_author = ctk.CTkButton(self.buttons_frame, text="Add author", command=self.logic.add_author)
-        self.add_author.grid(row=7, column=0, padx=20, pady=(30, 10), sticky="ew")
+        self.add_author.grid(row=6, column=0, padx=20, pady=(30, 10), sticky="ew")
+
+        self.add_user = ctk.CTkButton(self.buttons_frame, text="Add User", command=self.logic.add_user)
+        self.add_user.grid(row=7, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.add_genre = ctk.CTkButton(self.buttons_frame, text="Add genre", command=self.logic.add_genre)
         self.add_genre.grid(row=8, column=0, padx=20, pady=(10, 10), sticky="ew")
@@ -79,7 +79,7 @@ class MainScene:
             label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
 
             rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
+            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
 
     def load_second_tab(self):
         second_tab = self.tabview.tab("Books with author")
@@ -88,7 +88,7 @@ class MainScene:
             label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
             rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
+            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
 
     def load_third_tab(self):
         third_tab = self.tabview.tab("Books with publisher")
@@ -97,7 +97,7 @@ class MainScene:
             label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
             rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
+            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
 
     def load_fourth_tab(self):
         fourth_tab = self.tabview.tab("Books on shelves")
@@ -106,7 +106,7 @@ class MainScene:
             label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
             rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
+            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
 
     def mainloop(self):
         self.root.mainloop()
