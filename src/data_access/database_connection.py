@@ -52,7 +52,7 @@ class DatabaseConnection:
             records = cursor.fetchall()
             cursor.close()
             if not records:
-                raise Exception(msg)
+                return msg
             return records
         except Exception as e:
             raise Exception(e)

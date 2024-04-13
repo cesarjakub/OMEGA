@@ -11,6 +11,8 @@ from src.presentations.create_borrowing_scene import CreateBorrowingScene
 from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
 
+from src.data_access.daos.borrowingDAO import BorrowingDAO
+
 class Logic:
 
     def __init__(self, database):
@@ -74,3 +76,17 @@ class Logic:
     def log_out(self):
         self.main_sc.destroy()
         self.start()
+
+    def load_borrowed_books_data(self):
+        load_borrowed_books = BorrowingDAO(self.database)
+        history = load_borrowed_books.read()
+        return history
+
+    def load_books_with_author_data(self):
+        pass
+
+    def load_books_with_publisher_data(self):
+        pass
+
+    def load_books_on_shelves_data(self):
+        pass

@@ -57,8 +57,38 @@ class MainScene:
         self.log_out.grid(row=11, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         #main scene
-        self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="History", corner_radius=15)
+        self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="All records", corner_radius=15)
         self.scene_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+
+        self.tabview = ctk.CTkTabview(self.scene_frame)
+        self.tabview.pack(fill="both", expand=1)
+        self.tabview.add("Borrowed books")
+        self.tabview.add("Books with author")
+        self.tabview.add("Books with publisher")
+        self.tabview.add("Books on shelves")
+
+        self.load_first_tab()
+        self.load_second_tab()
+        self.load_third_tab()
+        self.load_fourth_tab()
+
+    def load_first_tab(self):
+        first_tab = self.tabview.tab("Borrowed books")
+        history = self.logic.load_borrowed_books_data()
+        for i, record in enumerate(history):
+            label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
+
+            rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=8)
+            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
+
+    def load_second_tab(self):
+        second_tab = self.tabview.tab("Books with author")
+
+    def load_third_tab(self):
+        third_tab = self.tabview.tab("Books with publisher")
+
+    def load_fourth_tab(self):
+        fourth_tab = self.tabview.tab("Books on shelves")
 
     def mainloop(self):
         self.root.mainloop()
