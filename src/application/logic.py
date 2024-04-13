@@ -15,6 +15,7 @@ from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.authorDAO import AuthorDAO
 from src.data_access.daos.publisherDAO import PublisherDAO
 from src.data_access.daos.shelfDAO import ShelfDAO
+from src.data_access.daos.usersDAO import UsersDAO
 
 class Logic:
 
@@ -98,4 +99,9 @@ class Logic:
     def load_books_on_shelves_data(self):
         load_books_on_shelves = ShelfDAO(self.database)
         history = load_books_on_shelves.read()
+        return history
+
+    def load_user_info_data(self):
+        load_user_info = UsersDAO(self.database)
+        history = load_user_info.read()
         return history

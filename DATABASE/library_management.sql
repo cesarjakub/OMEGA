@@ -109,10 +109,17 @@ CREATE VIEW Books_shelf AS
 SELECT book.ID, Title, shelf.Shelf_no, shelf.Floor FROM book INNER JOIN shelf ON shelf.Book_ID = book.ID;
 GO
 
+GO
+CREATE VIEW User_info AS
+SELECT users.First_name, users.Last_name, users.Email, users.Phone, users.Address, users.Date_of_birth
+FROM users;
+GO
+
 SELECT * FROM Borrowed_books_by_users;
 SELECT * FROM Books_author_genre;
 SELECT * FROM Books_and_publisher;
 SELECT * FROM Books_shelf;
+SELECT * FROM User_info;
 -- procedures
 GO
 CREATE PROCEDURE Add_user @First_name VARCHAR(20), @Last_name VARCHAR(20), @Date_of_birth DATE, @Email VARCHAR(50), @Phone VARCHAR(13), @Address VARCHAR(255)

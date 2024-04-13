@@ -66,50 +66,82 @@ class MainScene:
         self.tabview.add("Books with author")
         self.tabview.add("Books with publisher")
         self.tabview.add("Books on shelves")
+        self.tabview.add("User info")
 
         self.load_first_tab()
         self.load_second_tab()
         self.load_third_tab()
         self.load_fourth_tab()
+        self.load_fifth_tab()
 
     def load_first_tab(self):
         first_tab = self.tabview.tab("Borrowed books")
+
+        reload = ctk.CTkButton(first_tab, text="Reload history", command=self.load_first_tab)
+        reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
         history = self.logic.load_borrowed_books_data()
         for i, record in enumerate(history):
             label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
 
-            rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_second_tab(self):
         second_tab = self.tabview.tab("Books with author")
+
+        reload = ctk.CTkButton(second_tab, text="Reload history", command=self.load_second_tab)
+        reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
         history = self.logic.load_books_with_author_data()
         for i, record in enumerate(history):
             label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
             rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_third_tab(self):
         third_tab = self.tabview.tab("Books with publisher")
+
+        reload = ctk.CTkButton(third_tab, text="Reload history", command=self.load_third_tab)
+        reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
         history = self.logic.load_books_with_publisher_data()
         for i, record in enumerate(history):
             label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
             rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_fourth_tab(self):
         fourth_tab = self.tabview.tab("Books on shelves")
+
+        reload = ctk.CTkButton(fourth_tab, text="Reload history", command=self.load_fourth_tab)
+        reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
         history = self.logic.load_books_on_shelves_data()
         for i, record in enumerate(history):
             label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
             rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i, column=0, pady=(0, 15), sticky="nsew")
+            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+            rec.configure(anchor="w")
+
+    def load_fifth_tab(self):
+        fifth_tab = self.tabview.tab("User info")
+
+        reload = ctk.CTkButton(fifth_tab, text="Reload history", command=self.load_fifth_tab)
+        reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
+        history = self.logic.load_user_info_data()
+        for i, record in enumerate(history):
+            label = f"{i+1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
+
+            rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def mainloop(self):
