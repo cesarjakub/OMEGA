@@ -19,14 +19,15 @@ class AuthorDAO(IDao):
             raise Exception(e)
 
     def read(self):
+        msg = "No records."
         try:
-            msg = "No records."
             query = """
-                    SELECT * FROM author
+                    SELECT * FROM Books_author_genre
                     """
-            self.database.select(query, msg)
+            history = self.database.select(query, msg)
+            return history
         except Exception as e:
-            raise Exception(e)
+            return msg
 
     def update(self, record: Author):
         try:

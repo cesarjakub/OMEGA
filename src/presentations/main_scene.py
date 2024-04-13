@@ -78,17 +78,35 @@ class MainScene:
         for i, record in enumerate(history):
             label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
 
-            rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=8)
+            rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
 
     def load_second_tab(self):
         second_tab = self.tabview.tab("Books with author")
+        history = self.logic.load_books_with_author_data()
+        for i, record in enumerate(history):
+            label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
+
+            rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
+            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
 
     def load_third_tab(self):
         third_tab = self.tabview.tab("Books with publisher")
+        history = self.logic.load_books_with_publisher_data()
+        for i, record in enumerate(history):
+            label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
+
+            rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
+            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
 
     def load_fourth_tab(self):
         fourth_tab = self.tabview.tab("Books on shelves")
+        history = self.logic.load_books_on_shelves_data()
+        for i, record in enumerate(history):
+            label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
+
+            rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
+            rec.grid(row=i, column=0, pady=(0, 20), sticky="nsew")
 
     def mainloop(self):
         self.root.mainloop()

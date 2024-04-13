@@ -12,6 +12,9 @@ from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
 
 from src.data_access.daos.borrowingDAO import BorrowingDAO
+from src.data_access.daos.authorDAO import AuthorDAO
+from src.data_access.daos.publisherDAO import PublisherDAO
+from src.data_access.daos.shelfDAO import ShelfDAO
 
 class Logic:
 
@@ -83,10 +86,16 @@ class Logic:
         return history
 
     def load_books_with_author_data(self):
-        pass
+        load_books_with_author = AuthorDAO(self.database)
+        history = load_books_with_author.read()
+        return history
 
     def load_books_with_publisher_data(self):
-        pass
+        load_books_with_publisher = PublisherDAO(self.database)
+        history = load_books_with_publisher.read()
+        return history
 
     def load_books_on_shelves_data(self):
-        pass
+        load_books_on_shelves = ShelfDAO(self.database)
+        history = load_books_on_shelves.read()
+        return history
