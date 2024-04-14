@@ -237,7 +237,7 @@ END
 GO
 
 GO
-CREATE PROCEDURE Import_data @Book_title VARCHAR(255), @Author_first_name VARCHAR(20), @Author_last_name VARCHAR(20), @Genre_name VARCHAR(20), @Publisher_name VARCHAR(50)
+CREATE PROCEDURE Import_data @Book_title VARCHAR(255), @Author_first_name VARCHAR(20), @Author_last_name VARCHAR(20), @Genre_name VARCHAR(20), @Publisher_name VARCHAR(50), @Shelf_no INT, @Floor_no INT
 AS
 BEGIN
 	DECLARE @Author_ID INT;
@@ -260,7 +260,9 @@ BEGIN
 	INSERT INTO book_copy(Book_ID, Publisher_ID, Date_of_publication)
 	VALUES (@Book_ID, @Publisher_ID, GETDATE());
 
-	IF @Book_ID IS NULL OR @Publisher_ID IS NULL OR @Genre_ID IS NULL OR @Author_ID IS NULL
+	INSERT INTO shelf(Book_ID, Shelf_no, Floor) VALUES(@Book_ID, @Shelf_no, @Floor_no);
+
+	IF @Book_ID IS NULL OR @Publisher_ID IS NULL OR @Genre_ID IS NULL OR @Author_ID IS NULL 
     BEGIN
         THROW 50000, 'Error.', 1;
     END

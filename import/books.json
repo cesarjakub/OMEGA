@@ -4,70 +4,89 @@
     "Author_first_name": "F. Scott",
     "Author_last_name": "Fitzgerald",
     "genre": "Classic",
-    "publisher": "Scribner"
+    "publisher": "Scribner",
+    "shelf_number": 1,
+    "floor_number": 2
   },
   {
     "title": "To Kill a Mockingbird",
     "Author_first_name": "Harper",
     "Author_last_name": "Lee",
     "genre": "Fiction",
-    "publisher": "HarperCollins"
+    "publisher": "HarperCollins",
+    "shelf_number": 2,
+    "floor_number": 1
   },
   {
     "title": "1984",
     "Author_first_name": "George",
     "Author_last_name": "Orwell",
     "genre": "Dystopian",
-    "publisher": "Penguin Books"
+    "publisher": "Penguin Books",
+    "shelf_number": 3,
+    "floor_number": 3
   },
   {
     "title": "The Catcher in the Rye",
     "Author_first_name": "J.D.",
     "Author_last_name": "Salinger",
     "genre": "Fiction",
-    "publisher": "Little, Brown and Company"
+    "publisher": "Little, Brown and Company",
+    "shelf_number": 2,
+    "floor_number": 2
   },
   {
     "title": "Pride and Prejudice",
     "Author_first_name": "Jane",
     "Author_last_name": "Austen",
     "genre": "Romance",
-    "publisher": "Penguin Books"
+    "publisher": "Penguin Books",
+    "shelf_number": 1,
+    "floor_number": 1
   },
   {
     "title": "The Hobbit",
     "Author_first_name": "J.R.R.",
     "Author_last_name": "Tolkien",
     "genre": "Fantasy",
-    "publisher": "Houghton Mifflin Harcourt"
+    "publisher": "Houghton Mifflin Harcourt",
+    "shelf_number": 3,
+    "floor_number": 1
   },
   {
     "title": "The Da Vinci Code",
     "Author_first_name": "Dan",
     "Author_last_name": "Brown",
     "genre": "Mystery",
-    "publisher": "Doubleday"
+    "publisher": "Doubleday",
+    "shelf_number": 2,
+    "floor_number": 3
   },
   {
     "title": "Harry Potter and the Sorcerer's Stone",
     "Author_first_name": "J.K.",
     "Author_last_name": "Rowling",
     "genre": "Fantasy",
-    "publisher": "Bloomsbury"
+    "publisher": "Bloomsbury",
+    "shelf_number": 1,
+    "floor_number": 3
   },
   {
     "title": "The Lord of the Rings: The Fellowship of the Ring",
     "Author_first_name": "J.R.R.",
     "Author_last_name": "Tolkien",
     "genre": "Fantasy",
-    "publisher": "George Allen & Unwin"
+    "publisher": "George Allen & Unwin",
+    "shelf_number": 3,
+    "floor_number": 2
   },
   {
     "title": "War and Peace",
     "Author_first_name": "Leo",
     "Author_last_name": "Tolstoy",
     "genre": "Historical Fiction",
-    "publisher": "Penguin Classics"
+    "publisher": "Penguin Classics",
+    "shelf_number": 2,
+    "floor_number": 1
   }
 ]
-
