@@ -25,7 +25,7 @@ class ShelfDAO(IDao):
         msg = "No records."
         try:
             query = """
-                    SELECT * FROM shelf
+                    SELECT * FROM Books_shelf
                     """
             history = self.database.select(query, msg)
             return history

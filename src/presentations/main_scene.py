@@ -26,8 +26,8 @@ class MainScene:
         self.buttons_frame.grid(row=0, column=0, sticky="nsew")
         self.buttons_frame.grid_rowconfigure(10, weight=1)
 
-        self.find_book = ctk.CTkButton(self.buttons_frame, text="Find book", command=self.logic.find_book)
-        self.find_book.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
+        self.import_data = ctk.CTkButton(self.buttons_frame, text="Import json data", command=None)
+        self.import_data.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
 
         self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=self.logic.create_borrowing)
         self.create_borrowings.grid(row=2, column=0, padx=20, pady=(10, 10), sticky="ew")
@@ -121,6 +121,9 @@ class MainScene:
 
         reload = ctk.CTkButton(fourth_tab, text="Reload history", command=self.load_fourth_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
+        find_book = ctk.CTkButton(fourth_tab, text="Find book", command=self.logic.find_book)
+        find_book.grid(row=0, column=1, padx=(160, 0), pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_on_shelves_data()
         for i, record in enumerate(history):
