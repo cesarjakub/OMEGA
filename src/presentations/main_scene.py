@@ -112,7 +112,7 @@ class MainScene:
         for i, record in enumerate(history):
             label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
-            rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
+            rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
             rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 

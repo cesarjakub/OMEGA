@@ -235,3 +235,34 @@ BEGIN
 	WHERE book.Title = @Book_title
 END
 GO
+
+GO
+CREATE PROCEDURE Import_data @Book_title VARCHAR(255), @Author_first_name VARCHAR(20), @Author_last_name VARCHAR(20), @Genre_name VARCHAR(20), @Publisher_name VARCHAR(50)
+AS
+BEGIN
+	DECLARE @Author_ID INT;
+	DECLARE @Genre_ID INT;
+	DECLARE @Publisher_ID INT;
+	DECLARE @Book_ID INT;
+
+	INSERT INTO author(First_name, Last_name) VALUES(@Author_first_name, @Author_last_name);
+	INSERT INTO genre(Name) VALUES(@Genre_name);
+	INSERT INTO publisher(Name) VALUES(@Publisher_name);
+
+	SET @Author_ID = (SELECT ID FROM author WHERE First_name = @Author_first_name AND Last_name = @Author_last_name);
+	SET @Genre_ID = (SELECT ID FROM genre WHERE Name = @Genre_name);
+	SET @Publisher_ID = (SELECT ID FROM publisher WHERE Name = @Publisher_name);
+
+	INSERT INTO book(Genre_ID, Author_ID, Title) VALUES(@Genre_ID, @Author_ID, @Book_title);
+
+	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+
+	INSERT INTO book_copy(Book_ID, Publisher_ID, Date_of_publication)
+	VALUES (@Book_ID, @Publisher_ID, GETDATE());
+
+	IF @Book_ID IS NULL OR @Publisher_ID IS NULL OR @Genre_ID IS NULL OR @Author_ID IS NULL
+    BEGIN
+        THROW 50000, 'Error.', 1;
+    END
+END
+GO
