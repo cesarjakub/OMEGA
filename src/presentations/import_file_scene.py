@@ -40,7 +40,7 @@ class ImportFileScene:
             import_data = ImportDAO(self.database)
 
             for imp in data:
-                import_data.import_data(imp['title'], imp['Author_first_name'], imp['Author_last_name'], imp['genre'], imp['publisher'], imp['shelf_nu'], imp['floor_nu'])
+                import_data.import_data(imp['title'], imp['Author_first_name'], imp['Author_last_name'], imp['genre'], imp['publisher'], imp['shelf_number'], imp['floor_number'])
 
             self.file_path = None
             self.selected_file_label.configure(text="Please select file", padx=68)
