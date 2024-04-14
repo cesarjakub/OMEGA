@@ -10,6 +10,7 @@ from src.presentations.create_book_copy_scene import CreateBookCopyScene
 from src.presentations.create_borrowing_scene import CreateBorrowingScene
 from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
+from src.presentations.import_file_scene import ImportFileScene
 
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.authorDAO import AuthorDAO
@@ -40,6 +41,10 @@ class Logic:
     def main_scene(self):
         self.main_sc = MainScene(self)
         self.main_sc.mainloop()
+
+    def import_file(self):
+        import_file_sc = ImportFileScene(self, self.database)
+        import_file_sc.mainloop()
 
     def find_book(self):
         find_book_sc = FindBookScene(self, self.database)
