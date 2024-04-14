@@ -81,11 +81,16 @@ class MainScene:
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
         history = self.logic.load_borrowed_books_data()
-        for i, record in enumerate(history):
-            label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
+        try:
+            for i, record in enumerate(history):
+                label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
 
-            rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
+                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.configure(anchor="w")
+        except Exception:
+            rec = ctk.CTkLabel(first_tab, text="No records", font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_second_tab(self):
@@ -95,11 +100,16 @@ class MainScene:
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_with_author_data()
-        for i, record in enumerate(history):
-            label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
+        try:
+            for i, record in enumerate(history):
+                label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
-            rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
+                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.configure(anchor="w")
+        except Exception:
+            rec = ctk.CTkLabel(second_tab, text="No records", font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_third_tab(self):
@@ -109,11 +119,16 @@ class MainScene:
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_with_publisher_data()
-        for i, record in enumerate(history):
-            label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
+        try:
+            for i, record in enumerate(history):
+                label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
-            rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
+                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.configure(anchor="w")
+        except Exception:
+            rec = ctk.CTkLabel(third_tab, text="No records", font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_fourth_tab(self):
@@ -126,11 +141,16 @@ class MainScene:
         find_book.grid(row=0, column=1, padx=(160, 0), pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_on_shelves_data()
-        for i, record in enumerate(history):
-            label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
+        try:
+            for i, record in enumerate(history):
+                label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
-            rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10)
+                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.configure(anchor="w")
+        except Exception:
+            rec = ctk.CTkLabel(fourth_tab, text="No records", font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def load_fifth_tab(self):
@@ -140,11 +160,16 @@ class MainScene:
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
         history = self.logic.load_user_info_data()
-        for i, record in enumerate(history):
-            label = f"{i+1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
+        try:
+            for i, record in enumerate(history):
+                label = f"{i+1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
 
-            rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
-            rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10)
+                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.configure(anchor="w")
+        except Exception:
+            rec = ctk.CTkLabel(fifth_tab, text="No records", font=('Arial', 13), fg_color="gray20", corner_radius=10)
+            rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
 
     def mainloop(self):

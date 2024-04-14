@@ -83,7 +83,14 @@ SELECT * FROM book_copy;
 SELECT * FROM borrowing;
 SELECT * FROM shelf;
 
-
+--DELETE DATA
+DELETE FROM publisher;
+DELETE FROM genre;
+DELETE FROM author;
+DELETE FROM book;
+DELETE FROM book_copy;
+DELETE FROM borrowing;
+DELETE FROM shelf;
 
 -- views
 GO
