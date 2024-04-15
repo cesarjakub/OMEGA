@@ -12,7 +12,7 @@ class MainScene:
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
         self.root.title("Library Management")
-        self.root.geometry("875x550")
+        self.root.geometry("950x550")
         self.root.resizable(False, False)
         self.root.grid_columnconfigure(1, weight=1)
         self.root.grid_columnconfigure((2, 3), weight=0)
@@ -85,9 +85,13 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
 
-                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=650)
-                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
+                rec.grid(row=i+1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 rec.configure(anchor="w")
+
+                delete = ctk.CTkButton(first_tab, text="DEL", width=30, corner_radius=10, font=('Arial', 14), fg_color="#ff0000", hover_color="#850000", command=None)
+                delete.grid(row=i+1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
+
         except Exception:
             rec = ctk.CTkLabel(first_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
@@ -104,7 +108,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
-                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=650)
+                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -123,7 +127,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
-                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=650)
+                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -145,7 +149,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
-                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=650)
+                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -164,7 +168,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
 
-                rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=650)
+                rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
