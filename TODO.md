@@ -4,14 +4,14 @@
   - [ ] Data (Database)
   - [ ] Presentations
   - [ ] Logic (Application)
-- [ ] Database connection
-  - [ ] Database access object
-  - [ ] Models
+- [x] Database connection
+  - [x] Database access object
+  - [x] Models
 - [x] Application design 
 - [x] Resources for application
 - [x] Tkinter (Custom Tkinter)
 
 ## Database
-- [ ] Views
-- [ ] Procedures
-- [ ] Test data
+- [x] Views
+- [x] Procedures
+- [x] Test data
