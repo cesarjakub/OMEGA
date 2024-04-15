@@ -130,7 +130,6 @@ class MainScene:
                                            command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
                                            (self.print_report(bt, ut, brt)))
                     report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
-
                 except Exception as e:
                     CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
@@ -225,6 +224,7 @@ class MainScene:
     def print_report(self, bt, ut, brt):
         try:
             self.logic.create_report(bt, ut, brt)
+            CTkMessagebox(title="Success", message=f"report created in reports folder", icon="check")
         except Exception as e:
             raise Exception("Creating error")
 
