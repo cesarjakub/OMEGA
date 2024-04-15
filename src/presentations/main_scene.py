@@ -126,7 +126,7 @@ class MainScene:
                 )
 
                 try:
-                    report = ctk.CTkButton(first_tab, text="REP", width=30, corner_radius=10, font=('Arial', 14),
+                    report = ctk.CTkButton(first_tab, text="SUM", width=30, corner_radius=10, font=('Arial', 14),
                                            fg_color="#0f6b28", hover_color="#038c27",
                                            command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
                                            (self.print_report(bt, ut, brt)))
@@ -148,6 +148,10 @@ class MainScene:
 
         reload = ctk.CTkButton(second_tab, text="Reload history", command=self.load_second_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
+
+        report = ctk.CTkButton(second_tab, text="SUM", fg_color="#0f6b28", hover_color="#038c27",
+                               command=self.print_book_report)
+        report.grid(row=0, column=0, padx=(150, 10), pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_with_author_data()
         try:
@@ -231,7 +235,18 @@ class MainScene:
             self.logic.create_report(bt, ut, brt)
             CTkMessagebox(
                 title="Success",
-                message=f"report created in reports folder",
+                message=f"report created in src folder",
+                icon="check"
+            )
+        except Exception as e:
+            raise Exception("Creating error")
+
+    def print_book_report(self):
+        try:
+            self.logic.create_report_books()
+            CTkMessagebox(
+                title="Success",
+                message=f"report created in src folder",
                 icon="check"
             )
         except Exception as e:
