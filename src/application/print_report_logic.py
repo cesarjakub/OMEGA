@@ -1,7 +1,7 @@
 import qrcode
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Spacer
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 
 from src.data_access.tables.book import Book
@@ -28,10 +28,34 @@ class PrintReportLogic:
         qr.add_data(data)
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
-        img.save(f"my_qrcode_{self.borrowing_table.id}.png")
+        path = f"my_qrcode_{self.borrowing_table.id}.png"
+        img.save(path)
+        return path
 
     def create_pdf(self):
         filename = f"report{self.borrowing_table.id}.pdf"
-        folder_path = "/OMEGA/reports"
 
-        doc = SimpleDocTemplate(f"{folder_path}/{filename}", pagesize=letter)
+        qr_code_path = self.create_qr_code()
+
+        doc = SimpleDocTemplate(filename, pagesize=letter)
+
+        styles = getSampleStyleSheet()
+        title_style = styles['Title']
+        body_style = styles['BodyText']
+
+        elements = []
+
+        elements.append(Paragraph("Borrowing Report", title_style))
+        elements.append(Spacer(1, 12))
+
+        elements.append(Paragraph(f"User: {self.users_table.first_name} {self.users_table.last_name}", body_style))
+        elements.append(Paragraph(f"Book Title: {self.book_table.title}", body_style))
+        elements.append(Paragraph(f"Date Borrowed: {self.borrowing_table.date_borrowed}", body_style))
+        elements.append(Paragraph(f"Due Date: {self.borrowing_table.due_date}", body_style))
+        elements.append(Spacer(1, 12))
+
+        qr_code = Image(qr_code_path, width=200, height=200)
+        elements.append(qr_code)
+
+        doc.build(elements)
+

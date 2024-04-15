@@ -123,7 +123,7 @@ class Logic:
     # create report
     def create_report(self, book_table, users_table, borrowing_table):
         print_report = PrintReportLogic(book_table, users_table, borrowing_table, self.database)
-        #print_report.create_pdf()
+        print_report.create_pdf()
 
     # name day
     def name_day(self):
