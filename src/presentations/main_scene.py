@@ -216,6 +216,10 @@ class MainScene:
         reload = ctk.CTkButton(fifth_tab, text="Reload history", command=self.load_fifth_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
+        report = ctk.CTkButton(fifth_tab, text="SUM", fg_color="#0f6b28", hover_color="#038c27",
+                               command=self.print_users_report)
+        report.grid(row=0, column=0, padx=(150, 10), pady=(10, 10), sticky="w")
+
         history = self.logic.load_user_info_data()
         try:
             for i, record in enumerate(history):
@@ -244,6 +248,17 @@ class MainScene:
     def print_book_report(self):
         try:
             self.logic.create_report_books()
+            CTkMessagebox(
+                title="Success",
+                message=f"report created in src folder",
+                icon="check"
+            )
+        except Exception as e:
+            raise Exception("Creating error")
+
+    def print_users_report(self):
+        try:
+            self.logic.create_report_users()
             CTkMessagebox(
                 title="Success",
                 message=f"report created in src folder",
