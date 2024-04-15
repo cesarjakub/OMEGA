@@ -127,7 +127,7 @@ class MainScene:
 
                 try:
                     report = ctk.CTkButton(first_tab, text="REP", width=30, corner_radius=10, font=('Arial', 14),
-                                           fg_color="#ff0000", hover_color="#850000",
+                                           fg_color="#0f6b28", hover_color="#038c27",
                                            command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
                                            (self.print_report(bt, ut, brt)))
                     report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
