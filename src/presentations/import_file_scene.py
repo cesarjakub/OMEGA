@@ -32,7 +32,7 @@ class ImportFileScene:
             self.import_bt.grid(row=1, column=0, columnspan=2, pady=50)
         else:
             CTkMessagebox(title="Error", message=f"Please select file")
-
+            
     def import_logic(self):
         try:
             # import logic
