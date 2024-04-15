@@ -58,7 +58,7 @@ class MainScene:
         self.log_out.grid(row=11, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         #main scene
-        self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="All records", corner_radius=15)
+        self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="History", corner_radius=15)
         self.scene_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
         self.tabview = ctk.CTkTabview(self.scene_frame)
