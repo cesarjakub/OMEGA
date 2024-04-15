@@ -95,7 +95,7 @@ DELETE FROM shelf;
 -- views
 GO
 CREATE VIEW Borrowed_books_by_users AS
-SELECT users.ID, users.First_name, users.Last_name, users.Phone, book.Title, borrowing.Borrowed_date, borrowing.Due_date 
+SELECT borrowing.ID, users.First_name, users.Last_name, users.Phone, book.Title, borrowing.Borrowed_date, borrowing.Due_date 
 FROM borrowing INNER JOIN users ON borrowing.Users_ID = users.ID INNER JOIN book ON borrowing.Book_ID = book.ID;
 GO
 

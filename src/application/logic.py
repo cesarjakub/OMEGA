@@ -86,6 +86,7 @@ class Logic:
         self.main_sc.destroy()
         self.start()
 
+    # load history
     def load_borrowed_books_data(self):
         load_borrowed_books = BorrowingDAO(self.database)
         history = load_borrowed_books.read()
@@ -110,3 +111,8 @@ class Logic:
         load_user_info = UsersDAO(self.database)
         history = load_user_info.read()
         return history
+
+    # delete record
+    def delete_borrowed_books_data(self, record):
+        load_borrowed_books = BorrowingDAO(self.database)
+        load_borrowed_books.delete(record)

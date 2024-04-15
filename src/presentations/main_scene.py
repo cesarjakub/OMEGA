@@ -2,6 +2,7 @@ import sys
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.data_access.tables.borrowing import Borrowing
 
 class MainScene:
 
@@ -88,9 +89,21 @@ class MainScene:
                 rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i+1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 rec.configure(anchor="w")
-
-                delete = ctk.CTkButton(first_tab, text="DEL", width=30, corner_radius=10, font=('Arial', 14), fg_color="#ff0000", hover_color="#850000", command=None)
-                delete.grid(row=i+1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
+                print(record)
+                borrowing_table = Borrowing(
+                    id=record[0],
+                    book_id=0,
+                    users_id=0,
+                    date_borrowed=record[5],
+                    due_date=record[6]
+                )
+                try:
+                    delete = ctk.CTkButton(first_tab, text="DEL", width=30, corner_radius=10, font=('Arial', 14),
+                                           fg_color="#ff0000", hover_color="#850000",
+                                           command=lambda r=borrowing_table: self.logic.delete_borrowed_books_data(r))
+                    delete.grid(row=i+1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
+                except Exception as e:
+                    CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
         except Exception:
             rec = ctk.CTkLabel(first_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
