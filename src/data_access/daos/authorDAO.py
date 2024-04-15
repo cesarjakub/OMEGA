@@ -50,3 +50,25 @@ class AuthorDAO(IDao):
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
+
+    def read_records(self):
+        msg = "No records."
+        try:
+            query = """
+                    SELECT First_name FROM author;
+                    """
+            first_name_history = self.database.select(query, msg)
+            return first_name_history
+        except Exception as e:
+            return msg
+
+    def read_records_two(self):
+        msg = "No records."
+        try:
+            query = """
+                    SELECT Last_name FROM author;
+                    """
+            last_name_history = self.database.select(query, msg)
+            return last_name_history
+        except Exception as e:
+            return msg

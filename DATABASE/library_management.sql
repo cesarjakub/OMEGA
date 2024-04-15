@@ -86,6 +86,9 @@ SELECT * FROM shelf;
 SELECT Name FROM publisher;
 SELECT Title from book;
 
+SELECT First_name FROM author;
+SELECT Last_name FROM author;
+
 --DELETE DATA
 DELETE FROM publisher;
 DELETE FROM genre;
