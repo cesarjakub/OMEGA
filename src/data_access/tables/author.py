@@ -10,3 +10,7 @@ class Author:
         self.first_name = first_name
         self.last_name = last_name
 
+    def __str__(self):
+        message = f"id: {self.id}, full name: {self.first_name} {self.last_name}"
+        return message
+

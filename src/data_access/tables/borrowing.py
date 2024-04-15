@@ -17,3 +17,8 @@ class Borrowing:
         self.users_id = users_id
         self.date_borrowed = date_borrowed
         self.due_date = due_date
+
+    def __str__(self):
+        message = (f"id: {self.id}, book id: {self.book_id}, user id: {self.users_id}, "
+                   f"date og borrowing: {self.date_borrowed}, due date: {self.due_date}")
+        return message

@@ -8,3 +8,7 @@ class Genre:
 
         self.id = id
         self.name = name
+
+    def __str__(self):
+        message = f"id: {self.id}, name of genre: {self.name}"
+        return message

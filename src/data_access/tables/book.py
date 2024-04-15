@@ -16,3 +16,7 @@ class Book:
         self.genre_id = genre_id
         self.author_id = author_id
         self.title = title
+
+    def __str__(self):
+        message = f"id: {self.id}, genre id: {self.genre_id}, authro id: {self.author_id}, title: {self.title}"
+        return message

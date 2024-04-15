@@ -19,3 +19,7 @@ class Shelf:
         self.book_id = book_id
         self.shelf_no = shelf_no
         self.floor = floor
+
+    def __str__(self):
+        message = f"id: {self.id}, book id: {self.book_id}, shelf number: {self.shelf_no}, floor: {self.floor}"
+        return message

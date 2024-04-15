@@ -1,8 +1,12 @@
+from datetime import datetime
 import sys
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from src.data_access.tables.borrowing import Borrowing
+from src.data_access.tables.book import Book
+from src.data_access.tables.users import Users
+
 
 class MainScene:
 
@@ -21,7 +25,7 @@ class MainScene:
         self.components()
 
     def components(self):
-        #sidebar
+        # sidebar
         self.buttons_frame = ctk.CTkFrame(self.root, width=175, corner_radius=15)
         self.buttons_frame.grid(row=0, column=0, padx=(10, 0), pady=10, sticky="nsew")
         self.buttons_frame.grid(row=0, column=0, sticky="nsew")
@@ -60,7 +64,7 @@ class MainScene:
         self.log_out = ctk.CTkButton(self.buttons_frame, text="Log Out", command=self.logic.log_out)
         self.log_out.grid(row=11, column=0, padx=20, pady=(10, 10), sticky="ew")
 
-        #main scene
+        # main scene
         self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="History", corner_radius=15)
         self.scene_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
@@ -87,14 +91,14 @@ class MainScene:
         history = self.logic.load_borrowed_books_data()
         try:
             for i, record in enumerate(history):
-                label = (f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | "
+                label = (f"{i + 1} | ID:{record[0]}, {record[1]} {record[2]}, tel: {record[3]} | "
                          f"book: {record[4]}, borrowed/due: {record[5]}/{record[6]}")
 
                 rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
-                rec.grid(row=i+1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
+                rec.grid(row=i + 1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 rec.configure(anchor="w")
-                print(record)
+
                 borrowing_table = Borrowing(
                     id=record[0],
                     book_id=0,
@@ -102,11 +106,31 @@ class MainScene:
                     date_borrowed=record[5],
                     due_date=record[6]
                 )
+
+                book_table = Book(
+                    id=0,
+                    genre_id=0,
+                    author_id=0,
+                    title=record[4]
+                )
+
+                user_table = Users(
+                    id=0,
+                    first_name=record[1],
+                    last_name=record[2],
+                    date_of_birth=datetime.now().date(),
+                    email="",
+                    phone=record[3],
+                    address=""
+                )
+
                 try:
-                    delete = ctk.CTkButton(first_tab, text="DEL", width=30, corner_radius=10, font=('Arial', 14),
+                    report = ctk.CTkButton(first_tab, text="REP", width=30, corner_radius=10, font=('Arial', 14),
                                            fg_color="#ff0000", hover_color="#850000",
-                                           command=lambda r=borrowing_table: self.logic.delete_borrowed_books_data(r))
-                    delete.grid(row=i+1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
+                                           command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
+                                           (self.print_report(bt, ut, brt)))
+                    report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
+
                 except Exception as e:
                     CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
@@ -124,11 +148,11 @@ class MainScene:
         history = self.logic.load_books_with_author_data()
         try:
             for i, record in enumerate(history):
-                label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
+                label = f"{i + 1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
                 rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
-                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
             rec = ctk.CTkLabel(second_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
@@ -144,11 +168,11 @@ class MainScene:
         history = self.logic.load_books_with_publisher_data()
         try:
             for i, record in enumerate(history):
-                label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
+                label = f"{i + 1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
                 rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
-                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
             rec = ctk.CTkLabel(third_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
@@ -167,11 +191,11 @@ class MainScene:
         history = self.logic.load_books_on_shelves_data()
         try:
             for i, record in enumerate(history):
-                label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
+                label = f"{i + 1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
                 rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
-                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
             rec = ctk.CTkLabel(fourth_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
@@ -187,16 +211,22 @@ class MainScene:
         history = self.logic.load_user_info_data()
         try:
             for i, record in enumerate(history):
-                label = f"{i+1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
+                label = f"{i + 1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
 
                 rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
-                rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
+                rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
             rec = ctk.CTkLabel(fifth_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
+
+    def print_report(self, bt, ut, brt):
+        try:
+            self.logic.create_report(bt, ut, brt)
+        except Exception as e:
+            raise Exception("Creating error")
 
     def mainloop(self):
         self.root.mainloop()

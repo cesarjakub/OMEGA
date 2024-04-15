@@ -11,6 +11,7 @@ from src.presentations.create_borrowing_scene import CreateBorrowingScene
 from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
 from src.presentations.import_file_scene import ImportFileScene
+from src.application.print_report_logic import PrintReportLogic
 
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.authorDAO import AuthorDAO
@@ -116,3 +117,8 @@ class Logic:
     def delete_borrowed_books_data(self, record):
         load_borrowed_books = BorrowingDAO(self.database)
         load_borrowed_books.delete(record)
+
+    # create report
+    def create_report(self, book_table, users_table, borrowing_table):
+        print_report = PrintReportLogic(book_table, users_table, borrowing_table)
+        print_report.create_qr_code()

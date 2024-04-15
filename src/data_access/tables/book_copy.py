@@ -16,3 +16,8 @@ class BookCopy:
         self.book_id = book_id
         self.publisher_id = publisher_id
         self.date_of_publication = date_of_publication
+
+    def __str__(self):
+        message = (f"id: {self.id}, book id: {self.book_id}, publisher id: {self.publisher_id}, "
+                   f"date of publication: {self.date_of_publication}")
+        return message
