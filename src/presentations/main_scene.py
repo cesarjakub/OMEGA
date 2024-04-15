@@ -30,16 +30,19 @@ class MainScene:
         self.import_data = ctk.CTkButton(self.buttons_frame, text="Import json data", command=self.logic.import_file)
         self.import_data.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
 
-        self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing", command=self.logic.create_borrowing)
+        self.create_borrowings = ctk.CTkButton(self.buttons_frame, text="Create borrowing",
+                                               command=self.logic.create_borrowing)
         self.create_borrowings.grid(row=2, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.add_book = ctk.CTkButton(self.buttons_frame, text="Add book", command=self.logic.add_book)
         self.add_book.grid(row=3, column=0, padx=20, pady=(10, 10), sticky="ew")
 
-        self.add_book_shelf = ctk.CTkButton(self.buttons_frame, text="Add book to shelf", command=self.logic.add_book_shelf)
+        self.add_book_shelf = ctk.CTkButton(self.buttons_frame, text="Add book to shelf",
+                                            command=self.logic.add_book_shelf)
         self.add_book_shelf.grid(row=4, column=0, padx=20, pady=(10, 10), sticky="ew")
 
-        self.create_book_copy = ctk.CTkButton(self.buttons_frame, text="Create book copy", command=self.logic.create_book_copy)
+        self.create_book_copy = ctk.CTkButton(self.buttons_frame, text="Create book copy",
+                                              command=self.logic.create_book_copy)
         self.create_book_copy.grid(row=5, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         self.add_author = ctk.CTkButton(self.buttons_frame, text="Add author", command=self.logic.add_author)
@@ -84,9 +87,11 @@ class MainScene:
         history = self.logic.load_borrowed_books_data()
         try:
             for i, record in enumerate(history):
-                label = f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | book: {record[4]}, borrowed/due: {record[5]}/{record[6]}"
+                label = (f"{i+1} | ID:{record[0]}, {record[1]} {record[2]}, phone: {record[3]} | "
+                         f"book: {record[4]}, borrowed/due: {record[5]}/{record[6]}")
 
-                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10, wraplength=700)
+                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10,
+                                   wraplength=700)
                 rec.grid(row=i+1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 rec.configure(anchor="w")
                 print(record)
@@ -121,7 +126,8 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
-                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
+                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
+                                   wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -140,7 +146,8 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
-                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
+                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
+                                   wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -162,7 +169,8 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
-                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
+                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
+                                   wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -181,7 +189,8 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i+1} | {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
 
-                rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
+                rec = ctk.CTkLabel(fifth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
+                                   wraplength=700)
                 rec.grid(row=i+1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:

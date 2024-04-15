@@ -75,7 +75,8 @@ class AddBookScene:
         self.book_values = [item[0] for item in his_bk]
 
     def check_for_input(self):
-        if self.genre_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == "" or self.title_input.get() == "":
+        if (self.genre_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == "" or
+                self.title_input.get() == ""):
             return False
         return True
 

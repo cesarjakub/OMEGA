@@ -57,7 +57,8 @@ class AddAuthorScene:
             authordao = AuthorDAO(self.database)
             authordao.create(author)
 
-            CTkMessagebox(title="Success", message=f"Author {self.first_input.get()} {self.last_input.get()} added successfully!", icon="check")
+            CTkMessagebox(title="Success", message=f"Author {self.first_input.get()} {self.last_input.get()} "
+                                                   f"added successfully!", icon="check")
             self.first_input.delete(0, "end")
             self.last_input.delete(0, "end")
 

@@ -6,7 +6,8 @@ class ImportDAO(IDao):
     def __int__(self, database: DatabaseConnection):
         super().__init__(database)
 
-    def import_data(self, Book_title, Author_first_name, Author_last_name, Genre_name, Publisher_name, shelf_nu, floor_nu):
+    def import_data(self, Book_title, Author_first_name, Author_last_name, Genre_name, Publisher_name,
+                    shelf_nu, floor_nu):
         try:
             msg = "Error while importing data."
             query = """

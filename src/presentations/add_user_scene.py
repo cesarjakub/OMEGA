@@ -90,7 +90,8 @@ class AddUserScene:
             usersdao = UsersDAO(self.database)
             usersdao.create(users)
 
-            CTkMessagebox(title="Success", message=f"User {self.first_input.get()} {self.last_input.get()} added successfully!", icon="check")
+            CTkMessagebox(title="Success", message=f"User {self.first_input.get()} {self.last_input.get()} "
+                                                   f"added successfully!", icon="check")
             self.first_input.delete(0, "end")
             self.last_input.delete(0, "end")
             self.birth_input.delete(0, "end")

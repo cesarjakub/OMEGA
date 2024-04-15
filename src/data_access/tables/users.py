@@ -1,7 +1,8 @@
 from datetime import date
 class Users:
 
-    def __init__(self, id: int, first_name: str, last_name: str, date_of_birth: date, email: str, phone: str, address: str):
+    def __init__(self, id: int, first_name: str, last_name: str, date_of_birth: date, email: str, phone: str,
+                 address: str):
 
         if id < 0:
             raise ValueError("Id must be a non-negative integer.")
