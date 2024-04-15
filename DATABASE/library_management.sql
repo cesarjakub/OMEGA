@@ -83,6 +83,9 @@ SELECT * FROM book_copy;
 SELECT * FROM borrowing;
 SELECT * FROM shelf;
 
+SELECT Name FROM publisher;
+SELECT Title from book;
+
 --DELETE DATA
 DELETE FROM publisher;
 DELETE FROM genre;

@@ -50,3 +50,14 @@ class PublisherDAO(IDao):
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
+
+    def read_records(self):
+        msg = "No records."
+        try:
+            query = """
+                    SELECT Name FROM publisher
+                    """
+            history = self.database.select(query, msg)
+            return history
+        except Exception as e:
+            return msg
