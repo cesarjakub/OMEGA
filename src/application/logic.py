@@ -11,6 +11,8 @@ from src.presentations.create_borrowing_scene import CreateBorrowingScene
 from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
 from src.presentations.import_file_scene import ImportFileScene
+
+from src.application.name_day_logic import NameDay
 from src.application.print_report_logic import PrintReportLogic
 
 from src.data_access.daos.borrowingDAO import BorrowingDAO
@@ -122,3 +124,9 @@ class Logic:
     def create_report(self, book_table, users_table, borrowing_table):
         print_report = PrintReportLogic(book_table, users_table, borrowing_table, self.database)
         #print_report.create_pdf()
+
+    # name day
+    def name_day(self):
+        name_day_sc = NameDay(self, self.database)
+        name = name_day_sc.get_name()
+        return name

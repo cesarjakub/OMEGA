@@ -23,6 +23,7 @@ class MainScene:
         self.root.grid_columnconfigure((2, 3), weight=0)
         self.root.grid_rowconfigure(0, weight=1)
         self.components()
+        self.name_day()
 
     def components(self):
         # sidebar
@@ -227,6 +228,13 @@ class MainScene:
             CTkMessagebox(title="Success", message=f"report created in reports folder", icon="check")
         except Exception as e:
             raise Exception("Creating error")
+
+    def name_day(self):
+        try:
+            name = self.logic.name_day()
+            CTkMessagebox(title="Success", message=f"Today {datetime.now().date()} is {name}'s Day", icon="check")
+        except Exception as e:
+            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
     def mainloop(self):
         self.root.mainloop()
