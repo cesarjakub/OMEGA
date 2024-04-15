@@ -120,5 +120,5 @@ class Logic:
 
     # create report
     def create_report(self, book_table, users_table, borrowing_table):
-        print_report = PrintReportLogic(book_table, users_table, borrowing_table)
-        print_report.create_qr_code()
+        print_report = PrintReportLogic(book_table, users_table, borrowing_table, self.database)
+        #print_report.create_pdf()
