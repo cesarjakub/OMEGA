@@ -2,6 +2,8 @@ from datetime import datetime
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from src.data_access.daos.borrowingDAO import BorrowingDAO
+from src.data_access.daos.bookDAO import BookDAO
+from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.borrowing import Borrowing
 from src.data_access.tables.book import Book
 from src.data_access.tables.users import Users
@@ -13,12 +15,16 @@ class CreateBorrowingScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.book_values = []
+        self.first_name = []
+        self.last_name = []
 
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
         self.root.title("Create borrowing")
         self.root.geometry("400x350")
         self.root.resizable(False, False)
+        self.create_values()
         self.components()
 
     def components(self):
@@ -27,18 +33,21 @@ class CreateBorrowingScene:
 
         self.title_label = ctk.CTkLabel(self.root, text="Enter title")
         self.title_label.grid(row=1, column=0, padx=(10, 5), pady=(10, 5))
-        self.title_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Title...")
+        self.title_input = ctk.CTkComboBox(self.root, width=250, values=self.book_values)
         self.title_input.grid(row=1, column=1, padx=(5, 10), pady=(10, 5))
+        self.title_input.set("choose one")
 
         self.first_label = ctk.CTkLabel(self.root, text="User first name")
         self.first_label.grid(row=2, column=0, padx=(10, 5), pady=(5, 5))
-        self.first_input = ctk.CTkEntry(self.root, width=250, placeholder_text="First name...")
+        self.first_input = ctk.CTkComboBox(self.root, width=250, values=self.first_name)
         self.first_input.grid(row=2, column=1, padx=(5, 10), pady=(5, 5))
+        self.first_input.set("choose one")
 
         self.last_label = ctk.CTkLabel(self.root, text="User last name")
         self.last_label.grid(row=3, column=0, padx=(10, 5), pady=(5, 5))
-        self.last_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Last name...")
+        self.last_input = ctk.CTkComboBox(self.root, width=250, values=self.last_name)
         self.last_input.grid(row=3, column=1, padx=(5, 10), pady=(5, 5))
+        self.last_input.set("choose one")
 
         self.borrowed_label = ctk.CTkLabel(self.root, text="Date of borrowing")
         self.borrowed_label.grid(row=4, column=0, padx=(10, 5), pady=(5, 5))
@@ -52,6 +61,21 @@ class CreateBorrowingScene:
 
         self.add_borr = ctk.CTkButton(self.root, text="Create borrowing", command=self.create_borrowing)
         self.add_borr.grid(row=6, column=0, columnspan=2, pady=50)
+
+    def create_values(self):
+        bkdao = BookDAO(self.database)
+        his_bk = bkdao.read()
+        self.book_values = [item[0] for item in his_bk]
+
+        first = UsersDAO(self.database)
+        his_frs = first.read_first()
+        self.first_name = [item[0] for item in his_frs]
+
+        last = UsersDAO(self.database)
+        his_lst = last.read_last()
+        self.last_name = [item[0] for item in his_lst]
+
+
 
     def check_for_input(self):
         if (self.title_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == ""
@@ -108,9 +132,9 @@ class CreateBorrowingScene:
                           icon="check")
             self.borrowed_input.delete(0, "end")
             self.due_input.delete(0, "end")
-            self.first_input.delete(0, "end")
-            self.last_input.delete(0, "end")
-            self.title_input.delete(0, "end")
+            self.first_input.set("choose one")
+            self.last_input.set("choose one")
+            self.title_input.set("choose one")
 
         except Exception as e:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel")

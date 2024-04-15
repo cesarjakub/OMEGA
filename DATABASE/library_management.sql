@@ -89,6 +89,9 @@ SELECT Title from book;
 SELECT First_name FROM author;
 SELECT Last_name FROM author;
 
+SELECT First_name FROM users;
+SELECT Last_name FROM users;
+
 --DELETE DATA
 DELETE FROM publisher;
 DELETE FROM genre;

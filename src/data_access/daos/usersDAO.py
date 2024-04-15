@@ -52,3 +52,25 @@ class UsersDAO(IDao):
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
+
+    def read_first(self):
+        msg = "No records."
+        try:
+            query = """
+                    SELECT First_name FROM users
+                    """
+            first = self.database.select(query, msg)
+            return first
+        except Exception as e:
+            return msg
+
+    def read_last(self):
+        msg = "No records."
+        try:
+            query = """
+                    SELECT Last_name FROM users
+                    """
+            last = self.database.select(query, msg)
+            return last
+        except Exception as e:
+            return msg
