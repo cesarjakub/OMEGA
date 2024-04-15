@@ -43,7 +43,11 @@ class LoginScene:
             self.root.withdraw()  #dodelat logiku s logoutem aby to nedelalo errory
             self.logic.main_scene()
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

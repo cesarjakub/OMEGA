@@ -45,9 +45,17 @@ class ImportFileScene:
 
             self.file_path = None
             self.selected_file_label.configure(text="Please select file", padx=68)
-            CTkMessagebox(title="Info", message=f"Data imported successfully", width=500)
+            CTkMessagebox(
+                title="Info",
+                message=f"Data imported successfully",
+                width=500
+            )
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def read_data(self):
         with open(self.file_path, 'r') as file:

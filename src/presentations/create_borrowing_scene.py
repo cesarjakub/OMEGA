@@ -128,8 +128,11 @@ class CreateBorrowingScene:
             borroweddao = BorrowingDAO(self.database)
             borroweddao.insert_record(borrowing, book, users)
 
-            CTkMessagebox(title="Success", message=f"Borrowing {self.title_input.get()} for {self.first_input.get()} {self.last_input.get()} created successfully!",
-                          icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Borrowing {self.title_input.get()} for {self.first_input.get()} {self.last_input.get()} "
+                        f"created successfully!",
+                icon="check")
             self.borrowed_input.delete(0, "end")
             self.due_input.delete(0, "end")
             self.first_input.set("choose one")
@@ -137,7 +140,11 @@ class CreateBorrowingScene:
             self.title_input.set("choose one")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

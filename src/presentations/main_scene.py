@@ -132,7 +132,11 @@ class MainScene:
                                            (self.print_report(bt, ut, brt)))
                     report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 except Exception as e:
-                    CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+                    CTkMessagebox(
+                        title="Error",
+                        message=f"{e}",
+                        icon="cancel"
+                    )
 
         except Exception:
             rec = ctk.CTkLabel(first_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
@@ -225,16 +229,28 @@ class MainScene:
     def print_report(self, bt, ut, brt):
         try:
             self.logic.create_report(bt, ut, brt)
-            CTkMessagebox(title="Success", message=f"report created in reports folder", icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"report created in reports folder",
+                icon="check"
+            )
         except Exception as e:
             raise Exception("Creating error")
 
     def name_day(self):
         try:
             name = self.logic.name_day()
-            CTkMessagebox(title="Success", message=f"Today {datetime.now().date()} is {name}'s Day", icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Today {datetime.now().date()} is {name}'s Day",
+                icon="check"
+            )
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

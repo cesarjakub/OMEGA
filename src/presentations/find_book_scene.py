@@ -66,11 +66,18 @@ class FindBookScene:
                 book_title, first_name, last_name, shelf_no, floor = record
                 message += \
                     f"Book {book_title}; Author: {first_name} {last_name}; shelf number: {shelf_no}, floor: {floor}\n"
-            CTkMessagebox(title="Info", message=f"{message}", width=500)
+            CTkMessagebox(
+                title="Info",
+                message=f"{message}",
+                width=500)
             self.title_input.set("choose one")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

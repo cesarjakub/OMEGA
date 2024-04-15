@@ -90,12 +90,21 @@ class CreateBookCopyScene:
             book_copydao = BookCopyDAO(self.database)
             book_copydao.insert_record(book, publisher)
 
-            CTkMessagebox(title="Success", message=f"Book copy {self.title_input.get()} published by {self.publisher_input.get()} created successfully!", icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Book copy {self.title_input.get()} published by "
+                        f"{self.publisher_input.get()} created successfully!",
+                icon="check"
+            )
             self.publisher_input.set("choose one")
             self.title_input.set("choose one")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

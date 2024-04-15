@@ -110,14 +110,22 @@ class AddBookScene:
             bookdao = BookDAO(self.database)
             bookdao.insert_record(book, genre, author)
 
-            CTkMessagebox(title="Success", message=f"Book {self.title_input.get()} added successfully!", icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Book {self.title_input.get()} added successfully!",
+                icon="check"
+            )
             self.genre_input.set("choose one")
             self.first_input.set("choose one")
             self.last_input.set("choose one")
             self.title_input.set("choose one")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

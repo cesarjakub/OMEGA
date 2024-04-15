@@ -84,13 +84,21 @@ class AddBookShelfScene:
             shelfdao = ShelfDAO(self.database)
             shelfdao.insert_record(shelf, book)
 
-            CTkMessagebox(title="Success", message=f"Book {self.title_input.get()} added successfully!", icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Book {self.title_input.get()} added successfully!",
+                icon="check"
+            )
             self.title_input.set("choose one")
             self.shelf_no_input.delete(0, "end")
             self.floor_input.delete(0, "end")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

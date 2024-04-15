@@ -49,12 +49,19 @@ class AddPublisherScene:
             publisherdao = PublisherDAO(self.database)
             publisherdao.create(publisher)
 
-            CTkMessagebox(title="Success", message=f"Publisher {self.publisher_input.get()} added successfully!",
-                          icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Publisher {self.publisher_input.get()} added successfully!",
+                icon="check"
+            )
             self.publisher_input.delete(0, "end")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()

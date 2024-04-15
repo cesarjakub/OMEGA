@@ -49,12 +49,19 @@ class AddGenreScene:
             genredao = GenreDAO(self.database)
             genredao.create(genre)
 
-            CTkMessagebox(title="Success", message=f"Genre {self.genre_input.get()} added successfully!",
-                          icon="check")
+            CTkMessagebox(
+                title="Success",
+                message=f"Genre {self.genre_input.get()} added successfully!",
+                icon="check"
+            )
             self.genre_input.delete(0, "end")
 
         except Exception as e:
-            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
+            CTkMessagebox(
+                title="Error",
+                message=f"{e}",
+                icon="cancel"
+            )
 
     def mainloop(self):
         self.root.mainloop()
