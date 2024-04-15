@@ -1,0 +1,6 @@
+requests~=2.31.0
+qrcode~=7.4.2
+reportlab~=4.1.0
+pyodbc~=5.0.1
+customtkinter~=5.2.2
+CTkMessagebox~=2.5
