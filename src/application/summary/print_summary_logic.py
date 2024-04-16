@@ -34,7 +34,7 @@ class PrintReportLogic:
         return path
 
     def create_pdf(self):
-        filename = f"report{self.borrowing_table.id}.pdf"
+        filename = f"summary{self.borrowing_table.id}.pdf"
 
         qr_code_path = self.create_qr_code()
 

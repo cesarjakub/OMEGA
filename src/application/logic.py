@@ -16,10 +16,10 @@ from src.presentations.delete_book_shelf_scene import DeleteBookFromShelf
 from src.presentations.delete_user_scene import DeleteUser
 
 from src.application.name_day_logic import NameDay
-from src.application.report.print_report_logic import PrintReportLogic
-from src.application.report.print_report_book_logic import PrintReportBookLogic
-from src.application.report.print_report_users_logic import PrintReportUsersLogic
-from src.application.report.print_report_book_shelf_logic import PrintReportBookShelfLogic
+from src.application.summary.print_summary_logic import PrintReportLogic
+from src.application.summary.print_summary_book_logic import PrintReportBookLogic
+from src.application.summary.print_summary_users_logic import PrintReportUsersLogic
+from src.application.summary.print_summary_book_shelf_logic import PrintReportBookShelfLogic
 
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.authorDAO import AuthorDAO
@@ -134,7 +134,7 @@ class Logic:
         delete_user_Scene = DeleteUser(self, self.database)
         delete_user_Scene.mainloop()
 
-    # create report
+    # create summary
     def create_report(self, book_table, users_table, borrowing_table):
         print_report = PrintReportLogic(book_table, users_table, borrowing_table, self.database)
         print_report.create_pdf()
