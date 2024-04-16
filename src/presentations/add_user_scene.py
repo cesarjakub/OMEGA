@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from datetime import datetime
+import re
 from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.users import Users
 
@@ -62,6 +63,13 @@ class AddUserScene:
 
         return True
 
+    def check_email(self, email):
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if re.match(pattern, email):
+            return True
+        else:
+            return False
+
     def add_book(self):
         try:
             if not self.check_for_input():
@@ -93,6 +101,8 @@ class AddUserScene:
             if not 2 < len(address) < 100:
                 raise Exception("Address is incorrect")
 
+            if not self.check_email(email):
+                raise Exception("Please enter correct email format")
 
             users = Users(
                 id=0,
