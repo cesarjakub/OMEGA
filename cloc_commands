@@ -1,0 +1,3 @@
+cloc-2.00.exe --exclude-dir=venv --include-lang=Python .
+cloc-2.00.exe --exclude-dir=venv --include-lang=Python . --by-file
+cloc-2.00.exe --exclude-dir=venv .
