@@ -36,7 +36,9 @@ class PrintReportBookLogic:
     def convert_data(self, body_style):
         data_paragraphs = []
         for record in self.history:
-            rec = f"| book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
+            rec = (f"| book: {record[0]} "
+                   f"| author: {record[1]} {record[2]} "
+                   f"| genre: {record[3]}")
             data_paragraphs.append(Paragraph(rec, body_style))
             data_paragraphs.append(Spacer(1, 12))
         return data_paragraphs

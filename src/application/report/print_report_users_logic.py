@@ -36,7 +36,8 @@ class PrintReportUsersLogic:
     def convert_data(self, body_style):
         data_paragraphs = []
         for record in self.history:
-            rec = f"| {record[0]} {record[1]} | contact: {record[2]}, {record[3]}, {record[4]}"
+            rec = (f"| {record[0]} {record[1]} "
+                   f"| contact: {record[2]}, {record[3]}, {record[4]}")
             data_paragraphs.append(Paragraph(rec, body_style))
             data_paragraphs.append(Spacer(1, 12))
         return data_paragraphs
