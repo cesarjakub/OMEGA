@@ -124,7 +124,7 @@ GO
 
 GO
 CREATE VIEW Books_shelf AS
-SELECT book.ID, Title, shelf.Shelf_no, shelf.Floor FROM book INNER JOIN shelf ON shelf.Book_ID = book.ID;
+SELECT shelf.ID, Title, shelf.Shelf_no, shelf.Floor FROM book INNER JOIN shelf ON shelf.Book_ID = book.ID;
 GO
 
 GO
