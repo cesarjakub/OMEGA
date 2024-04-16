@@ -96,6 +96,10 @@ SELECT Last_name FROM users;
 
 SELECT Email FROM users;
 
+SELECT COUNT(*) FROM book;
+SELECT COUNT(*) FROM users;
+SELECT COUNT(*) FROM borrowing;
+
 --DELETE DATA
 DELETE FROM publisher;
 DELETE FROM genre;
