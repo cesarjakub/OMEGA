@@ -58,7 +58,7 @@ class BorrowingDAO(IDao):
 
     def insert_record(self, record: Borrowing, book: Book, users: Users):
         try:
-            msg = "Error with creating book copy."
+            msg = "Error with creating borrowing."
             query = """
                     EXEC Create_borrowing_books ?,?,?,?,?;
                     """
@@ -66,3 +66,14 @@ class BorrowingDAO(IDao):
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
+
+    def read_record(self,):
+        msg = "Error with reading from borrowing."
+        try:
+            query = """
+                    SELECT ID FROM borrowing
+                    """
+            history = self.database.select(query, msg)
+            return history
+        except Exception as e:
+            return msg
