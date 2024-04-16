@@ -83,7 +83,7 @@ SELECT * FROM book_copy;
 SELECT * FROM borrowing;
 SELECT * FROM shelf;
 
-EXEC Create_borrowing_books 'To Kill a Mockingbird','Tonda','Hrouda','2024-01-01','2024-01-01';
+EXEC Create_borrowing_books 'War and Peace','Tonda','Hrouda','2024-01-01','2024-01-01';
 
 SELECT Name FROM publisher;
 SELECT Title from book;
@@ -181,7 +181,7 @@ END
 GO
 
 GO
-CREATE PROCEDURE Create_borrowing_books @Book_title VARCHAR(20), @User_first_name VARCHAR(20), @User_last_name VARCHAR(20), @Borrowed_date DATE, @Due_date DATE
+CREATE PROCEDURE Create_borrowing_books @Book_title VARCHAR(225), @User_first_name VARCHAR(20), @User_last_name VARCHAR(20), @Borrowed_date DATE, @Due_date DATE
 AS
 BEGIN
 	DECLARE @Users_ID INT;
