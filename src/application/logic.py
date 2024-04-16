@@ -11,6 +11,7 @@ from src.presentations.create_borrowing_scene import CreateBorrowingScene
 from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
 from src.presentations.import_file_scene import ImportFileScene
+from src.presentations.delete_borrowed_book_scene import DeleteBorrowingBook
 
 from src.application.name_day_logic import NameDay
 from src.application.report.print_report_logic import PrintReportLogic
@@ -118,9 +119,11 @@ class Logic:
         return history
 
     # delete record
-    def delete_borrowed_books_data(self, record):
-        load_borrowed_books = BorrowingDAO(self.database)
-        load_borrowed_books.delete(record)
+    def delete_borrowed_books_data(self):
+        delete_borrowing_book_sc = DeleteBorrowingBook(self, self.database)
+        delete_borrowing_book_sc.mainloop()
+        #load_borrowed_books = BorrowingDAO(self.database)
+        #load_borrowed_books.delete(record)
 
     # create report
     def create_report(self, book_table, users_table, borrowing_table):

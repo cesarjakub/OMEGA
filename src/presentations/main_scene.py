@@ -89,6 +89,9 @@ class MainScene:
         reload = ctk.CTkButton(first_tab, text="Reload history", command=self.load_first_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
+        reload = ctk.CTkButton(first_tab, text="Delete record", command=self.logic.delete_borrowed_books_data)
+        reload.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
+
         history = self.logic.load_borrowed_books_data()
         try:
             for i, record in enumerate(history):

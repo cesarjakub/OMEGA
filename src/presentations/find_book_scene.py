@@ -38,7 +38,6 @@ class FindBookScene:
         self.book_values = [item[0] for item in his_bk]
 
     def check_for_input(self):
-
         if self.title_input.get() == "":
             return False
         return True
