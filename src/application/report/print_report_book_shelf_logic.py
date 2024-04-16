@@ -11,14 +11,14 @@ class PrintReportBookShelfLogic:
         self.history = []
 
     def create_report(self):
-        filename = f"users_summary.pdf"
+        filename = f"books_shelf_summary.pdf"
         doc = SimpleDocTemplate(filename, pagesize=letter)
         styles = getSampleStyleSheet()
         title_style = styles['Title']
         body_style = styles['BodyText']
         elements = []
 
-        elements.append(Paragraph("Users summary", title_style))
+        elements.append(Paragraph("Books on shelf summary", title_style))
         elements.append(Spacer(1, 12))
 
         self.get_data()
