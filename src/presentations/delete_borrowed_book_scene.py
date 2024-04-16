@@ -35,10 +35,20 @@ class DeleteBorrowingBook:
             return False
         return True
 
+    def check_for_number(self):
+        id_value = self.id_input.get()
+        if id_value.isdigit() and int(id_value) > 0:
+            return True
+        else:
+            return False
+
     def delete_borrowing(self):
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
+
+            if not self.check_for_number():
+                raise Exception("Please enter a positive number for ID.")
 
             id = self.id_input.get()
 

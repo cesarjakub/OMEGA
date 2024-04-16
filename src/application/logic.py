@@ -122,8 +122,6 @@ class Logic:
     def delete_borrowed_books_data(self):
         delete_borrowing_book_sc = DeleteBorrowingBook(self, self.database)
         delete_borrowing_book_sc.mainloop()
-        #load_borrowed_books = BorrowingDAO(self.database)
-        #load_borrowed_books.delete(record)
 
     # create report
     def create_report(self, book_table, users_table, borrowing_table):
