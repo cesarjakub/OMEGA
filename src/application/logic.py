@@ -12,6 +12,7 @@ from src.presentations.add_book_shelf_scene import AddBookShelfScene
 from src.presentations.find_book_scene import FindBookScene
 from src.presentations.import_file_scene import ImportFileScene
 from src.presentations.delete_borrowed_book_scene import DeleteBorrowingBook
+from src.presentations.delete_book_shelf_scene import DeleteBookFromShelf
 
 from src.application.name_day_logic import NameDay
 from src.application.report.print_report_logic import PrintReportLogic
@@ -124,7 +125,8 @@ class Logic:
         delete_borrowing_book_sc.mainloop()
 
     def delete_book_from_shelf(self):
-        pass
+        delete_book_from_shelf_scene = DeleteBookFromShelf(self, self.database)
+        delete_book_from_shelf_scene.mainloop()
 
     # create report
     def create_report(self, book_table, users_table, borrowing_table):
