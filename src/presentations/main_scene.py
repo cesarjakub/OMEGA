@@ -92,8 +92,8 @@ class MainScene:
         reload = ctk.CTkButton(first_tab, text="Reload history", command=self.load_first_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
-        reload = ctk.CTkButton(first_tab, text="Delete record", command=self.delete_record)
-        reload.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
+        delete = ctk.CTkButton(first_tab, text="Delete record", fg_color="#de0202", hover_color="#9c0000", command=self.delete_record)
+        delete.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
 
         history = self.logic.load_borrowed_books_data()
         try:
