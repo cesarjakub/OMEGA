@@ -42,6 +42,9 @@ class AddGenreScene:
             # genre logic
             name = self.genre_input.get().lower()
 
+            if not 2 < len(name) < 50:
+                raise Exception("Genre is incorrect")
+
             genre = Genre(
                 id=0,
                 name=name

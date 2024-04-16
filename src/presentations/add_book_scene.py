@@ -91,6 +91,18 @@ class AddBookScene:
             last_name = self.last_input.get()
             title = self.title_input.get()
 
+            if not 2 < len(name) < 50:
+                raise Exception("Genre is incorrect")
+
+            if not 2 < len(first_name) < 20:
+                raise Exception("Name is incorrect")
+
+            if not 2 < len(last_name) < 20:
+                raise Exception("Name is incorrect")
+
+            if not 1 < len(name) < 100:
+                raise Exception("Title is incorrect")
+
             genre = Genre(
                 id=0,
                 name=name

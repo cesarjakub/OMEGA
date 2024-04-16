@@ -84,6 +84,9 @@ class AddBookShelfScene:
             except ValueError:
                 raise Exception("Please enter numbers")
 
+            if not 1 < len(title) < 100:
+                raise Exception("Title is incorrect")
+
             book = Book(
                 id=0,
                 author_id=0,

@@ -78,6 +78,22 @@ class AddUserScene:
             phone = self.phone_input.get()
             address = self.address_input.get()
 
+            if not 2 < len(first_name) < 20:
+                raise Exception("First name is incorrect")
+
+            if not 2 < len(last_name) < 20:
+                raise Exception("Last name is incorrect")
+
+            if not 2 < len(email) < 50:
+                raise Exception("Email is incorrect")
+
+            if not 2 < len(phone) < 50:
+                raise Exception("Phone is incorrect")
+
+            if not 2 < len(address) < 100:
+                raise Exception("Address is incorrect")
+
+
             users = Users(
                 id=0,
                 first_name=first_name,

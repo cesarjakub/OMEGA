@@ -42,6 +42,9 @@ class AddPublisherScene:
             # publisher logic
             name = self.publisher_input.get().lower()
 
+            if not 2 < len(name) < 50:
+                raise Exception("Genre is incorrect")
+
             publisher = Publisher(
                 id=0,
                 name=name

@@ -49,6 +49,12 @@ class AddAuthorScene:
             first_name = self.first_input.get()
             last_name = self.last_input.get()
 
+            if not 2 < len(first_name) < 20:
+                raise Exception("Name is incorrect")
+
+            if not 2 < len(last_name) < 20:
+                raise Exception("Name is incorrect")
+
             author = Author(
                 id=0,
                 first_name=first_name,
