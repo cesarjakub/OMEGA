@@ -83,6 +83,8 @@ SELECT * FROM book_copy;
 SELECT * FROM borrowing;
 SELECT * FROM shelf;
 
+EXEC Create_borrowing_books 'To Kill a Mockingbird','Tonda','Hrouda','2024-01-01','2024-01-01';
+
 SELECT Name FROM publisher;
 SELECT Title from book;
 
@@ -186,7 +188,7 @@ BEGIN
 	DECLARE @Book_ID INT;
 
 	SET @Users_ID = (SELECT ID FROM users WHERE First_name = @User_first_name AND Last_name = @User_last_name);
-	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+	SET @Book_ID = (SELECT TOP 1 ID FROM book WHERE Title = @Book_title);
 
 	IF @Users_ID IS NULL OR @Book_ID IS NULL
 	BEGIN

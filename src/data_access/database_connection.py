@@ -67,7 +67,7 @@ class DatabaseConnection:
             cursor.execute(query, params)
             cursor.commit()
             cursor.close()
-        except Exception:
+        except Exception as e:
             raise Exception(msg)
         finally:
             self.disconnect()
