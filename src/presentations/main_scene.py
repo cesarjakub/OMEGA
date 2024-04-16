@@ -99,7 +99,7 @@ class MainScene:
         try:
             for i, record in enumerate(history):
                 label = (f"{i + 1} | ID:{record[0]}, {record[1]} {record[2]}, tel: {record[3]} | "
-                         f"book: {record[4]}, borrowed/due: {record[5]}/{record[6]}")
+                         f"book: {record[4]} | borrowed/due: {record[5]}/{record[6]}")
 
                 rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 12), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
@@ -202,13 +202,17 @@ class MainScene:
         reload = ctk.CTkButton(fourth_tab, text="Reload history", command=self.load_fourth_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
-        find_book = ctk.CTkButton(fourth_tab, text="Find book", command=self.logic.find_book)
+        find_book = ctk.CTkButton(fourth_tab, text="Find book", fg_color="#ba02e3", hover_color="#8403a1", command=self.logic.find_book)
         find_book.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
+
+        delete = ctk.CTkButton(fourth_tab, text="Delete record", fg_color="#de0202", hover_color="#9c0000",
+                               command=self.delete_book_shelf)
+        delete.grid(row=0, column=0, padx=(300, 0), pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_on_shelves_data()
         try:
             for i, record in enumerate(history):
-                label = f"{i + 1} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
+                label = f"{i + 1} | ID: {record[0]} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
                 rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
@@ -218,6 +222,9 @@ class MainScene:
             rec = ctk.CTkLabel(fourth_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
+
+    def delete_book_shelf(self):
+        self.logic.delete_book_from_shelf()
 
     def load_fifth_tab(self):
         fifth_tab = self.tabview.tab("User info")
@@ -280,16 +287,10 @@ class MainScene:
         try:
             name = self.logic.name_day()
             CTkMessagebox(
-                title="Success",
-                message=f"Today {datetime.now().date()} is {name}'s Day",
-                icon="check"
+                title="Success", message=f"Today {datetime.now().date()} is {name}'s Day", icon="check"
             )
         except Exception as e:
-            CTkMessagebox(
-                title="Error",
-                message=f"{e}",
-                icon="cancel"
-            )
+            CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
     def mainloop(self):
         self.root.mainloop()

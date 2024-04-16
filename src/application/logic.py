@@ -123,6 +123,9 @@ class Logic:
         delete_borrowing_book_sc = DeleteBorrowingBook(self, self.database)
         delete_borrowing_book_sc.mainloop()
 
+    def delete_book_from_shelf(self):
+        pass
+
     # create report
     def create_report(self, book_table, users_table, borrowing_table):
         print_report = PrintReportLogic(book_table, users_table, borrowing_table, self.database)
