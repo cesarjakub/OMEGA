@@ -17,7 +17,7 @@ class MainScene:
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
         self.root.title("Library Management")
-        self.root.geometry("950x550")
+        self.root.geometry("950x600")
         self.root.resizable(False, False)
         self.root.grid_columnconfigure(1, weight=1)
         self.root.grid_columnconfigure((2, 3), weight=0)
@@ -30,7 +30,7 @@ class MainScene:
         self.buttons_frame = ctk.CTkFrame(self.root, width=175, corner_radius=15)
         self.buttons_frame.grid(row=0, column=0, padx=(10, 0), pady=10, sticky="nsew")
         self.buttons_frame.grid(row=0, column=0, sticky="nsew")
-        self.buttons_frame.grid_rowconfigure(10, weight=1)
+        self.buttons_frame.grid_rowconfigure(11, weight=1)
 
         self.import_data = ctk.CTkButton(self.buttons_frame, text="Import json data", command=self.logic.import_file)
         self.import_data.grid(row=1, column=0, padx=20, pady=(20, 10), sticky="ew")
@@ -62,8 +62,11 @@ class MainScene:
         self.add_publisher = ctk.CTkButton(self.buttons_frame, text="Add publisher", command=self.logic.add_publisher)
         self.add_publisher.grid(row=9, column=0, padx=20, pady=(10, 10), sticky="ew")
 
+        self.numbers = ctk.CTkButton(self.buttons_frame, text="Numbers", command=self.logic.numbers)
+        self.numbers.grid(row=10, column=0, padx=20, pady=(20, 20), sticky="ew")
+
         self.log_out = ctk.CTkButton(self.buttons_frame, text="Log Out", command=self.logic.log_out)
-        self.log_out.grid(row=11, column=0, padx=20, pady=(10, 10), sticky="ew")
+        self.log_out.grid(row=12, column=0, padx=20, pady=(10, 10), sticky="ew")
 
         # main scene
         self.scene_frame = ctk.CTkScrollableFrame(self.root, width=700, label_text="History", corner_radius=15)
@@ -129,8 +132,7 @@ class MainScene:
                     address=""
                 )
                 try:
-                    report = ctk.CTkButton(first_tab, text="SUM", width=30, corner_radius=10, font=('Arial', 12),
-                                           fg_color="#0f6b28", hover_color="#038c27",
+                    report = ctk.CTkButton(first_tab, text="SUM", width=30, corner_radius=10, font=('Arial', 12), fg_color="#0f6b28", hover_color="#038c27",
                                            command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
                                            (self.print_report(bt, ut, brt)))
                     report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 15), sticky="nsew")

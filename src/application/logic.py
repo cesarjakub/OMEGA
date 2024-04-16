@@ -14,6 +14,7 @@ from src.presentations.import_file_scene import ImportFileScene
 from src.presentations.delete_borrowed_book_scene import DeleteBorrowingBook
 from src.presentations.delete_book_shelf_scene import DeleteBookFromShelf
 from src.presentations.delete_user_scene import DeleteUser
+from src.presentations.numers_scene import NumbersScene
 
 from src.application.name_day_logic import NameDay
 from src.application.summary.print_summary_logic import PrintReportLogic
@@ -90,6 +91,10 @@ class Logic:
     def add_publisher(self):
         add_publisher_sc = AddPublisherScene(self, self.database)
         add_publisher_sc.mainloop()
+
+    def numbers(self):
+        numbers_sc = NumbersScene(self, self.database)
+        numbers_sc.mainloop()
 
     def log_out(self):
         self.main_sc.destroy()
