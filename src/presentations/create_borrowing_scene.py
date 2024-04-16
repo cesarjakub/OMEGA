@@ -100,7 +100,7 @@ class CreateBorrowingScene:
                 due = datetime.strptime(self.due_input.get(), '%Y-%m-%d').date()
             except ValueError:
                 raise ValueError("Incorrect date format, please enter date in YYYY-MM-DD format.")
-
+            print(title, first_name, last_name, borrowed, due)
             book = Book(
                 id=0,
                 genre_id=0,

@@ -101,7 +101,7 @@ class MainScene:
                 label = (f"{i + 1} | ID:{record[0]}, {record[1]} {record[2]}, tel: {record[3]} | "
                          f"book: {record[4]}, borrowed/due: {record[5]}/{record[6]}")
 
-                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 13), fg_color="gray20", corner_radius=10,
+                rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 12), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
                 rec.grid(row=i + 1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 rec.configure(anchor="w")
@@ -132,7 +132,7 @@ class MainScene:
                 )
 
                 try:
-                    report = ctk.CTkButton(first_tab, text="SUM", width=30, corner_radius=10, font=('Arial', 14),
+                    report = ctk.CTkButton(first_tab, text="SUM", width=30, corner_radius=10, font=('Arial', 12),
                                            fg_color="#0f6b28", hover_color="#038c27",
                                            command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
                                            (self.print_report(bt, ut, brt)))
