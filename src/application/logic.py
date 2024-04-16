@@ -18,6 +18,7 @@ from src.application.name_day_logic import NameDay
 from src.application.report.print_report_logic import PrintReportLogic
 from src.application.report.print_report_book_logic import PrintReportBookLogic
 from src.application.report.print_report_users_logic import PrintReportUsersLogic
+from src.application.report.print_report_book_shelf_logic import PrintReportBookShelfLogic
 
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.authorDAO import AuthorDAO
@@ -140,6 +141,10 @@ class Logic:
     def create_report_users(self):
         print_report_users = PrintReportUsersLogic(self.database)
         print_report_users.create_report()
+
+    def create_report_shelf(self):
+        print_report_shelf = PrintReportBookShelfLogic(self.database)
+        print_report_shelf.create_report()
 
     # name day
     def name_day(self):

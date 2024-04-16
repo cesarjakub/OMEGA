@@ -208,9 +208,11 @@ class MainScene:
         find_book = ctk.CTkButton(fourth_tab, text="Find book", fg_color="#ba02e3", hover_color="#8403a1", command=self.logic.find_book)
         find_book.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
 
-        delete = ctk.CTkButton(fourth_tab, text="Delete record", fg_color="#de0202", hover_color="#9c0000",
-                               command=self.delete_book_shelf)
+        delete = ctk.CTkButton(fourth_tab, text="Delete record", fg_color="#de0202", hover_color="#9c0000", command=self.delete_book_shelf)
         delete.grid(row=0, column=0, padx=(300, 0), pady=(10, 10), sticky="w")
+
+        report = ctk.CTkButton(fourth_tab, text="SUMMARY", fg_color="#0f6b28", hover_color="#038c27", command=self.print_book_shelf)
+        report.grid(row=0, column=0, padx=(450, 10), pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_on_shelves_data()
         try:
@@ -257,9 +259,7 @@ class MainScene:
         try:
             self.logic.create_report(bt, ut, brt)
             CTkMessagebox(
-                title="Success",
-                message=f"report created in src folder",
-                icon="check"
+                title="Success", message=f"report created in src folder", icon="check"
             )
         except Exception as e:
             raise Exception("Creating error")
@@ -267,27 +267,27 @@ class MainScene:
     def print_book_report(self):
         try:
             self.logic.create_report_books()
-            CTkMessagebox(
-                message=f"report created in src folder", icon="check"
-            )
+            CTkMessagebox(message=f"report created in src folder", icon="check")
         except Exception as e:
             raise Exception("Creating error")
 
     def print_users_report(self):
         try:
             self.logic.create_report_users()
-            CTkMessagebox(
-                title="Success", message=f"report created in src folder", icon="check"
-            )
+            CTkMessagebox(title="Success", message=f"report created in src folder", icon="check")
         except Exception as e:
             raise Exception("Creating error")
 
+    def print_book_shelf(self):
+        try:
+            self.logic.create_report_shelf()
+            CTkMessagebox(title="Success", message=f"report created in src folder", icon="check")
+        except Exception as e:
+            raise Exception("Creating error")
     def name_day(self):
         try:
             name = self.logic.name_day()
-            CTkMessagebox(
-                title="Success", message=f"Today {datetime.now().date()} is {name}'s Day", icon="check"
-            )
+            CTkMessagebox(title="Success", message=f"Today {datetime.now().date()} is {name}'s Day", icon="check")
         except Exception as e:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
