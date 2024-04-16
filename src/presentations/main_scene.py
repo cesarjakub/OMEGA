@@ -103,7 +103,7 @@ class MainScene:
 
                 rec = ctk.CTkLabel(first_tab, text=label, font=('Arial', 12), fg_color="gray20", corner_radius=10,
                                    wraplength=700)
-                rec.grid(row=i + 1, column=0, padx=(0, 10), pady=(0, 5), sticky="nsew")
+                rec.grid(row=i + 1, column=0, padx=(0, 10), pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
 
                 borrowing_table = Borrowing(
@@ -133,7 +133,7 @@ class MainScene:
                                            fg_color="#0f6b28", hover_color="#038c27",
                                            command=lambda bt=book_table, ut=user_table, brt=borrowing_table:
                                            (self.print_report(bt, ut, brt)))
-                    report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
+                    report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 15), sticky="nsew")
                 except Exception as e:
                     CTkMessagebox(
                         title="Error", message=f"{e}", icon="cancel"
