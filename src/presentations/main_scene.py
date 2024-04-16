@@ -113,14 +113,12 @@ class MainScene:
                     date_borrowed=record[5],
                     due_date=record[6]
                 )
-
                 book_table = Book(
                     id=0,
                     genre_id=0,
                     author_id=0,
                     title=record[4]
                 )
-
                 user_table = Users(
                     id=0,
                     first_name=record[1],
@@ -130,7 +128,6 @@ class MainScene:
                     phone=record[3],
                     address=""
                 )
-
                 try:
                     report = ctk.CTkButton(first_tab, text="SUM", width=30, corner_radius=10, font=('Arial', 12),
                                            fg_color="#0f6b28", hover_color="#038c27",
@@ -139,9 +136,7 @@ class MainScene:
                     report.grid(row=i + 1, column=1, padx=(0, 10), pady=(0, 5), sticky="nsew")
                 except Exception as e:
                     CTkMessagebox(
-                        title="Error",
-                        message=f"{e}",
-                        icon="cancel"
+                        title="Error", message=f"{e}", icon="cancel"
                     )
 
         except Exception:
@@ -158,8 +153,7 @@ class MainScene:
         reload = ctk.CTkButton(second_tab, text="Reload history", command=self.load_second_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
-        report = ctk.CTkButton(second_tab, text="SUMMARY", fg_color="#0f6b28", hover_color="#038c27",
-                               command=self.print_book_report)
+        report = ctk.CTkButton(second_tab, text="SUMMARY", fg_color="#0f6b28", hover_color="#038c27", command=self.print_book_report)
         report.grid(row=0, column=0, padx=(150, 10), pady=(10, 10), sticky="w")
 
         history = self.logic.load_books_with_author_data()
@@ -167,8 +161,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i + 1} | book: {record[0]} | author: {record[1]} {record[2]} | genre: {record[3]}"
 
-                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
-                                   wraplength=700)
+                rec = ctk.CTkLabel(second_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -187,8 +180,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i + 1} | book: {record[0]} | date of publication: {record[1]} | publisher: {record[2]}"
 
-                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
-                                   wraplength=700)
+                rec = ctk.CTkLabel(third_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -219,8 +211,7 @@ class MainScene:
             for i, record in enumerate(history):
                 label = f"{i + 1} | ID: {record[0]} | book: {record[1]} | shelf number: {record[2]} floor number: {record[3]}"
 
-                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10,
-                                   wraplength=700)
+                rec = ctk.CTkLabel(fourth_tab, text=label, font=('Arial', 14), fg_color="gray20", corner_radius=10, wraplength=700)
                 rec.grid(row=i + 1, column=0, pady=(0, 15), sticky="nsew")
                 rec.configure(anchor="w")
         except Exception:
@@ -232,14 +223,19 @@ class MainScene:
         self.logic.delete_book_from_shelf()
 
     def load_fifth_tab(self):
+        for widget in self.tabview.tab("User info").grid_slaves():
+            widget.grid_forget()
+
         fifth_tab = self.tabview.tab("User info")
 
         reload = ctk.CTkButton(fifth_tab, text="Reload history", command=self.load_fifth_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
-        report = ctk.CTkButton(fifth_tab, text="SUMMARY", fg_color="#0f6b28", hover_color="#038c27",
-                               command=self.print_users_report)
+        report = ctk.CTkButton(fifth_tab, text="SUMMARY", fg_color="#0f6b28", hover_color="#038c27",command=self.print_users_report)
         report.grid(row=0, column=0, padx=(150, 10), pady=(10, 10), sticky="w")
+
+        delete = ctk.CTkButton(fifth_tab, text="Delete record", fg_color="#de0202", hover_color="#9c0000", command=self.delete_user)
+        delete.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
 
         history = self.logic.load_user_info_data()
         try:
@@ -254,6 +250,9 @@ class MainScene:
             rec = ctk.CTkLabel(fifth_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
+
+    def delete_user(self):
+        self.logic.delete_user()
 
     def print_report(self, bt, ut, brt):
         try:

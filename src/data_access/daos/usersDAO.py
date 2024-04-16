@@ -74,3 +74,14 @@ class UsersDAO(IDao):
             return last
         except Exception as e:
             return msg
+
+    def read_record(self):
+        msg = "No records."
+        try:
+            query = """
+                    SELECT Email FROM users
+                    """
+            history = self.database.select(query, msg)
+            return history
+        except Exception as e:
+            return msg

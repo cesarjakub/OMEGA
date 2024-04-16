@@ -94,6 +94,8 @@ SELECT Last_name FROM author;
 SELECT First_name FROM users;
 SELECT Last_name FROM users;
 
+SELECT Email FROM users;
+
 --DELETE DATA
 DELETE FROM publisher;
 DELETE FROM genre;
