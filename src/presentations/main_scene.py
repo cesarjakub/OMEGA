@@ -268,9 +268,7 @@ class MainScene:
         try:
             self.logic.create_report_books()
             CTkMessagebox(
-                title="Success",
-                message=f"report created in src folder",
-                icon="check"
+                message=f"report created in src folder", icon="check"
             )
         except Exception as e:
             raise Exception("Creating error")
@@ -279,9 +277,7 @@ class MainScene:
         try:
             self.logic.create_report_users()
             CTkMessagebox(
-                title="Success",
-                message=f"report created in src folder",
-                icon="check"
+                title="Success", message=f"report created in src folder", icon="check"
             )
         except Exception as e:
             raise Exception("Creating error")
