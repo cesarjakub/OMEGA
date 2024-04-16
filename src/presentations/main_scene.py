@@ -84,12 +84,15 @@ class MainScene:
         self.load_fifth_tab()
 
     def load_first_tab(self):
+        for widget in self.tabview.tab("Borrowed books").grid_slaves():
+            widget.grid_forget()
+
         first_tab = self.tabview.tab("Borrowed books")
 
         reload = ctk.CTkButton(first_tab, text="Reload history", command=self.load_first_tab)
         reload.grid(row=0, column=0, pady=(10, 10), sticky="w")
 
-        reload = ctk.CTkButton(first_tab, text="Delete record", command=self.logic.delete_borrowed_books_data)
+        reload = ctk.CTkButton(first_tab, text="Delete record", command=self.delete_record)
         reload.grid(row=0, column=0, padx=(150, 0), pady=(10, 10), sticky="w")
 
         history = self.logic.load_borrowed_books_data()
@@ -145,6 +148,9 @@ class MainScene:
             rec = ctk.CTkLabel(first_tab, text="No records", font=('Arial', 14), fg_color="gray20", corner_radius=10)
             rec.grid(row=1, column=0, pady=(0, 15), sticky="nsew")
             rec.configure(anchor="w")
+
+    def delete_record(self):
+        self.logic.delete_borrowed_books_data()
 
     def load_second_tab(self):
         second_tab = self.tabview.tab("Books with author")

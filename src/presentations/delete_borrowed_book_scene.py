@@ -32,7 +32,6 @@ class DeleteBorrowingBook:
 
         self.find_bk = ctk.CTkButton(self.root, text="DELETE", command=self.delete_borrowing)
         self.find_bk.grid(row=4, column=0, columnspan=2, pady=50)
-        print(self.id_values)
 
     def check_for_input(self):
         if self.id_input.get() == "":
