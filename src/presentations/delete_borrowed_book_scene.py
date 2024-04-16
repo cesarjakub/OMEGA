@@ -79,7 +79,9 @@ class DeleteBorrowingBook:
             CTkMessagebox(
                 title="Info",
                 message=f"Record with id {self.id_input.get()} has been deleted",
-                width=500)
+                width=500,
+                icon="check"
+            )
             self.id_input.set("choose one")
         except Exception as e:
             CTkMessagebox(

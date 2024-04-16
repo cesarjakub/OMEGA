@@ -66,3 +66,14 @@ class ShelfDAO(IDao):
             self.database.exec(query, params, msg)
         except Exception as e:
             raise Exception(e)
+
+    def read_record(self):
+        msg = "No records"
+        try:
+            query = """
+                    SELECT ID FROM shelf
+                    """
+            history = self.database.select(query, msg)
+            return history
+        except Exception as e:
+            return msg

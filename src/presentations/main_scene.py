@@ -197,6 +197,9 @@ class MainScene:
             rec.configure(anchor="w")
 
     def load_fourth_tab(self):
+        for widget in self.tabview.tab("Books on shelves").grid_slaves():
+            widget.grid_forget()
+
         fourth_tab = self.tabview.tab("Books on shelves")
 
         reload = ctk.CTkButton(fourth_tab, text="Reload history", command=self.load_fourth_tab)

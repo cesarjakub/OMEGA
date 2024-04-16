@@ -30,7 +30,7 @@ class DeleteBookFromShelf:
         self.id_input.grid(row=1, column=1, padx=(5, 10), pady=(10, 5))
         self.id_input.set("choose one")
 
-        self.find_bk = ctk.CTkButton(self.root, text="DELETE", command=self.delete_borrowing)
+        self.find_bk = ctk.CTkButton(self.root, text="DELETE", command=self.delete_shelf)
         self.find_bk.grid(row=4, column=0, columnspan=2, pady=50)
 
     def check_for_input(self):
@@ -46,9 +46,12 @@ class DeleteBookFromShelf:
             return False
 
     def create_values(self):
-        pass
+        shdao = ShelfDAO(self.database)
+        his_sh = shdao.read_record()
+        ids = [item[0] for item in his_sh]
+        self.id_values = [str(i) for i in ids]
 
-    def delete_borrowing(self):
+    def delete_shelf(self):
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -56,10 +59,27 @@ class DeleteBookFromShelf:
             if not self.check_for_number():
                 raise Exception("Please enter a positive number for ID or ID in range.")
 
+            try:
+                id = int(self.id_input.get())
+            except ValueError:
+                raise Exception("Please enter numbers")
+
+            shelf = Shelf(
+                id=id,
+                book_id=0,
+                shelf_no=0,
+                floor=0
+            )
+
+            shelfdao = ShelfDAO(self.database)
+            shelfdao.delete(shelf)
+
             CTkMessagebox(
                 title="Info",
                 message=f"Record with id {self.id_input.get()} has been deleted",
-                width=500)
+                width=500,
+                icon="check"
+            )
             self.id_input.set("choose one")
         except Exception as e:
             CTkMessagebox(
