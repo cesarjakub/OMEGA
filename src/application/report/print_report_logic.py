@@ -51,6 +51,7 @@ class PrintReportLogic:
 
         elements.append(Paragraph(f"User: {self.users_table.first_name} {self.users_table.last_name}", body_style))
         elements.append(Paragraph(f"Book Title: {self.book_table.title}", body_style))
+        elements.append(Paragraph(f"ID: {self.borrowing_table.id}", body_style))
         elements.append(Paragraph(f"Date Borrowed: {self.borrowing_table.date_borrowed}", body_style))
         elements.append(Paragraph(f"Due Date: {self.borrowing_table.due_date}", body_style))
         elements.append(Spacer(1, 12))
