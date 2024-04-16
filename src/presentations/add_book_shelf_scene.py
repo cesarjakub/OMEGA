@@ -54,10 +54,27 @@ class AddBookShelfScene:
             return False
         return True
 
+    def validate_positive_integer(self, value):
+        return value.isdigit() and int(value) > 0
+
+    def check_for_number(self):
+        shelf_no_value = self.shelf_no_input.get()
+        if not self.validate_positive_integer(shelf_no_value):
+            return False
+
+        floor_value = self.floor_input.get()
+        if not self.validate_positive_integer(floor_value):
+            return False
+
+        return True
+
     def add_book_shelf(self):
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
+
+            if not self.check_for_number():
+                raise Exception("Please enter a positive integer for shelf number.")
 
             # add book to shelf logic
             title = self.title_input.get()

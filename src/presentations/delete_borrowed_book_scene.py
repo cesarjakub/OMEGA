@@ -50,7 +50,11 @@ class DeleteBorrowingBook:
             if not self.check_for_number():
                 raise Exception("Please enter a positive number for ID.")
 
-            id = self.id_input.get()
+            try:
+                id = int(self.id_input.get())
+            except ValueError:
+                raise Exception("Please enter numbers")
+
 
             borrowing = Borrowing(
                 id=id,
