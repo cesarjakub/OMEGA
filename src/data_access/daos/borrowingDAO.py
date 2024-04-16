@@ -68,7 +68,7 @@ class BorrowingDAO(IDao):
             raise Exception(e)
 
     def read_record(self,):
-        msg = "Error with reading from borrowing."
+        msg = "No records"
         try:
             query = """
                     SELECT ID FROM borrowing
