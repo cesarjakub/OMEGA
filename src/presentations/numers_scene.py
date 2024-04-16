@@ -22,27 +22,40 @@ class NumbersScene:
 
     def components(self):
         self.add_book_lb = ctk.CTkLabel(self.root, text="Total numbers", font=('Open Sans', 25, 'bold'))
-        self.add_book_lb.grid(row=0, column=0, columnspan=2, pady=10)
+        self.add_book_lb.grid(row=0, column=0, columnspan=2, padx=(70,0), pady=10)
 
-        self.total_books_label = ctk.CTkLabel(self.root, text=f"Number of books: {self.book_count}")
-        self.total_books_label.grid(row=1, column=0, padx=(10, 5), pady=(10, 5))
+        self.total_books_label = ctk.CTkLabel(self.root, fg_color="gray20", corner_radius=8, text=f"Number of books:")
+        self.total_books_label.grid(row=1, column=0, padx=(70, 5), pady=(10, 5))
 
-        self.total_users_label = ctk.CTkLabel(self.root, text=f"Number of users: {self.users_count}")
-        self.total_users_label.grid(row=2, column=0, padx=(10, 5), pady=(10, 5))
+        self.total_books_cn = ctk.CTkLabel(self.root, text=f"{self.book_count}")
+        self.total_books_cn.grid(row=1, column=1, padx=(10, 5), pady=(10, 5))
 
-        self.total_borrowed_books_label = ctk.CTkLabel(self.root, text=f"number of borrowed books: {self.borrowing_count}")
-        self.total_borrowed_books_label.grid(row=3, column=0, padx=(10, 5), pady=(10, 5))
+        self.total_users_label = ctk.CTkLabel(self.root, fg_color="gray20", corner_radius=8, text=f"Number of users:")
+        self.total_users_label.grid(row=2, column=0, padx=(70, 5), pady=(10, 5))
+
+        self.total_users_cn = ctk.CTkLabel(self.root, text=f"{self.users_count}")
+        self.total_users_cn.grid(row=2, column=1, padx=(10, 5), pady=(10, 5))
+
+        self.total_borrowed_books_label = ctk.CTkLabel(self.root, fg_color="gray20", corner_radius=8, text=f"number of borrowed books:")
+        self.total_borrowed_books_label.grid(row=3, column=0, padx=(70, 5), pady=(10, 5))
+
+        self.total_borrowed_books_cn = ctk.CTkLabel(self.root, text=f"{self.borrowing_count}")
+        self.total_borrowed_books_cn.grid(row=3, column=1, padx=(10, 5), pady=(10, 5))
+
 
     def get_data(self):
         countdao = CountDAO(self.database)
         bk = countdao.count_book()
-        self.book_count = str(bk)
+        bkc = [item[0] for item in bk]
+        self.book_count = str(bkc)
 
         usr = countdao.count_users()
-        self.users_count = str(usr)
+        usrc = [item[0] for item in usr]
+        self.users_count = str(usrc)
 
         bor = countdao.count_borrowing()
-        self.borrowing_count = str(bor)
+        borc = [item[0] for item in bor]
+        self.borrowing_count = borc
 
     def mainloop(self):
         self.root.mainloop()
