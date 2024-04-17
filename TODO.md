@@ -1,9 +1,9 @@
 # OMEGA - library Management System
 ## Application 
-- [ ] Three tier architecture
-  - [ ] Data (Database)
-  - [ ] Presentations
-  - [ ] Logic (Application)
+- [x] Three tier architecture
+  - [x] Data (Database)
+  - [x] Presentations
+  - [x] Logic (Application)
 - [x] Database connection
   - [x] Database access object
   - [x] Models
