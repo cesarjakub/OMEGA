@@ -173,7 +173,7 @@ BEGIN
 
 	SET @Genre_ID = (SELECT ID FROM genre WHERE Name = @Genre_name);
 
-	SET @Author_ID = (SELECT ID FROM author WHERE First_name = @Author_first_name AND Last_name = @Author_last_name);
+	SET @Author_ID = (SELECT TOP 1 ID FROM author WHERE First_name = @Author_first_name AND Last_name = @Author_last_name);
 
 	IF @Genre_ID IS NULL OR @Author_ID IS NULL
     BEGIN

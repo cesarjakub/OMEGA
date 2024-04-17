@@ -65,11 +65,13 @@ class AddBookScene:
 
         authdao = AuthorDAO(self.database)
         his_ath = authdao.read_records()
-        self.author_first = [item[0] for item in his_ath]
+        author_first_names = [item[0] for item in his_ath]
+        self.author_first = list(set(author_first_names))
 
         authdao_two = AuthorDAO(self.database)
         his_ath_two = authdao_two.read_records_two()
-        self.author_last = [item[0] for item in his_ath_two]
+        author_last_names = [item[0] for item in his_ath_two]
+        self.author_last = list(set(author_last_names))
 
     def check_for_input(self):
         if (self.genre_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == "" or
