@@ -1,5 +1,6 @@
 import pyodbc
 from src.settings.config_reader import ConfigSettings
+from CTkMessagebox import CTkMessagebox
 
 class DatabaseConnection:
 
@@ -8,7 +9,7 @@ class DatabaseConnection:
 
     def connect(self):
         try:
-            server_name, server_database, server_uid, server_pwd = ConfigSettings.get_database_config()
+            server_name, server_database, server_uid, server_pwd = ConfigSettings.get_database_data()
 
             self.connection = pyodbc.connect(
                 f"DRIVER={{ODBC Driver 17 for SQL Server}};"

@@ -3,13 +3,14 @@ import json
 
 class ConfigSettings:
 
-    FILE_NAME = "../config/config_v.json"
+    INI_FILE_NAME = "./config/config.ini"
+    JSON_FILE_NAME = "./config/config_v.json"
     @staticmethod
     def get_database_data():
         params = ["server", "database_name", "UID", "PWD"]
 
         conf = configparser.ConfigParser()
-        conf.read(ConfigSettings.FILE_NAME)
+        conf.read(ConfigSettings.INI_FILE_NAME)
 
         if not conf.sections():
             raise ValueError("Config file is empty or invalid.")
@@ -27,12 +28,19 @@ class ConfigSettings:
 
     @staticmethod
     def get_database_config():
-        with open(ConfigSettings.FILE_NAME, 'r') as reader:
-            db_conn_data = json.load(reader)
+        try:
+            with open(ConfigSettings.JSON_FILE_NAME, 'r') as reader:
+                db_conn_data = json.load(reader)
 
-        server_name = db_conn_data["database"]["server"]
-        server_database = db_conn_data["database"]["DATABASE"]
-        server_uid = db_conn_data["database"]["UID"]
-        server_pwd = db_conn_data["database"]["PWD"]
+            server_name = db_conn_data["database"]["server"]
+            server_database = db_conn_data["database"]["DATABASE"]
+            server_uid = db_conn_data["database"]["UID"]
+            server_pwd = db_conn_data["database"]["PWD"]
 
-        return server_name, server_database, server_uid, server_pwd
+            return server_name, server_database, server_uid, server_pwd
+        except FileNotFoundError:
+            raise FileNotFoundError("Config file not found!")
+        except json.JSONDecodeError:
+            raise ValueError("Invalid JSON format in config file!")
+        except KeyError as e:
+            raise KeyError(f"Missing key: {e}")
