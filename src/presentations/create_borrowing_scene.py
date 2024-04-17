@@ -1,6 +1,7 @@
 from datetime import datetime
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.daos.usersDAO import UsersDAO
@@ -15,6 +16,7 @@ class CreateBorrowingScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
         self.book_values = []
         self.first_name = []
         self.last_name = []
@@ -137,13 +139,15 @@ class CreateBorrowingScene:
             self.first_input.set("choose one")
             self.last_input.set("choose one")
             self.title_input.set("choose one")
-
+            self.el.log_event("Borrowing created", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Borrowing created", "Error")
+
 
     def mainloop(self):
         self.root.mainloop()

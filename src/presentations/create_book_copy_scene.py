@@ -1,5 +1,5 @@
 import datetime
-
+from src.application.event_loger.EventLoger import EventLoger
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from src.data_access.daos.book_copyDAO import BookCopyDAO
@@ -15,6 +15,7 @@ class CreateBookCopyScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
         self.publisher_values = []
         self.book_values = []
 
@@ -98,13 +99,14 @@ class CreateBookCopyScene:
             )
             self.publisher_input.set("choose one")
             self.title_input.set("choose one")
-
+            self.el.log_event("Book copy created", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Book copy created", "Erro")
 
     def mainloop(self):
         self.root.mainloop()

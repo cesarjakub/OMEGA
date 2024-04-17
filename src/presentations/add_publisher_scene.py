@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.publisherDAO import PublisherDAO
 from src.data_access.tables.publisher import Publisher
 
@@ -9,6 +10,7 @@ class AddPublisherScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
 
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
@@ -58,13 +60,15 @@ class AddPublisherScene:
                 icon="check"
             )
             self.publisher_input.delete(0, "end")
-
+            self.el.log_event("Publisher added", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Publisher added", "Error")
+
 
     def mainloop(self):
         self.root.mainloop()

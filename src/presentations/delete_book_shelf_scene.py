@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.shelfDAO import ShelfDAO
 from src.data_access.tables.shelf import Shelf
 from datetime import datetime
@@ -10,6 +11,7 @@ class DeleteBookFromShelf:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
         self.id_values = []
 
         ctk.set_default_color_theme("dark-blue")
@@ -81,12 +83,14 @@ class DeleteBookFromShelf:
                 icon="check"
             )
             self.id_input.set("choose one")
+            self.el.log_event("Book shelf deleted", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Book shelf deleted", "Error")
 
     def mainloop(self):
         self.root.mainloop()

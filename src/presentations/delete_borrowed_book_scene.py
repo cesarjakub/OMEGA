@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.tables.borrowing import Borrowing
 from datetime import datetime
@@ -10,6 +11,7 @@ class DeleteBorrowingBook:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
         self.id_values = []
 
         ctk.set_default_color_theme("dark-blue")
@@ -83,12 +85,14 @@ class DeleteBorrowingBook:
                 icon="check"
             )
             self.id_input.set("choose one")
+            self.el.log_event("Borrowing record deleted", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Borrowing record deleted", "Error")
 
     def mainloop(self):
         self.root.mainloop()

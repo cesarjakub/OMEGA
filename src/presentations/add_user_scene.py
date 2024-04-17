@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from datetime import datetime
+from src.application.event_loger.EventLoger import EventLoger
 import re
 from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.users import Users
@@ -11,6 +12,7 @@ class AddUserScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
 
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
@@ -127,13 +129,14 @@ class AddUserScene:
             self.email_input.delete(0, "end")
             self.phone_input.delete(0, "end")
             self.address_input.delete(0, "end")
-
+            self.el.log_event("User added", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> User added", "Error")
 
     def mainloop(self):
         self.root.mainloop()

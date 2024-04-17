@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.genreDAO import GenreDAO
 from src.data_access.tables.genre import Genre
 
@@ -9,6 +10,7 @@ class AddGenreScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
 
         ctk.set_default_color_theme("dark-blue")
         ctk.set_appearance_mode("Dark")
@@ -58,13 +60,14 @@ class AddGenreScene:
                 icon="check"
             )
             self.genre_input.delete(0, "end")
-
+            self.el.log_event("Genre added", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Genre added", "Error")
 
     def mainloop(self):
         self.root.mainloop()

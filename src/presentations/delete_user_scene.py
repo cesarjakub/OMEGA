@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.users import Users
 from datetime import datetime
@@ -10,6 +11,7 @@ class DeleteUser:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
         self.email_values = []
 
         ctk.set_default_color_theme("dark-blue")
@@ -74,12 +76,14 @@ class DeleteUser:
                 icon="check"
             )
             self.email_input.set("choose one")
+            self.el.log_event("User deleted", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> User deleted", "Error")
 
     def mainloop(self):
         self.root.mainloop()

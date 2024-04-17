@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+from src.application.event_loger.EventLoger import EventLoger
 from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.daos.genreDAO import GenreDAO
 from src.data_access.daos.authorDAO import AuthorDAO
@@ -13,6 +14,7 @@ class AddBookScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
+        self.el = EventLoger("./logs/log.txt")
         self.genre_values = []
         self.author_last = []
         self.author_first = []
@@ -126,13 +128,14 @@ class AddBookScene:
             self.first_input.set("choose one")
             self.last_input.set("choose one")
             self.title_input.delete(0, "end")
-
+            self.el.log_event("Book added", "Success")
         except Exception as e:
             CTkMessagebox(
                 title="Error",
                 message=f"{e}",
                 icon="cancel"
             )
+            self.el.log_event("Error -> Author added", "Error")
 
     def mainloop(self):
         self.root.mainloop()
