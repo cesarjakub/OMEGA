@@ -4,7 +4,7 @@ import json
 class ConfigSettings:
 
     INI_FILE_NAME = "./config/config.ini"
-    JSON_FILE_NAME = "./config/config_v.json"
+    JSON_FILE_NAME = "./config/config_main.json"
     @staticmethod
     def get_database_data():
         params = ["server", "database_name", "UID", "PWD"]
