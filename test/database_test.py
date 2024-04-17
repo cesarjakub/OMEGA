@@ -7,14 +7,15 @@ class TestDatabaseConnection(unittest.TestCase):
 
     @patch('pyodbc.connect')
     def test_connect_success(self, mock_connect):
-        with patch.object(ConfigSettings, 'get_database_data', return_value=('server', 'database', 'user', 'password')):
+        with patch.object(ConfigSettings, 'get_database_config',
+                          return_value=('server', 'database', 'user', 'password')):
             db = DatabaseConnection()
             db.connect()
             self.assertTrue(mock_connect.called)
 
     @patch('pyodbc.connect')
     def test_connect_missing_config(self, mock_connect):
-        with patch.object(ConfigSettings, 'get_database_data', side_effect=ValueError):
+        with patch.object(ConfigSettings, 'get_database_config', side_effect=ValueError):
             db = DatabaseConnection()
             with self.assertRaises(ValueError):
                 db.connect()
@@ -22,7 +23,7 @@ class TestDatabaseConnection(unittest.TestCase):
 
     @patch('pyodbc.connect')
     def test_connect_other_errors(self, mock_connect):
-        with patch.object(ConfigSettings, 'get_database_data', side_effect=Exception):
+        with patch.object(ConfigSettings, 'get_database_config', side_effect=Exception):
             db = DatabaseConnection()
             with self.assertRaises(ConnectionError):
                 db.connect()

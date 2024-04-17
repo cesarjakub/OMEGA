@@ -6,11 +6,11 @@ class ConfigSettings:
     INI_FILE_NAME = "./config/config.ini"
     JSON_FILE_NAME = "./config/config_main.json"
     @staticmethod
-    def get_database_data():
+    def get_database_data(file_name):
         params = ["server", "database_name", "UID", "PWD"]
 
         conf = configparser.ConfigParser()
-        conf.read(ConfigSettings.INI_FILE_NAME)
+        conf.read(file_name)
 
         if not conf.sections():
             raise ValueError("Config file is empty or invalid.")
@@ -27,9 +27,9 @@ class ConfigSettings:
         return server, database_name, UID, PWD
 
     @staticmethod
-    def get_database_config():
+    def get_database_config(file_name):
         try:
-            with open(ConfigSettings.JSON_FILE_NAME, 'r') as reader:
+            with open(file_name, 'r') as reader:
                 db_conn_data = json.load(reader)
 
             server_name = db_conn_data["database"]["server"]

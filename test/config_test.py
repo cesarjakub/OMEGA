@@ -4,7 +4,7 @@ from src.settings.config_reader import ConfigSettings
 class TestConfigSettings(unittest.TestCase):
 
     def test_get_database_data(self):
-        server, database_name, UID, PWD = ConfigSettings.get_database_data()
+        server, database_name, UID, PWD = ConfigSettings.get_database_data("../config/config.ini")
 
         expected_server = 'DESKTOP-2QAB4PC\\SQLEXPRESS'
         expected_database_name = 'Library_management'
@@ -20,16 +20,10 @@ class TestConfigSettings(unittest.TestCase):
         ConfigSettings.INI_FILE_NAME = "invalid_config.ini"
 
         with self.assertRaises(Exception):
-            ConfigSettings.get_database_data()
-
-    def test_get_database_data_missing_param(self):
-        ConfigSettings.INI_FILE_NAME = "missing_param_config.ini"
-
-        with self.assertRaises(ValueError):
-            ConfigSettings.get_database_data()
+            ConfigSettings.get_database_data("invalid_config.ini")
 
     def test_get_database_config(self):
-        server, database_name, UID, PWD = ConfigSettings.get_database_config()
+        server, database_name, UID, PWD = ConfigSettings.get_database_config("../config/config_main.json")
 
         expected_server = 'DESKTOP-2QAB4PC\\SQLEXPRESS'
         expected_database_name = 'Library_management'
@@ -45,7 +39,7 @@ class TestConfigSettings(unittest.TestCase):
         ConfigSettings.JSON_FILE_NAME = "invalid_config.json"
 
         with self.assertRaises(FileNotFoundError):
-            ConfigSettings.get_database_config()
+            ConfigSettings.get_database_config("invalid_config.json")
 
 
 if __name__ == '__main__':
