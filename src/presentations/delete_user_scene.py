@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
-from src.application.event_loger.EventLoger import EventLoger
+from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.users import Users
 from datetime import datetime
@@ -11,7 +11,7 @@ class DeleteUser:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
-        self.el = EventLoger("./logs/log.txt")
+        self.el = EventLogger("./logs/log.txt")
         self.email_values = []
 
         ctk.set_default_color_theme("dark-blue")

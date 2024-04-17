@@ -1,5 +1,5 @@
 import datetime
-from src.application.event_loger.EventLoger import EventLoger
+from src.application.event_logger.EventLogger import EventLogger
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from src.data_access.daos.book_copyDAO import BookCopyDAO
@@ -15,7 +15,7 @@ class CreateBookCopyScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
-        self.el = EventLoger("./logs/log.txt")
+        self.el = EventLogger("./logs/log.txt")
         self.publisher_values = []
         self.book_values = []
 

@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
-from src.application.event_loger.EventLoger import EventLoger
+from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.daos.genreDAO import GenreDAO
 from src.data_access.daos.authorDAO import AuthorDAO
@@ -14,7 +14,7 @@ class AddBookScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
-        self.el = EventLoger("./logs/log.txt")
+        self.el = EventLogger("./logs/log.txt")
         self.genre_values = []
         self.author_last = []
         self.author_first = []

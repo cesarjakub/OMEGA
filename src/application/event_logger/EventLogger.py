@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 
-class EventLoger:
+class EventLogger:
 
     def __init__(self, path):
         self.path = path

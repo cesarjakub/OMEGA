@@ -1,7 +1,7 @@
 from datetime import datetime
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
-from src.application.event_loger.EventLoger import EventLoger
+from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.daos.usersDAO import UsersDAO
@@ -16,7 +16,7 @@ class CreateBorrowingScene:
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
-        self.el = EventLoger("./logs/log.txt")
+        self.el = EventLogger("./logs/log.txt")
         self.book_values = []
         self.first_name = []
         self.last_name = []
