@@ -29,15 +29,13 @@ class TestDatabaseConnection(unittest.TestCase):
                 db.connect()
             self.assertFalse(mock_connect.called)
 
-    @patch('pyodbc.connect')
+    @patch('src.data_access.database_connection.pyodbc.connect')
     def test_select_with_params_success(self, mock_connect):
         db = DatabaseConnection()
         mock_cursor = MagicMock()
         mock_cursor.fetchall.return_value = [('result',)]
-        mock_connect.return_value.cursor.return_value = mock_cursor
-
+        mock_connect.return_value.cursor.return_value.execute.return_value.fetchall.return_value = [('result',)]
         result = db.select_with_params("SELECT * FROM table WHERE column=?", ('value',), "No records found")
-
         self.assertEqual(result, [('result',)])
         mock_connect.assert_called_once()
 
