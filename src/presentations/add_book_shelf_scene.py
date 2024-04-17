@@ -116,7 +116,7 @@ class AddBookShelfScene:
         except Exception as e:
             CTkMessagebox(
                 title="Error",
-                message=f"{e}",
+                message=f"{e} GG",
                 icon="cancel"
             )
 

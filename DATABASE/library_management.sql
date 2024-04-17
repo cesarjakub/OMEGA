@@ -215,7 +215,7 @@ BEGIN
 	DECLARE @Book_ID INT;
 	DECLARE @Publisher_ID INT;
 
-	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+	SET @Book_ID = (SELECT TOP 1 ID FROM book WHERE Title = @Book_title);
 	SET @Publisher_ID = (SELECT ID FROM publisher WHERE Name = @Publisher_name);
 
 	INSERT INTO book_copy(Book_ID, Publisher_ID, Date_of_publication)
@@ -235,7 +235,7 @@ AS
 BEGIN
 	DECLARE @Book_ID INT;
 
-	SET @Book_ID = (SELECT ID FROM book WHERE Title = @Book_title);
+	SET @Book_ID = (SELECT TOP 1 ID FROM book WHERE Title = @Book_title);
 
 	IF @Book_ID IS NULL
     BEGIN

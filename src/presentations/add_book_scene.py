@@ -50,9 +50,8 @@ class AddBookScene:
 
         self.title_label = ctk.CTkLabel(self.root, text="Enter title")
         self.title_label.grid(row=4, column=0, padx=(10, 5), pady=(5, 10))
-        self.title_input = ctk.CTkComboBox(self.root, width=250, values=self.book_values)
+        self.title_input = ctk.CTkEntry(self.root, width=250, placeholder_text="Title...")
         self.title_input.grid(row=4, column=1, padx=(5, 10), pady=(5, 10))
-        self.title_input.set("choose one")
 
         self.add_bk = ctk.CTkButton(self.root, text="Add book", command=self.add_book)
         self.add_bk.grid(row=5, column=0, columnspan=2, pady=50)
@@ -69,10 +68,6 @@ class AddBookScene:
         authdao_two = AuthorDAO(self.database)
         his_ath_two = authdao_two.read_records_two()
         self.author_last = [item[0] for item in his_ath_two]
-
-        bkdao = BookDAO(self.database)
-        his_bk = bkdao.read()
-        self.book_values = [item[0] for item in his_bk]
 
     def check_for_input(self):
         if (self.genre_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == "" or
@@ -130,7 +125,7 @@ class AddBookScene:
             self.genre_input.set("choose one")
             self.first_input.set("choose one")
             self.last_input.set("choose one")
-            self.title_input.set("choose one")
+            self.title_input.delete(0, "end")
 
         except Exception as e:
             CTkMessagebox(
