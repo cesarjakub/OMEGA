@@ -74,7 +74,7 @@ class FindBookScene:
         except Exception as e:
             CTkMessagebox(
                 title="Error",
-                message=f"{e}",
+                message=f"Error with finding book",
                 icon="cancel"
             )
 
