@@ -54,3 +54,5 @@ Success 2024-04-18 16:47:01.915084 | User deleted
 Success 2024-04-18 16:47:18.891039 | User deleted
 Error 2024-04-18 16:48:11.911298 | Error -> User deleted
 Error 2024-04-18 16:48:17.766321 | Error -> User deleted
+Success 2024-04-18 16:53:37.710192 | Borrowing record deleted
+Success 2024-04-18 16:53:49.099680 | User deleted
