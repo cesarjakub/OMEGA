@@ -1,0 +1,7 @@
+Success 2024-04-18 20:56:45.787801 | User added
+Error 2024-04-18 20:57:35.265910 | Error -> User added
+Error 2024-04-18 21:04:07.409641 | Error -> User deleted
+Error 2024-04-18 21:04:09.505506 | Error -> User deleted
+Error 2024-04-18 21:05:04.902143 | Error -> User deleted
+Error 2024-04-18 21:05:12.516469 | Error -> Book shelf deleted
+Error 2024-04-18 21:05:17.792886 | Error -> User deleted
