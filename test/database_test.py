@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
+import sys
+sys.path.append("..")
 from src.settings.config_reader import ConfigSettings
 from src.data_access.database_connection import DatabaseConnection
 

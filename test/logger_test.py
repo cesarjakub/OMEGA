@@ -1,5 +1,7 @@
 import unittest
 import os
+import sys
+sys.path.append("..")
 from src.application.event_logger.EventLogger import EventLogger
 
 class TestEventLogger(unittest.TestCase):

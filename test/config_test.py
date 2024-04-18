@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.append("..")
 from src.settings.config_reader import ConfigSettings
 
 class TestConfigSettings(unittest.TestCase):
