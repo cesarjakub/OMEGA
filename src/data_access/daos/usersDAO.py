@@ -3,11 +3,27 @@ from src.data_access.database_connection import DatabaseConnection
 from src.data_access.tables.users import Users
 
 class UsersDAO(IDao):
+    """Data Access Object for interacting with user data in the database."""
 
     def __init__(self, database: DatabaseConnection):
+        """
+        Initializes a UsersDAO instance.
+
+        Parameters:
+            database (DatabaseConnection): The database connection object.
+        """
         super().__init__(database)
 
     def create(self, record: Users):
+        """
+        Creates a new user record in the database.
+
+        Parameters:
+            record (Users): The Users object containing the data to be inserted.
+
+        Raises:
+            Exception: If an error occurs while creating the user record.
+        """
         try:
             msg = "Error with creating user."
             query = """
@@ -19,6 +35,15 @@ class UsersDAO(IDao):
             raise Exception(e)
 
     def read(self):
+        """
+        Reads user records from the database.
+
+        Returns:
+            list: A list of user records.
+
+        Raises:
+            Exception: If an error occurs while reading the user records.
+        """
         msg = "No records."
         try:
             query = """
@@ -30,6 +55,15 @@ class UsersDAO(IDao):
             return msg
 
     def update(self, record: Users):
+        """
+        Updates an existing user record in the database.
+
+        Parameters:
+            record (Users): The Users object containing the updated data.
+
+        Raises:
+            Exception: If an error occurs while updating the user record.
+        """
         try:
             msg = "Error with updating user."
             query = """
@@ -43,6 +77,15 @@ class UsersDAO(IDao):
             raise Exception(e)
 
     def delete(self, record: Users):
+        """
+        Deletes a user record from the database.
+
+        Parameters:
+            record (Users): The Users object to be deleted.
+
+        Raises:
+            Exception: If an error occurs while deleting the user record.
+        """
         try:
             msg = "Error with deleting user."
             query = """
@@ -54,6 +97,15 @@ class UsersDAO(IDao):
             raise Exception(e)
 
     def read_first(self):
+        """
+        Reads first names of users from the database.
+
+        Returns:
+            list: A list of first names of users.
+
+        Raises:
+            Exception: If an error occurs while reading user first names.
+        """
         msg = "No records."
         try:
             query = """
@@ -65,6 +117,15 @@ class UsersDAO(IDao):
             return msg
 
     def read_last(self):
+        """
+        Reads last names of users from the database.
+
+        Returns:
+            list: A list of last names of users.
+
+        Raises:
+            Exception: If an error occurs while reading user last names.
+        """
         msg = "No records."
         try:
             query = """
@@ -76,6 +137,15 @@ class UsersDAO(IDao):
             return msg
 
     def read_record(self):
+        """
+        Reads email addresses of users from the database.
+
+        Returns:
+            list: A list of email addresses of users.
+
+        Raises:
+            Exception: If an error occurs while reading user email addresses.
+        """
         msg = "No records."
         try:
             query = """

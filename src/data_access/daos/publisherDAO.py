@@ -3,11 +3,27 @@ from src.data_access.database_connection import DatabaseConnection
 from src.data_access.tables.publisher import Publisher
 
 class PublisherDAO(IDao):
+    """Data Access Object for interacting with publisher data in the database."""
 
     def __init__(self, database: DatabaseConnection):
+        """
+        Initializes a PublisherDAO instance.
+
+        Parameters:
+            database (DatabaseConnection): The database connection object.
+        """
         super().__init__(database)
 
     def create(self, record: Publisher):
+        """
+        Creates a new publisher record in the database.
+
+        Parameters:
+            record (Publisher): The Publisher object containing the data to be inserted.
+
+        Raises:
+            Exception: If an error occurs while creating the publisher record.
+        """
         try:
             msg = "Error with creating publisher."
             query = """
@@ -19,6 +35,15 @@ class PublisherDAO(IDao):
             raise Exception(e)
 
     def read(self):
+        """
+        Reads publisher records from the database.
+
+        Returns:
+            list: A list of publisher records.
+
+        Raises:
+            Exception: If an error occurs while reading the publisher records.
+        """
         msg = "No records."
         try:
             query = """
@@ -30,6 +55,15 @@ class PublisherDAO(IDao):
             return msg
 
     def update(self, record: Publisher):
+        """
+        Updates an existing publisher record in the database.
+
+        Parameters:
+            record (Publisher): The Publisher object containing the updated data.
+
+        Raises:
+            Exception: If an error occurs while updating the publisher record.
+        """
         try:
             msg = "Error with updating publisher."
             query = """
@@ -41,6 +75,15 @@ class PublisherDAO(IDao):
             raise Exception(e)
 
     def delete(self, record: Publisher):
+        """
+        Deletes a publisher record from the database.
+
+        Parameters:
+            record (Publisher): The Publisher object to be deleted.
+
+        Raises:
+            Exception: If an error occurs while deleting the publisher record.
+        """
         try:
             msg = "Error with deleting publisher."
             query = """
@@ -52,6 +95,15 @@ class PublisherDAO(IDao):
             raise Exception(e)
 
     def read_records(self):
+        """
+        Reads publisher names from the database.
+
+        Returns:
+            list: A list of publisher names.
+
+        Raises:
+            Exception: If an error occurs while reading publisher names.
+        """
         msg = "No records."
         try:
             query = """

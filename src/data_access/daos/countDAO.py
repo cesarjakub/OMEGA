@@ -2,11 +2,27 @@ from src.data_access.daos.idao import IDao
 from src.data_access.database_connection import DatabaseConnection
 
 class CountDAO(IDao):
+    """A class for counting records in the database."""
 
     def __int__(self, database: DatabaseConnection):
+        """
+        Initializes a CountDAO instance.
+
+        Parameters:
+            database (DatabaseConnection): The database connection object.
+        """
         super().__init__(database)
 
     def count_book(self):
+        """
+        Counts the number of books in the database.
+
+        Returns:
+            int: The count of books in the database.
+
+        Raises:
+            Exception: If an error occurs during the count process.
+        """
         msg = "0"
         try:
             query = """
@@ -18,6 +34,15 @@ class CountDAO(IDao):
             return msg
 
     def count_users(self):
+        """
+        Counts the number of users in the database.
+
+        Returns:
+            int: The count of users in the database.
+
+        Raises:
+            Exception: If an error occurs during the count process.
+        """
         msg = "0"
         try:
             query = """
@@ -29,6 +54,15 @@ class CountDAO(IDao):
             return msg
 
     def count_borrowing(self):
+        """
+        Counts the number of borrowing records in the database.
+
+        Returns:
+            int: The count of borrowing records in the database.
+
+        Raises:
+            Exception: If an error occurs during the count process.
+        """
         msg = "0"
         try:
             query = """
@@ -40,6 +74,15 @@ class CountDAO(IDao):
             return msg
 
     def create(self, record):
+        """
+        Creates a new record in the database.
+
+        Parameters:
+            record: The record to be created.
+
+        Raises:
+            Exception: If an error occurs during the creation process.
+        """
         try:
             msg = "Error with creating book."
             query = """
@@ -51,6 +94,15 @@ class CountDAO(IDao):
             raise Exception(e)
 
     def read(self):
+        """
+        Retrieves records from the database.
+
+        Returns:
+            list: A list of records.
+
+        Raises:
+            Exception: If no records are found or an error occurs during the retrieval process.
+        """
         msg = "No records."
         try:
             query = """
@@ -62,6 +114,15 @@ class CountDAO(IDao):
             return msg
 
     def update(self, record):
+        """
+        Updates an existing record in the database.
+
+        Parameters:
+            record: The record to be updated.
+
+        Raises:
+            Exception: If an error occurs during the update process.
+        """
         try:
             msg = "Error with updating book."
             query = """
@@ -73,6 +134,15 @@ class CountDAO(IDao):
             raise Exception(e)
 
     def delete(self, record):
+        """
+        Deletes a record from the database.
+
+        Parameters:
+            record: The record to be deleted.
+
+        Raises:
+            Exception: If an error occurs during the deletion process.
+        """
         try:
             msg = "Error with deleting book."
             query = """

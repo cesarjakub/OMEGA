@@ -4,11 +4,27 @@ from src.data_access.tables.admin import Admin
 
 
 class AdminDAO(IDao):
+    """A class for handling CRUD operations related to the Admin table in the database."""
 
     def __init__(self, database: DatabaseConnection):
+        """
+        Initializes an AdminDAO instance.
+
+        Parameters:
+            database (DatabaseConnection): The database connection object.
+        """
         super().__init__(database)
 
     def create(self, record: Admin):
+        """
+        Creates a new admin record in the database.
+
+        Parameters:
+            record (Admin): The admin record to be created.
+
+        Raises:
+            Exception: If an error occurs during the creation process.
+        """
         try:
             msg = "Error with creating admin."
             query = """
@@ -20,6 +36,12 @@ class AdminDAO(IDao):
             raise Exception(e)
 
     def read(self):
+        """
+        Retrieves all admin records from the database.
+
+        Raises:
+            Exception: If no records are found or an error occurs during the retrieval process.
+        """
         try:
             msg = "No records."
             query = """
@@ -30,6 +52,15 @@ class AdminDAO(IDao):
             raise Exception(e)
 
     def update(self, record: Admin):
+        """
+        Updates an existing admin record in the database.
+
+        Parameters:
+            record (Admin): The admin record to be updated.
+
+        Raises:
+            Exception: If an error occurs during the update process.
+        """
         try:
             msg = "Error with updating admin."
             query = """
@@ -41,6 +72,15 @@ class AdminDAO(IDao):
             raise Exception(e)
 
     def delete(self, record: Admin):
+        """
+        Deletes an admin record from the database.
+
+        Parameters:
+            record (Admin): The admin record to be deleted.
+
+        Raises:
+            Exception: If an error occurs during the deletion process.
+        """
         try:
             msg = "Error with deleting admin."
             query = """
@@ -52,6 +92,16 @@ class AdminDAO(IDao):
             raise Exception(e)
 
     def read_with_params(self, email, password):
+        """
+        Retrieves an admin record based on the provided email and password.
+
+        Parameters:
+            email (str): The email of the admin.
+            password (str): The password of the admin.
+
+        Raises:
+            Exception: If the provided email or password is incorrect or an error occurs during the retrieval process.
+        """
         try:
             msg = "Email or password is wrong! Please try again."
             query = """

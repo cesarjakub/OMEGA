@@ -3,11 +3,14 @@ from src.settings.config_reader import ConfigSettings
 from CTkMessagebox import CTkMessagebox
 
 class DatabaseConnection:
+    """Class to handle database connection and queries."""
 
     def __init__(self):
+        """Initialize a DatabaseConnection instance."""
         self.connection = None
 
     def connect(self):
+        """Connect to the database."""
         try:
             server_name, server_database, server_uid, server_pwd = ConfigSettings.get_database_config("./config/config_main.json")
 
@@ -25,10 +28,26 @@ class DatabaseConnection:
             raise ConnectionError("Failed to connect to the database")
 
     def disconnect(self):
+        """Disconnect from the database."""
         self.connection.close()
 
     # selects
     def select_with_params(self, query, params, msg):
+        """
+        Execute a select query with parameters.
+
+        Parameters:
+            query (str): The SQL query to execute.
+            params (tuple): The parameters for the query.
+            msg (str): The message to return if no records are found.
+
+        Returns:
+            records (list): The result records of the query.
+            msg (str): The message indicating no records found.
+
+        Raises:
+            Exception: If an error occurs during query execution.
+        """
         try:
             if not params:
                 raise Exception("Please fill in field")
@@ -46,6 +65,20 @@ class DatabaseConnection:
             self.disconnect()
 
     def select(self, query, msg):
+        """
+        Execute a select query.
+
+        Parameters:
+            query (str): The SQL query to execute.
+            msg (str): The message to return if no records are found.
+
+        Returns:
+            records (list): The result records of the query.
+            msg (str): The message indicating no records found.
+
+        Raises:
+            Exception: If an error occurs during query execution.
+        """
         try:
             self.connect()
             cursor = self.connection.cursor()
@@ -62,6 +95,17 @@ class DatabaseConnection:
 
     # executables
     def exec(self, query, params, msg):
+        """
+        Execute a query without returning records.
+
+        Parameters:
+            query (str): The SQL query to execute.
+            params (tuple): The parameters for the query.
+            msg (str): The message to raise if an error occurs during query execution.
+
+        Raises:
+            Exception: If an error occurs during query execution.
+        """
         try:
             self.connect()
             cursor = self.connection.cursor()

@@ -2,11 +2,24 @@ import configparser
 import json
 
 class ConfigSettings:
+    """Class to handle configuration settings."""
 
     INI_FILE_NAME = "./config/config.ini"
     JSON_FILE_NAME = "./config/config_main.json"
     @staticmethod
     def get_database_data(file_name):
+        """
+        Get database connection data from an INI file.
+
+        Parameters:
+            file_name (str): The path to the INI file.
+
+        Returns:
+            tuple: A tuple containing server name, database name, UID, and PWD.
+
+        Raises:
+            ValueError: If the config file is empty, invalid, or if any parameter is missing.
+        """
         params = ["server", "database_name", "UID", "PWD"]
 
         conf = configparser.ConfigParser()
@@ -28,6 +41,19 @@ class ConfigSettings:
 
     @staticmethod
     def get_database_config(file_name):
+        """
+        Get database connection configuration from a JSON file.
+
+        Parameters:
+            file_name (str): The path to the JSON file.
+
+        Returns:
+            tuple: A tuple containing server name, database name, UID, and PWD.
+
+        Raises:
+            FileNotFoundError: If the config file is not found.
+            ValueError: If the JSON format is invalid or if any key is missing.
+        """
         try:
             with open(file_name, 'r') as reader:
                 db_conn_data = json.load(reader)

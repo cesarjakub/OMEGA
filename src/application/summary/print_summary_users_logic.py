@@ -5,12 +5,20 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from src.data_access.daos.usersDAO import UsersDAO
 
 class PrintReportUsersLogic:
+    """A class for generating a summary report of users."""
 
     def __init__(self, database):
+        """
+        Initializes a PrintReportUsersLogic instance.
+
+        Parameters:
+            database: The database object to fetch data from.
+        """
         self.database = database
         self.history = []
 
     def create_report(self):
+        """Generates a PDF report summarizing users."""
         filename = f"users_summary.pdf"
         doc = SimpleDocTemplate(filename, pagesize=letter)
         styles = getSampleStyleSheet()
@@ -27,6 +35,7 @@ class PrintReportUsersLogic:
         doc.build(elements)
 
     def get_data(self):
+        """Fetches data from the database."""
         try:
             users_dao = UsersDAO(self.database)
             self.history = users_dao.read()
@@ -34,6 +43,15 @@ class PrintReportUsersLogic:
             self.history = []
 
     def convert_data(self, body_style):
+        """
+        Converts data fetched from the database into Paragraph elements.
+
+        Parameters:
+            body_style: The style to be applied to the Paragraph elements.
+
+        Returns:
+            A list of Paragraph elements containing the converted data.
+        """
         data_paragraphs = []
         for record in self.history:
             rec = (f"| {record[0]} {record[1]} "

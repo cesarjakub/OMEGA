@@ -9,14 +9,24 @@ from src.data_access.tables.users import Users
 from src.data_access.tables.borrowing import Borrowing
 
 class PrintReportLogic:
-
+    """A class for generating a borrowing report and QR code."""
     def __init__(self, book_table: Book, users_table: Users, borrowing_table: Borrowing, database):
+        """
+        Initializes a PrintReportLogic instance.
+
+        Parameters:
+            book_table (Book): The book table object.
+            users_table (Users): The users table object.
+            borrowing_table (Borrowing): The borrowing table object.
+            database: The database object.
+        """
         self.book_table = book_table
         self.users_table = users_table
         self.borrowing_table = borrowing_table
         self.database = database
 
     def create_qr_code(self):
+        """Generates a QR code based on borrowing information."""
         data = (f"{self.users_table.first_name} {self.users_table.last_name} phone: {self.users_table.phone}, "
                 f"title: {self.book_table.title}, borrowed: {self.borrowing_table.date_borrowed} due date: "
                 f"{self.borrowing_table.due_date}")
@@ -34,6 +44,7 @@ class PrintReportLogic:
         return path
 
     def create_pdf(self):
+        """Creates a PDF summary report including borrower details and a QR code."""
         filename = f"summary{self.borrowing_table.id}.pdf"
 
         qr_code_path = self.create_qr_code()
