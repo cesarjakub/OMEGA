@@ -83,3 +83,7 @@ a nahrajeme ho do **SQL server Management Studio** a spustíme script (script ob
     - **configparser** knihovna
 
 ## Závěr
+- Projekt využívá knihovny třetích stran, jako jsou *pyodbc* pro připojení k databázi a standardní knihovny jako *json*, *sys*, *uuid*, *datetime*, a *os*, což přispívá k efektivnímu vývoji a spolehlivosti aplikace.
+- Tento databázový systém je otevřený dalšímu rozšíření pro danou problematiku e-receptů
+- Tento projekt, poskytuje aplikaci pro správu knihoven.
+- Závěrem lze říci, že tento databázový systém je snaha o modernizaci knihovního systému
