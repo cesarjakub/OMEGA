@@ -21,3 +21,17 @@ Success 2024-04-18 19:08:46.647697 | Book copy created
 Error 2024-04-18 19:09:03.452188 | Error -> Author added
 Success 2024-04-18 19:09:09.926261 | Genre added
 Error 2024-04-18 19:11:25.026354 | Error -> Author added
+Success 2024-04-18 19:14:59.532230 | Publisher added
+Success 2024-04-18 19:15:01.941651 | Publisher added
+Success 2024-04-18 19:15:06.185892 | Genre added
+Error 2024-04-18 19:15:09.419458 | Error -> Genre added
+Success 2024-04-18 19:15:14.745888 | Genre added
+Success 2024-04-18 19:15:50.438120 | User added
+Success 2024-04-18 19:16:04.195522 | Author added
+Success 2024-04-18 19:16:25.833300 | Book added
+Success 2024-04-18 19:16:56.563667 | Borrowing created
+Success 2024-04-18 19:17:06.645428 | Book on shelf added
+Success 2024-04-18 19:17:20.764393 | Book copy created
+Success 2024-04-18 19:17:33.907189 | Borrowing record deleted
+Success 2024-04-18 19:18:04.811975 | Book shelf deleted
+Success 2024-04-18 19:18:19.291004 | User deleted
