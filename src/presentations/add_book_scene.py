@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.daos.genreDAO import GenreDAO
@@ -89,6 +90,18 @@ class AddBookScene:
             first_name = self.first_input.get()
             last_name = self.last_input.get()
             title = self.title_input.get()
+
+            if not re.match(r'^[a-zA-Z]+$', name):
+                raise Exception("Genre name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z]+$', first_name):
+                raise Exception("First name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z]+$', last_name):
+                raise Exception("Last name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z\s]+$', title):
+                raise Exception("Title can only contain letters")
 
             if not 2 < len(name) < 50:
                 raise Exception("Genre is incorrect")

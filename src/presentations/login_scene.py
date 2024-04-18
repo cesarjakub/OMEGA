@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import re
 from CTkMessagebox import CTkMessagebox
 
 class LoginScene:
@@ -37,9 +38,22 @@ class LoginScene:
         self.submit = ctk.CTkButton(self.root, text="Submit", command=self.login_btn)
         self.submit.pack(pady=30)
 
+    def check_email(self, email):
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if re.match(pattern, email):
+            return True
+        else:
+            return False
+
     def login_btn(self):
         try:
-            self.logic.login(self.email_entry.get(), self.password_entry.get())
+            email = self.email_entry.get()
+            password = self.password_entry.get()
+
+            if not self.check_email(email):
+                raise Exception("Please enter correct email format")
+
+            self.logic.login(email, password)
             self.root.withdraw()  #dodelat logiku s logoutem aby to nedelalo errory
             self.logic.main_scene()
         except Exception as e:

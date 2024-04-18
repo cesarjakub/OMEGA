@@ -1,6 +1,7 @@
 from datetime import datetime
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.borrowingDAO import BorrowingDAO
 from src.data_access.daos.bookDAO import BookDAO
@@ -102,6 +103,16 @@ class CreateBorrowingScene:
                 due = datetime.strptime(self.due_input.get(), '%Y-%m-%d').date()
             except ValueError:
                 raise ValueError("Incorrect date format, please enter date in YYYY-MM-DD format.")
+
+            if not re.match(r'^[a-zA-Z]+$', first_name):
+                raise ValueError("First name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z]+$', last_name):
+                raise ValueError("Last name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z\s]+$', title):
+                raise ValueError("Title can only contain letters")
+
             book = Book(
                 id=0,
                 genre_id=0,

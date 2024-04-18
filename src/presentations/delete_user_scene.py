@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.users import Users
@@ -40,6 +41,13 @@ class DeleteUser:
             return False
         return True
 
+    def check_email(self, email):
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        if re.match(pattern, email):
+            return True
+        else:
+            return False
+
     def create_values(self):
         usrdao = UsersDAO(self.database)
         his_usr = usrdao.read_record()
@@ -55,6 +63,9 @@ class DeleteUser:
                 email = str(self.email_input.get())
             except ValueError:
                 raise Exception("Please enter string")
+
+            if not self.check_email(email):
+                raise Exception("Please enter correct email format")
 
             user = Users(
                 id=0,

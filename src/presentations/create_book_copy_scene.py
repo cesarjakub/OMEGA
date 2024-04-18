@@ -2,6 +2,7 @@ import datetime
 from src.application.event_logger.EventLogger import EventLogger
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.data_access.daos.book_copyDAO import BookCopyDAO
 from src.data_access.daos.publisherDAO import PublisherDAO
 from src.data_access.daos.bookDAO import BookDAO
@@ -68,6 +69,12 @@ class CreateBookCopyScene:
             # create book copy logic
             publisher_name = self.publisher_input.get().lower()
             book_title = self.title_input.get()
+
+            if not re.match(r'^[a-zA-Z\s]+$', publisher_name):
+                raise Exception("Publisher name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z\s]+$', book_title):
+                raise Exception("Book title can only contain letters")
 
             book_copy = BookCopy(
                 id=0,

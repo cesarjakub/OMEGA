@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.tables.book import Book
 
@@ -50,6 +51,9 @@ class FindBookScene:
 
             # add find book logic
             title = self.title_input.get()
+
+            if not re.match(r'^[a-zA-Z\s]+$', title):
+                raise Exception("Title can only contain letters")
 
             book = Book(
                 id=0,

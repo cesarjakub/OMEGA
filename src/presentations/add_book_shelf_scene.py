@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.shelfDAO import ShelfDAO
 from src.data_access.daos.bookDAO import BookDAO
@@ -76,7 +77,7 @@ class AddBookShelfScene:
                 raise Exception("Please fill in the fields")
 
             if not self.check_for_number():
-                raise Exception("Please enter a positive integer for shelf number.")
+                raise Exception("Please enter a positive integer.")
 
             # add book to shelf logic
             title = self.title_input.get()
@@ -85,6 +86,9 @@ class AddBookShelfScene:
                 shelf_no = int(self.shelf_no_input.get())
             except ValueError:
                 raise Exception("Please enter numbers")
+
+            if not re.match(r'^[a-zA-Z\s]+$', title):
+                raise Exception("Title can only contain letters")
 
             if not 1 < len(title) < 100:
                 raise Exception("Title is incorrect")
@@ -118,7 +122,7 @@ class AddBookShelfScene:
         except Exception as e:
             CTkMessagebox(
                 title="Error",
-                message=f"{e} GG",
+                message=f"{e}",
                 icon="cancel"
             )
             self.el.log_event("Error -> Book on shelf added", "Error")

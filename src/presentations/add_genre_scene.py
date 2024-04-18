@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.genreDAO import GenreDAO
 from src.data_access.tables.genre import Genre
@@ -43,6 +44,9 @@ class AddGenreScene:
 
             # genre logic
             name = self.genre_input.get().lower()
+
+            if not re.match(r'^[a-zA-Z\s]+$', name):
+                raise Exception("Name can only contain letters")
 
             if not 2 < len(name) < 50:
                 raise Exception("Genre is incorrect")

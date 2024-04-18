@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
+import re
 from src.application.event_logger.EventLogger import EventLogger
 from src.data_access.daos.authorDAO import AuthorDAO
 from src.data_access.tables.author import Author
@@ -50,6 +51,12 @@ class AddAuthorScene:
             # add author logic
             first_name = self.first_input.get()
             last_name = self.last_input.get()
+
+            if not re.match(r'^[a-zA-Z]+$', first_name):
+                raise Exception("First name can only contain letters")
+
+            if not re.match(r'^[a-zA-Z]+$', last_name):
+                raise Exception("Last name can only contain letters")
 
             if not 2 < len(first_name) < 20:
                 raise Exception("Name is incorrect")
