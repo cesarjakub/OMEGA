@@ -20,3 +20,4 @@ Success 2024-04-18 19:08:38.144212 | Book on shelf added
 Success 2024-04-18 19:08:46.647697 | Book copy created
 Error 2024-04-18 19:09:03.452188 | Error -> Author added
 Success 2024-04-18 19:09:09.926261 | Genre added
+Error 2024-04-18 19:11:25.026354 | Error -> Author added

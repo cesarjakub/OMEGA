@@ -125,10 +125,10 @@ class AddUserScene:
             phone = self.phone_input.get()
             address = self.address_input.get()
 
-            if not re.match(r'^[a-zA-Z]+$', first_name):
+            if not re.match(r'^[a-zA-Z.]+$', first_name):
                 raise Exception("First name can only contain letters")
 
-            if not re.match(r'^[a-zA-Z]+$', last_name):
+            if not re.match(r'^[a-zA-Z.]+$', last_name):
                 raise Exception("Last name can only contain letters")
 
             if not re.match(r'^\+\d{12}$', phone):

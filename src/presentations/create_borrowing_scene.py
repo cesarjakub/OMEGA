@@ -138,10 +138,10 @@ class CreateBorrowingScene:
             except ValueError:
                 raise ValueError("Incorrect date format, please enter date in YYYY-MM-DD format.")
 
-            if not re.match(r'^[a-zA-Z]+$', first_name):
+            if not re.match(r'^[a-zA-Z.]+$', first_name):
                 raise ValueError("First name can only contain letters")
 
-            if not re.match(r'^[a-zA-Z]+$', last_name):
+            if not re.match(r'^[a-zA-Z.]+$', last_name):
                 raise ValueError("Last name can only contain letters")
 
             if not re.match(r'^[a-zA-Z\s]+$', title):

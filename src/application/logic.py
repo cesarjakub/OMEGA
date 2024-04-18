@@ -40,7 +40,7 @@ class Logic:
         """
         self.database = database
         self.main_sc = None
-        self.start()
+        #self.start()
 
     # login logic
     def start(self):
