@@ -11,8 +11,26 @@ from src.data_access.tables.publisher import Publisher
 from src.data_access.tables.book import Book
 
 class CreateBookCopyScene:
+    """
+    A class to represent the Create Book Copy Scene.
+
+    Attributes:
+        logic (object): The logic handler object.
+        database (object): The database connection object.
+        root (object): The root window object.
+        el (object): The event logger object.
+        publisher_values (list): The list of publisher names available for book copy creation.
+        book_values (list): The list of book titles available for book copy creation.
+    """
 
     def __init__(self, logic, database):
+        """
+        Initializes the CreateBookCopyScene.
+
+        Args:
+            logic (object): The logic handler object.
+            database (object): The database connection object.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -29,6 +47,9 @@ class CreateBookCopyScene:
         self.components()
 
     def components(self):
+        """
+        Creates the GUI components.
+        """
         self.add_book_copy_lb = ctk.CTkLabel(self.root, text="Add book copy", font=('Open Sans', 25, 'bold'))
         self.add_book_copy_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -48,6 +69,9 @@ class CreateBookCopyScene:
         self.add_bkc.grid(row=5, column=0, columnspan=2, pady=50)
 
     def create_values(self):
+        """
+        Retrieves and populates the values for publisher names and book titles.
+        """
         pubdao = PublisherDAO(self.database)
         his_pub = pubdao.read_records()
         self.publisher_values = [item[0] for item in his_pub]
@@ -57,11 +81,20 @@ class CreateBookCopyScene:
         self.book_values = [item[0] for item in his_bk]
 
     def check_for_input(self):
+        """
+        Checks if all required fields are filled.
+
+        Returns:
+            bool: True if all fields are filled, False otherwise.
+        """
         if self.publisher_input.get() == "" or self.title_input.get() == "":
             return False
         return True
 
     def add_book_copy(self):
+        """
+        Adds a new book copy to the database.
+        """
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -116,4 +149,7 @@ class CreateBookCopyScene:
             self.el.log_event("Error -> Book copy created", "Erro")
 
     def mainloop(self):
+        """
+        Starts the main event loop.
+        """
         self.root.mainloop()

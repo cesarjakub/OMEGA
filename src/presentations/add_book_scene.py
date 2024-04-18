@@ -12,6 +12,13 @@ from src.data_access.tables.genre import Genre
 class AddBookScene:
 
     def __init__(self, logic, database):
+        """
+        Initializes the AddBookScene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database (DatabaseConnection): An instance of the database connection class.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -30,6 +37,7 @@ class AddBookScene:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for the AddBookScene."""
         self.add_book_lb = ctk.CTkLabel(self.root, text="Add book", font=('Open Sans', 25, 'bold'))
         self.add_book_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -60,6 +68,7 @@ class AddBookScene:
         self.add_bk.grid(row=5, column=0, columnspan=2, pady=50)
 
     def create_values(self):
+        """Creates initial values for genre and author selection."""
         gendao = GenreDAO(self.database)
         his_gen = gendao.read()
         self.genre_values = [item[0] for item in his_gen]
@@ -75,12 +84,14 @@ class AddBookScene:
         self.author_last = list(set(author_last_names))
 
     def check_for_input(self):
+        """Checks if all required input fields are filled."""
         if (self.genre_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == "" or
                 self.title_input.get() == ""):
             return False
         return True
 
     def add_book(self):
+        """Adds a new book to the system."""
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -153,4 +164,5 @@ class AddBookScene:
             self.el.log_event("Error -> Author added", "Error")
 
     def mainloop(self):
+        """Starts the main event loop for the AddBookScene."""
         self.root.mainloop()

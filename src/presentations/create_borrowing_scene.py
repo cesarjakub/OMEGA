@@ -12,8 +12,27 @@ from src.data_access.tables.users import Users
 
 
 class CreateBorrowingScene:
+    """
+    A class to represent the Create Borrowing Scene.
+
+    Attributes:
+        logic (object): The logic handler object.
+        database (object): The database connection object.
+        root (object): The root window object.
+        el (object): The event logger object.
+        book_values (list): The list of book titles available for borrowing.
+        first_name (list): The list of user first names available for borrowing.
+        last_name (list): The list of user last names available for borrowing.
+    """
 
     def __init__(self, logic, database):
+        """
+        Initializes the CreateBorrowingScene.
+
+        Args:
+            logic (object): The logic handler object.
+            database (object): The database connection object.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -31,6 +50,9 @@ class CreateBorrowingScene:
         self.components()
 
     def components(self):
+        """
+        Creates the GUI components.
+        """
         self.add_borrowing_lb = ctk.CTkLabel(self.root, text="Create borrowing", font=('Open Sans', 25, 'bold'))
         self.add_borrowing_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -66,6 +88,9 @@ class CreateBorrowingScene:
         self.add_borr.grid(row=6, column=0, columnspan=2, pady=50)
 
     def create_values(self):
+        """
+        Retrieves and populates the values for book titles, user first names, and user last names.
+        """
         bkdao = BookDAO(self.database)
         his_bk = bkdao.read()
         self.book_values = [item[0] for item in his_bk]
@@ -81,12 +106,21 @@ class CreateBorrowingScene:
 
 
     def check_for_input(self):
+        """
+        Checks if all required fields are filled.
+
+        Returns:
+            bool: True if all fields are filled, False otherwise.
+        """
         if (self.title_input.get() == "" or self.first_input.get() == "" or self.last_input.get() == ""
                 or self.borrowed_input.get() == "" or self.due_input.get() == ""):
             return False
         return True
 
     def create_borrowing(self):
+        """
+        Creates a borrowing record based on the input values.
+        """
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -161,4 +195,7 @@ class CreateBorrowingScene:
 
 
     def mainloop(self):
+        """
+        Starts the main event loop.
+        """
         self.root.mainloop()

@@ -6,8 +6,24 @@ from src.data_access.daos.genreDAO import GenreDAO
 from src.data_access.tables.genre import Genre
 
 class AddGenreScene:
+    """
+    A class to represent the Add Genre Scene.
+
+    Attributes:
+        logic (object): The logic handler object.
+        database (object): The database connection object.
+        root (object): The root window object.
+        el (object): The event logger object.
+    """
 
     def __init__(self, logic, database):
+        """
+        Initializes the AddGenreScene.
+
+        Args:
+            logic (object): The logic handler object.
+            database (object): The database connection object.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -21,6 +37,9 @@ class AddGenreScene:
         self.components()
 
     def components(self):
+        """
+        Creates the GUI components.
+        """
         self.add_genre_lb = ctk.CTkLabel(self.root, text="Add genre", font=('Open Sans', 25, 'bold'))
         self.add_genre_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -33,11 +52,20 @@ class AddGenreScene:
         self.add_gen.grid(row=5, column=0, columnspan=2, pady=40)
 
     def check_for_input(self):
+        """
+        Checks if the input field is filled.
+
+        Returns:
+            bool: True if the input field is filled, False otherwise.
+        """
         if self.genre_input.get() == "":
             return False
         return True
 
     def add_genre(self):
+        """
+        Adds a new genre to the database.
+        """
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the field")
@@ -74,4 +102,7 @@ class AddGenreScene:
             self.el.log_event("Error -> Genre added", "Error")
 
     def mainloop(self):
+        """
+        Starts the main event loop.
+        """
         self.root.mainloop()

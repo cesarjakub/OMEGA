@@ -7,8 +7,37 @@ from src.data_access.tables.author import Author
 
 
 class AddAuthorScene:
+    """
+    Represents a scene for adding an author in the application.
+
+    Attributes:
+        logic (Logic): The logic layer of the application.
+        database (DatabaseConnection): The database connection object.
+        root (ctk.CTk): The root window of the scene.
+        el (EventLogger): The event logger for logging events.
+        add_author_lb (ctk.CTkLabel): The label for the title of the scene.
+        first_label (ctk.CTkLabel): The label for the first name input field.
+        first_input (ctk.CTkEntry): The entry field for entering the first name.
+        last_label (ctk.CTkLabel): The label for the last name input field.
+        last_input (ctk.CTkEntry): The entry field for entering the last name.
+        add_auth (ctk.CTkButton): The button for adding the author.
+
+    Methods:
+        __init__(self, logic, database): Initializes the AddAuthorScene object.
+        components(self): Sets up the GUI components for the scene.
+        check_for_input(self): Checks if the input fields are empty.
+        add_author(self): Adds the author to the database and handles input validation.
+        mainloop(self): Starts the event loop to display the GUI.
+    """
 
     def __init__(self, logic, database):
+        """
+        Initializes the AddAuthorScene object.
+
+        Args:
+            logic (Logic): The logic layer of the application.
+            database (DatabaseConnection): The database connection object.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -22,6 +51,9 @@ class AddAuthorScene:
         self.components()
 
     def components(self):
+        """
+        Sets up the GUI components for the scene.
+        """
         self.add_author_lb = ctk.CTkLabel(self.root, text="Add author", font=('Open Sans', 25, 'bold'))
         self.add_author_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -39,11 +71,20 @@ class AddAuthorScene:
         self.add_auth.grid(row=5, column=0, columnspan=2, pady=50)
 
     def check_for_input(self):
+        """
+        Checks if the input fields are empty.
+
+        Returns:
+            bool: True if the input fields are not empty, False otherwise.
+        """
         if self.first_input.get() == "" or self.last_input.get() == "":
             return False
         return True
 
     def add_author(self):
+        """
+        Adds the author to the database and handles input validation.
+        """
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -89,4 +130,7 @@ class AddAuthorScene:
             self.el.log_event("Error -> Author added", "Error")
 
     def mainloop(self):
+        """
+        Starts the event loop to display the GUI.
+        """
         self.root.mainloop()

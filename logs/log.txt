@@ -1,2 +1,9 @@
 Success 2024-04-18 16:58:16.429195 | Borrowing created
 Success 2024-04-18 16:58:21.270541 | Borrowing record deleted
+Success 2024-04-18 19:01:03.345793 | Publisher added
+Success 2024-04-18 19:01:12.092320 | Genre added
+Success 2024-04-18 19:01:53.832108 | User added
+Success 2024-04-18 19:02:04.118404 | Author added
+Success 2024-04-18 19:02:14.036136 | Book copy created
+Success 2024-04-18 19:02:27.224440 | Book on shelf added
+Error 2024-04-18 19:02:38.733449 | Error -> Book on shelf added

@@ -9,8 +9,15 @@ from src.data_access.tables.users import Users
 
 
 class MainScene:
+    """Represents the main scene of the library management application."""
 
     def __init__(self, logic):
+        """
+        Initializes the MainScene.
+
+        Parameters:
+            logic (object): An instance of the application logic class.
+        """
         self.logic = logic
 
         self.root = ctk.CTk()
@@ -26,6 +33,9 @@ class MainScene:
         self.name_day()
 
     def components(self):
+        """
+        Creates and initializes the components of the main scene.
+        """
         # sidebar
         self.buttons_frame = ctk.CTkFrame(self.root, width=175, corner_radius=15)
         self.buttons_frame.grid(row=0, column=0, padx=(10, 0), pady=10, sticky="nsew")
@@ -87,6 +97,9 @@ class MainScene:
         self.load_fifth_tab()
 
     def load_first_tab(self):
+        """
+        Loads the first tab of the main scene with borrowed books data.
+        """
         for widget in self.tabview.tab("Borrowed books").grid_slaves():
             widget.grid_forget()
 
@@ -147,9 +160,15 @@ class MainScene:
             rec.configure(anchor="w")
 
     def delete_record(self):
+        """
+        Deletes a record from the borrowed books data.
+        """
         self.logic.delete_borrowed_books_data()
 
     def load_second_tab(self):
+        """
+        Loads the second tab of the main scene with books and their authors data.
+        """
         second_tab = self.tabview.tab("Books with author")
 
         reload = ctk.CTkButton(second_tab, text="Reload history", command=self.load_second_tab)
@@ -172,6 +191,9 @@ class MainScene:
             rec.configure(anchor="w")
 
     def load_third_tab(self):
+        """
+        Loads the third tab of the main scene with books and their publishers data.
+        """
         third_tab = self.tabview.tab("Books with publisher")
 
         reload = ctk.CTkButton(third_tab, text="Reload history", command=self.load_third_tab)
@@ -191,6 +213,9 @@ class MainScene:
             rec.configure(anchor="w")
 
     def load_fourth_tab(self):
+        """
+        Loads the fourth tab of the main scene with books on shelves data.
+        """
         for widget in self.tabview.tab("Books on shelves").grid_slaves():
             widget.grid_forget()
 
@@ -222,9 +247,15 @@ class MainScene:
             rec.configure(anchor="w")
 
     def delete_book_shelf(self):
+        """
+        Deletes a book from the book shelves.
+        """
         self.logic.delete_book_from_shelf()
 
     def load_fifth_tab(self):
+        """
+        Loads the fifth tab of the main scene with user information data.
+        """
         for widget in self.tabview.tab("User info").grid_slaves():
             widget.grid_forget()
 
@@ -254,9 +285,20 @@ class MainScene:
             rec.configure(anchor="w")
 
     def delete_user(self):
+        """
+        Deletes a user from the user information data.
+        """
         self.logic.delete_user()
 
     def print_report(self, bt, ut, brt):
+        """
+        Prints a report based on book, user, and borrowing information.
+
+        Parameters:
+            bt (object): Book information.
+            ut (object): User information.
+            brt (object): Borrowing information.
+        """
         try:
             self.logic.create_report(bt, ut, brt)
             CTkMessagebox(
@@ -266,6 +308,9 @@ class MainScene:
             raise Exception("Creating error")
 
     def print_book_report(self):
+        """
+        Prints a report based on book information.
+        """
         try:
             self.logic.create_report_books()
             CTkMessagebox(message=f"report created in src folder", icon="check")
@@ -273,6 +318,9 @@ class MainScene:
             raise Exception("Creating error")
 
     def print_users_report(self):
+        """
+        Prints a report based on user information.
+        """
         try:
             self.logic.create_report_users()
             CTkMessagebox(title="Success", message=f"report created in src folder", icon="check")
@@ -280,12 +328,19 @@ class MainScene:
             raise Exception("Creating error")
 
     def print_book_shelf(self):
+        """
+        Prints a report based on book shelves information.
+        """
         try:
             self.logic.create_report_shelf()
             CTkMessagebox(title="Success", message=f"report created in src folder", icon="check")
         except Exception as e:
             raise Exception("Creating error")
+
     def name_day(self):
+        """
+        Displays a message indicating the name day for the current date.
+        """
         try:
             name = self.logic.name_day()
             CTkMessagebox(title="Success", message=f"Today {datetime.now().date()} is {name}'s Day", icon="check")
@@ -293,7 +348,13 @@ class MainScene:
             CTkMessagebox(title="Error", message=f"{e}", icon="cancel")
 
     def mainloop(self):
+        """
+        Enters the main event loop of the GUI application.
+        """
         self.root.mainloop()
 
     def destroy(self):
+        """
+        Destroys the main window of the GUI application.
+        """
         self.root.destroy()

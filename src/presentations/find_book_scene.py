@@ -5,8 +5,16 @@ from src.data_access.daos.bookDAO import BookDAO
 from src.data_access.tables.book import Book
 
 class FindBookScene:
+    """A scene for finding books."""
 
     def __init__(self, logic, database):
+        """
+        Initializes the FindBookScene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database: An instance of the application's database.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -21,6 +29,7 @@ class FindBookScene:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for finding a book."""
         self.add_book_lb = ctk.CTkLabel(self.root, text="Find book", font=('Open Sans', 25, 'bold'))
         self.add_book_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -34,17 +43,20 @@ class FindBookScene:
         self.find_bk.grid(row=4, column=0, columnspan=2, pady=50)
 
     def create_values(self):
+        """Retrieves book titles from the database."""
         bkdao = BookDAO(self.database)
         his_bk = bkdao.read()
         self.book_values = [item[0] for item in his_bk]
 
     def check_for_input(self):
+        """Checks if the user has entered a title."""
         if self.title_input.get() == "":
             return False
         return True
 
 
     def find_book(self):
+        """Handles the process of finding a book."""
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -83,4 +95,5 @@ class FindBookScene:
             )
 
     def mainloop(self):
+        """Starts the main event loop for the FindBookScene."""
         self.root.mainloop()

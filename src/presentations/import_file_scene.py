@@ -5,8 +5,16 @@ from src.data_access.daos.importDAO import ImportDAO
 import json
 
 class ImportFileScene:
+    """A scene for importing data from a JSON file."""
 
     def __init__(self, logic, database):
+        """
+        Initializes the ImportFileScene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database: An instance of the application's database.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -19,6 +27,7 @@ class ImportFileScene:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for selecting a file and importing data."""
         self.file_path = filedialog.askopenfilename(
             filetypes=[("JSON files", "*.json")],
             title="Choose a JSON file"
@@ -34,6 +43,7 @@ class ImportFileScene:
             CTkMessagebox(title="Error", message=f"Please select file")
 
     def import_logic(self):
+        """Handles the import process of data from the selected file."""
         try:
             # import logic
             data = self.read_data()
@@ -58,8 +68,10 @@ class ImportFileScene:
             )
 
     def read_data(self):
+        """Reads data from the selected JSON file."""
         with open(self.file_path, 'r') as file:
             return json.load(file)
 
     def mainloop(self):
+        """Starts the main event loop for the ImportFileScene."""
         self.root.mainloop()

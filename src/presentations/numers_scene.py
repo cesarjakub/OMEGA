@@ -3,8 +3,16 @@ from CTkMessagebox import CTkMessagebox
 from src.data_access.daos.countDAO import CountDAO
 
 class NumbersScene:
+    """A scene to display total numbers of books, users, and borrowed books."""
 
     def __init__(self, logic, database):
+        """
+        Initializes the NumbersScene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database (DatabaseConnection): An instance of the database connection class.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -21,6 +29,7 @@ class NumbersScene:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for the NumbersScene."""
         self.add_book_lb = ctk.CTkLabel(self.root, text="Total numbers", font=('Open Sans', 25, 'bold'))
         self.add_book_lb.grid(row=0, column=0, columnspan=2, padx=(70,0), pady=10)
 
@@ -44,6 +53,7 @@ class NumbersScene:
 
 
     def get_data(self):
+        """Retrieves data from the database."""
         countdao = CountDAO(self.database)
         bk = countdao.count_book()
         bkc = [item[0] for item in bk]
@@ -58,4 +68,5 @@ class NumbersScene:
         self.borrowing_count = borc
 
     def mainloop(self):
+        """Starts the main event loop for the NumbersScene."""
         self.root.mainloop()

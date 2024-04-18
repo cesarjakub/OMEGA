@@ -6,8 +6,24 @@ from src.data_access.daos.publisherDAO import PublisherDAO
 from src.data_access.tables.publisher import Publisher
 
 class AddPublisherScene:
+    """
+    A class to represent the Add Publisher Scene.
+
+    Attributes:
+        logic (object): The logic handler object.
+        database (object): The database connection object.
+        root (object): The root window object.
+        el (object): The event logger object.
+    """
 
     def __init__(self, logic, database):
+        """
+        Initializes the AddPublisherScene.
+
+        Args:
+            logic (object): The logic handler object.
+            database (object): The database connection object.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -21,6 +37,9 @@ class AddPublisherScene:
         self.components()
 
     def components(self):
+        """
+        Creates the GUI components.
+        """
         self.add_publisher_lb = ctk.CTkLabel(self.root, text="Add publisher", font=('Open Sans', 25, 'bold'))
         self.add_publisher_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -33,11 +52,20 @@ class AddPublisherScene:
         self.add_pub.grid(row=5, column=0, columnspan=2, pady=40)
 
     def check_for_input(self):
+        """
+        Checks if the input field is filled.
+
+        Returns:
+            bool: True if the input field is filled, False otherwise.
+        """
         if self.publisher_input.get() == "":
             return False
         return True
 
     def add_publisher(self):
+        """
+        Adds a new publisher to the database.
+        """
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the field")
@@ -75,4 +103,7 @@ class AddPublisherScene:
 
 
     def mainloop(self):
+        """
+        Starts the main event loop.
+        """
         self.root.mainloop()

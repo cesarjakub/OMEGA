@@ -7,8 +7,24 @@ from src.data_access.daos.usersDAO import UsersDAO
 from src.data_access.tables.users import Users
 
 class AddUserScene:
+    """
+    A class to represent the Add User Scene.
+
+    Attributes:
+        logic (object): The logic handler object.
+        database (object): The database connection object.
+        root (object): The root window object.
+        el (object): The event logger object.
+    """
 
     def __init__(self, logic, database):
+        """
+        Initializes the AddUserScene.
+
+        Args:
+            logic (object): The logic handler object.
+            database (object): The database connection object.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -22,6 +38,9 @@ class AddUserScene:
         self.components()
 
     def components(self):
+        """
+        Creates the GUI components.
+        """
         self.add_user_lb = ctk.CTkLabel(self.root, text="Add user", font=('Open Sans', 25, 'bold'))
         self.add_user_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -55,10 +74,16 @@ class AddUserScene:
         self.address_input = ctk.CTkEntry(self.root, width=250, placeholder_text="address...")
         self.address_input.grid(row=6, column=1, padx=(5, 10), pady=(5, 10))
 
-        self.add_usr = ctk.CTkButton(self.root, text="Add user", command=self.add_book)
+        self.add_usr = ctk.CTkButton(self.root, text="Add user", command=self.add_usr_uniqu)
         self.add_usr.grid(row=7, column=0, columnspan=2, pady=50)
 
     def check_for_input(self):
+        """
+        Checks if all required fields are filled.
+
+        Returns:
+            bool: True if all fields are filled, False otherwise.
+        """
         if (self.first_input.get() == "" or self.last_input.get() == "" or self.birth_input.get() == ""
                 or self.email_input.get() == "" or self.phone_input.get() == "" or self.address_input.get() == ""):
             return False
@@ -66,13 +91,25 @@ class AddUserScene:
         return True
 
     def check_email(self, email):
+        """
+        Checks if the email address is valid.
+
+        Args:
+            email (str): The email address to be validated.
+
+        Returns:
+            bool: True if the email address is valid, False otherwise.
+        """
         pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         if re.match(pattern, email):
             return True
         else:
             return False
 
-    def add_book(self):
+    def add_usr_uniqu(self):
+        """
+        Adds a new user to the database.
+        """
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -148,4 +185,7 @@ class AddUserScene:
             self.el.log_event("Error -> User added", "Error")
 
     def mainloop(self):
+        """
+        Starts the main event loop.
+        """
         self.root.mainloop()

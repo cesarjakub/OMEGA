@@ -6,8 +6,16 @@ from src.data_access.tables.borrowing import Borrowing
 from datetime import datetime
 
 class DeleteBorrowingBook:
+    """A scene for deleting a borrowing record."""
 
     def __init__(self, logic, database):
+        """
+        Initializes the DeleteBorrowingBook scene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database: An instance of the application's database.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -23,6 +31,7 @@ class DeleteBorrowingBook:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for deleting a borrowing record."""
         self.del_book_lb = ctk.CTkLabel(self.root, text="Delete book", font=('Open Sans', 25, 'bold'))
         self.del_book_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -36,11 +45,13 @@ class DeleteBorrowingBook:
         self.find_bk.grid(row=4, column=0, columnspan=2, pady=50)
 
     def check_for_input(self):
+        """Checks if the user has entered an ID."""
         if self.id_input.get() == "":
             return False
         return True
 
     def check_for_number(self):
+        """Checks if the entered ID is a positive number."""
         id_value = self.id_input.get()
         if id_value.isdigit() and int(id_value) > 0 and id_value in self.id_values:
             return True
@@ -48,12 +59,14 @@ class DeleteBorrowingBook:
             return False
 
     def create_values(self):
+        """Retrieves borrowing record IDs from the database."""
         bordao = BorrowingDAO(self.database)
         his_bor = bordao.read_record()
         ids = [item[0] for item in his_bor]
         self.id_values = [str(i) for i in ids]
 
     def delete_borrowing(self):
+        """Handles the process of deleting a borrowing record."""
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -95,4 +108,5 @@ class DeleteBorrowingBook:
             self.el.log_event("Error -> Borrowing record deleted", "Error")
 
     def mainloop(self):
+        """Starts the main event loop for the DeleteBorrowingBook scene."""
         self.root.mainloop()

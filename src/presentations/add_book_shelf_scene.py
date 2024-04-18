@@ -8,8 +8,16 @@ from src.data_access.tables.shelf import Shelf
 from src.data_access.tables.book import Book
 
 class AddBookShelfScene:
+    """A scene for adding a book to a shelf in the system."""
 
     def __init__(self, logic, database):
+        """
+        Initializes the AddBookShelfScene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database (DatabaseConnection): An instance of the database connection class.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -25,6 +33,7 @@ class AddBookShelfScene:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for the AddBookShelfScene."""
         self.add_book_lb = ctk.CTkLabel(self.root, text="Add book to shelf", font=('Open Sans', 25, 'bold'))
         self.add_book_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -48,19 +57,36 @@ class AddBookShelfScene:
         self.add_bk.grid(row=4, column=0, columnspan=2, pady=50)
 
     def create_values(self):
+        """Creates initial values for book selection."""
         bkdao = BookDAO(self.database)
         his_bk = bkdao.read()
         self.book_values = [item[0] for item in his_bk]
 
     def check_for_input(self):
+        """Checks if all required input fields are filled."""
         if self.title_input.get() == "" or self.shelf_no_input.get() == "" or self.floor_input.get() == "":
             return False
         return True
 
     def validate_positive_integer(self, value):
+        """
+        Validates if a given value is a positive integer.
+
+        Parameters:
+            value (str): The value to be validated.
+
+        Returns:
+            bool: True if the value is a positive integer, False otherwise.
+        """
         return value.isdigit() and int(value) > 0
 
     def check_for_number(self):
+        """
+        Checks if the shelf and floor numbers are positive integers.
+
+        Returns:
+            bool: True if both shelf and floor numbers are positive integers, False otherwise.
+        """
         shelf_no_value = self.shelf_no_input.get()
         if not self.validate_positive_integer(shelf_no_value):
             return False
@@ -72,6 +98,7 @@ class AddBookShelfScene:
         return True
 
     def add_book_shelf(self):
+        """Adds a new book to a shelf."""
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -128,4 +155,5 @@ class AddBookShelfScene:
             self.el.log_event("Error -> Book on shelf added", "Error")
 
     def mainloop(self):
+        """Starts the main event loop for the AddBookShelfScene."""
         self.root.mainloop()

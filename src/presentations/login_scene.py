@@ -3,8 +3,15 @@ import re
 from CTkMessagebox import CTkMessagebox
 
 class LoginScene:
+    """A scene for user login."""
 
     def __init__(self, logic):
+        """
+        Initializes the LoginScene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+        """
         self.logic = logic
 
         self.root = ctk.CTk()
@@ -17,6 +24,7 @@ class LoginScene:
 
 
     def entry(self):
+        """Creates and places entry fields for email and password."""
         self.name_label = ctk.CTkLabel(self.root, text="Library Management", font=('Open Sans', 25, 'bold'))
         self.name_label.pack(pady=10)
 
@@ -35,10 +43,20 @@ class LoginScene:
         self.button()
 
     def button(self):
+        """Creates and places the submit button."""
         self.submit = ctk.CTkButton(self.root, text="Submit", command=self.login_btn)
         self.submit.pack(pady=30)
 
     def check_email(self, email):
+        """
+        Checks if the provided email address is in a valid format.
+
+        Parameters:
+            email (str): The email address to be checked.
+
+        Returns:
+            bool: True if the email format is valid, False otherwise.
+        """
         pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         if re.match(pattern, email):
             return True
@@ -46,6 +64,12 @@ class LoginScene:
             return False
 
     def login_btn(self):
+        """
+        Attempts to log in the user using the provided email and password.
+
+        Raises:
+            Exception: If there is an error during the login process.
+        """
         try:
             email = self.email_entry.get()
             password = self.password_entry.get()
@@ -64,5 +88,6 @@ class LoginScene:
             )
 
     def mainloop(self):
+        """Starts the main event loop for the LoginScene."""
         self.root.mainloop()
 

@@ -7,8 +7,16 @@ from src.data_access.tables.users import Users
 from datetime import datetime
 
 class DeleteUser:
+    """A scene for deleting a user."""
 
     def __init__(self, logic, database):
+        """
+        Initializes the DeleteUser scene.
+
+        Parameters:
+            logic (Logic): An instance of the application's logic class.
+            database: An instance of the application's database.
+        """
         self.logic = logic
         self.database = database
         self.root = ctk.CTk()
@@ -24,6 +32,7 @@ class DeleteUser:
         self.components()
 
     def components(self):
+        """Creates and places GUI components for deleting a user."""
         self.del_book_lb = ctk.CTkLabel(self.root, text="Delete book", font=('Open Sans', 25, 'bold'))
         self.del_book_lb.grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -37,11 +46,13 @@ class DeleteUser:
         self.find_bk.grid(row=4, column=0, columnspan=2, pady=50)
 
     def check_for_input(self):
+        """Checks if the user has entered an email."""
         if self.email_input.get() == "":
             return False
         return True
 
     def check_email(self, email):
+        """Checks if the entered email has a valid format."""
         pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         if re.match(pattern, email):
             return True
@@ -49,12 +60,14 @@ class DeleteUser:
             return False
 
     def create_values(self):
+        """Retrieves user emails from the database."""
         usrdao = UsersDAO(self.database)
         his_usr = usrdao.read_record()
         emails = [item[0] for item in his_usr]
         self.email_values = [str(i) for i in emails]
 
     def delete_borrowing(self):
+        """Handles the process of deleting a user."""
         try:
             if not self.check_for_input():
                 raise Exception("Please fill in the fields")
@@ -97,4 +110,5 @@ class DeleteUser:
             self.el.log_event("Error -> User deleted", "Error")
 
     def mainloop(self):
+        """Starts the main event loop for the DeleteUser scene."""
         self.root.mainloop()
