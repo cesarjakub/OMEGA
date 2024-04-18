@@ -102,7 +102,7 @@ class AddBookScene:
             last_name = self.last_input.get()
             title = self.title_input.get()
 
-            if not re.match(r'^[a-zA-Z]+$', name):
+            if not re.match(r'^[a-zA-Z\s]+$', name):
                 raise Exception("Genre name can only contain letters")
 
             if not re.match(r'^[a-zA-Z]+$', first_name):
