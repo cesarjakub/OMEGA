@@ -1,8 +1,8 @@
 {
   "database": {
-    "server": "DESKTOP-2QAB4PC\\SQLEXPRESS",
-    "DATABASE": "Library_management",
-    "UID": "test",
-    "PWD": "1234"
+    "server": "******",
+    "DATABASE": "******",
+    "UID": "******",
+    "PWD": "******"
   }
 }
