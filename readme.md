@@ -40,10 +40,10 @@ a nahrajeme ho do **SQL server Management Studio** a spustíme script (script ob
 ```json
 {
   "database": {
-    "server": "DESKTOP-2QAB4PC\\SQLEXPRESS",
-    "DATABASE": "EPrescription",
-    "UID": "test",
-    "PWD": "1234"
+    "server": "******",
+    "DATABASE": "******",
+    "UID": "******",
+    "PWD": "******"
   }
 }
 ```
