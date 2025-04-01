@@ -1,7 +1,6 @@
 # OMEGA
 - **Název projektu**: Library management
 - **Autor**: Jakub César
-- **Email**: cesar@spsejecna.cz
 - **LinkedIn**: [LinkedIn - Jakub César](https://tr.linkedin.com/in/jakub-c%C3%A9sar-714584243)
 - **Github**: [Github - Jakub César](https://github.com/cesarjakub)
     - **Github odkaz na repozitář projektu**: [Github - repo](https://github.com/cesarjakub/OMEGA)
